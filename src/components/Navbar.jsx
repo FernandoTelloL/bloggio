@@ -1,61 +1,58 @@
 import { useState } from "react";
 
-import closeBtn from "../assets/icons/icon-menu-close.svg";
-import burgerMenu from "../assets/icons/icon-menu.svg";
+import burgerMenu from "../assets/icons/icon-hamburger.svg";
+import closeMenu from "../assets/icons/icon-menu-close.svg";
 
 export const Navbar = () => {
-  const [menuClicked, setMenuClicked] = useState(true);
+  const [menuClicked, setMenuClicked] = useState(false);
 
   const handleClick = () => {
-    setMenuClicked((prevState) => !prevState);
+    setMenuClicked(() => !menuClicked);
+    console.log(menuClicked)
   };
 
   return (
     <>
-      <ul
-        className={`${
-          menuClicked ? "hidden" : ""
-        } absolute bg-orange-300 h-screen top-0 right-0 w-[256px] p-[24px] text-[18px] sm:flex sm:items-center sm:w-[438px] sm:place-content-around sm:p-0 sm:h-auto sm:relative sm:text-[16px]`}
-      >
-        <li
-          className={`${
-            menuClicked ? "hidden" : ""
-          } cursor-pointer sm:hidden flex justify-end`}
-        >
-          <img
-            className="w-8 h-8 mb-[87px]"
-            src={closeBtn}
-            onClick={handleClick}
-            alt=""
-          />
-        </li>
-        <li className="list-none mb-8 sm:mb-0">
-          <a className="no-underline hover:text-SoftRed sm:text-4" href="#">
-            Home
-          </a>
-        </li>
 
-        <li className="list-none mb-8 sm:mb-0">
-          <a className="no-underline hover:text-SoftRed" href="#">
-            New
-          </a>
-        </li>
+      <ul className={` bg-slate-300 h-[100vh] w-[100vw] right-full absolute top-0 mt-0 pl-0 transition-all z-30 ${ menuClicked ? '!right-0':''}`}>
 
-        <li className="list-none mb-8 sm:mb-0">
-          <a className="no-underline hover:text-SoftRed" href="#">
-            Categories
-          </a>
-        </li>
+        <div className="bg-red-300 text-right" onClick={handleClick}>
+          <img className="w-8 h-8" src={closeMenu} alt="" />
+        </div>
 
+        <div className="flex flex-col justify-center items-center h-full">
+
+          <li className="list-none mb-8 sm:mb-0 cursor-pointer"> <a className="no-underline hover:text-SoftRed sm:text-4" href="#"> Home
+            </a>
+          </li>
+
+          <li className="list-none mb-8 sm:mb-0 cursor-pointer">
+            <a className="no-underline hover:text-SoftRed" href="#">
+              New
+            </a>
+          </li>
+
+          <li className="list-none mb-8 sm:mb-0 cursor-pointer">
+            <a className="no-underline hover:text-SoftRed" href="#">
+              Categories
+            </a>
+          </li>
+        </div>
+
+        
       </ul>
-      <img
-        className={`${
-          menuClicked ? "" : "hidden"
-        } w-10 h-4 cursor-pointer sm:hidden`}
-        src={burgerMenu}
-        onClick={handleClick}
-        alt=""
-      />
+
+      
+      <div>
+        <img
+          className={`${ menuClicked ? "" : "" } w-10 h-4 cursor-pointer sm:hidden`} 
+          src={burgerMenu}
+          onClick={handleClick}
+          alt="icon-hamburger"
+        />
+      </div>
     </>
   );
 };
+
+
