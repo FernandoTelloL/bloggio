@@ -1,3 +1,4 @@
-export { HeroHome } from "./HeroHome";
+export { Card1 } from "./Card1";
+
 
 export { Headers } from "./Headers";
