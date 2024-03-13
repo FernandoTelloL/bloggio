@@ -6,7 +6,7 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
-export const Card1 = ({ wmd }) => {
+export const Card1 = () => {
   return (
     <div className="lg:flex">
       <img
