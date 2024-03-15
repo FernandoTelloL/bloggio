@@ -30,7 +30,7 @@ export const Footer = () => {
       </section>
 
       <section className="">
-        <div className="flex gap-4 mb-12">
+        <div className="flex gap-4 mb-12 md:items-center md:justify-center">
           <h3 className="text-3xl font-bold">Bloggio</h3>
           <p className="text-end">
             Un espacio donde puedes expresar tus ideas con libertad
