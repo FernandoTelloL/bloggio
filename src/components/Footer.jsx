@@ -3,14 +3,16 @@ export const Footer = () => {
     <div>
       <section className="mt-10 md:flex md:justify-between">
         <div className="text-center mb-6 md:text-start md:w-1/2">
-          <h2 className="text-xl font-bold">Suscríbete a nuestro boletin</h2>
+          <h2 className="text-xl font-bold lg:mb-2">
+            Suscríbete a nuestro boletin
+          </h2>
           <p className="text-sm">
             Mantente al día con las últimas noticias, anuncios y artículos.
           </p>
         </div>
-        <div className="text-sm flex gap-2 justify-between md:h-fit">
+        <div className="text-sm flex gap-2 lg:gap-3 justify-between md:h-fit lg:w-[40%]">
           <input
-            className="w-full border-[1px] border-slate-3 rounded-lg p-2"
+            className="w-full border-[1px] border-slate-3 rounded-lg p-2 lg:px-4 lg:py-1"
             type="email"
             placeholder="Ingresa tu email"
           />
