@@ -1,3 +1,10 @@
+import {
+  RiTwitterFill,
+  RiInstagramFill,
+  RiFacebookCircleFill,
+  RiGithubFill,
+} from "react-icons/ri";
+
 export const Footer = () => {
   return (
     <div className="text-sm">
@@ -67,6 +74,35 @@ export const Footer = () => {
       </section>
 
       <hr />
+
+      <section className="mt-10">
+        <div className="text-center mb-6">
+          2024 - <span className="font-bold">TrustCode Company</span>. Todos los
+          derechos reservados
+        </div>
+        <ul className="flex justify-evenly text-xl">
+          <li>
+            <a href="#">
+              <RiTwitterFill />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <RiInstagramFill />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <RiFacebookCircleFill />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <RiGithubFill />
+            </a>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 };
