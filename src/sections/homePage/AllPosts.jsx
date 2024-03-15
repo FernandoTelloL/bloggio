@@ -1,4 +1,4 @@
-import { CardAllPosts } from "../../components";
+import { CardAllPosts, Pagination } from "../../components";
 
 export const AllPosts = () => {
   return (
@@ -12,6 +12,9 @@ export const AllPosts = () => {
         <CardAllPosts />
         <CardAllPosts />
       </div>
+      <section>
+        <Pagination />
+      </section>
     </section>
   );
 };
