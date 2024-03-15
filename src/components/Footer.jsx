@@ -75,7 +75,7 @@ export const Footer = () => {
 
       <hr />
 
-      <section className="mt-10 md:flex md:justify-between md:items-center ">
+      <section className="mt-10 md:flex md:justify-between md:items-center lg:mb-7 ">
         <div className="text-center mb-6 md:mb-0">
           2024 - <span className="font-bold">TrustCode Company</span>. Todos los
           derechos reservados
