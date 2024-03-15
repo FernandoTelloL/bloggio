@@ -10,13 +10,13 @@ export const Pagination = () => {
             <span className="hidden"> Anterior </span>
           </a>
         </li>
-        <div className="flex gap-2">
-          <li className="page-item">
+        <div className="flex gap-2 items-center">
+          <li className="page-item bg-slate-900 rounded-full w-4 h-4 flex justify-center items-center p-3">
             <a className="page-link" href="#">
               1
             </a>
           </li>
-          <li className="page-item">
+          <li className="page-item ">
             <a className="page-link" href="#">
               2
             </a>
