@@ -1,14 +1,14 @@
 export const Footer = () => {
   return (
     <div>
-      <section className="mt-10">
-        <div className="text-center mb-6">
+      <section className="mt-10 md:flex md:justify-between">
+        <div className="text-center mb-6 md:text-start md:w-1/2">
           <h2 className="text-xl font-bold">Suscríbete a nuestro boletin</h2>
           <p className="text-sm">
             Mantente al día con las últimas noticias, anuncios y artículos.
           </p>
         </div>
-        <div className="text-sm flex gap-2 justify-between">
+        <div className="text-sm flex gap-2 justify-between md:h-fit">
           <input
             className="w-full border-[1px] border-slate-3 rounded-lg p-2"
             type="email"
