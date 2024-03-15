@@ -8,7 +8,7 @@ import {
 export const Footer = () => {
   return (
     <div className="text-sm">
-      <section className="mt-10 mb-12 md:flex md:justify-between">
+      <section className="mt-10 mb-12 lg:mb-14 md:flex md:justify-between">
         <div className="text-center mb-6 md:text-start md:w-1/2">
           <h2 className="text-xl font-bold lg:mb-2">
             Suscríbete a nuestro boletin
@@ -29,14 +29,14 @@ export const Footer = () => {
         </div>
       </section>
 
-      <section className="">
-        <div className="flex gap-4 mb-12 md:items-center md:justify-center">
+      <section className="lg:flex lg:mb-11">
+        <div className="flex gap-4 mb-12 md:items-center md:justify-center lg:flex-col lg:items-start lg:basis-[25%]">
           <h3 className="text-3xl font-bold">Bloggio</h3>
-          <p className="text-end">
+          <p className="text-end lg:text-start">
             Un espacio donde puedes expresar tus ideas con libertad
           </p>
         </div>
-        <div className="md:flex md:justify-between">
+        <div className="md:flex md:justify-between lg:w-[75%]">
           <div className="flex justify-around mb-10 md:w-1/2">
             <ul className="">
               <li className="text-slate-400">Empresa</li>
@@ -59,8 +59,7 @@ export const Footer = () => {
               <li>Twitter</li>
               <li>Linkeding</li>
               <li>Facebook</li>
-              <li>Facebook</li>
-              <li>Facebook</li>
+              <li>Instagram</li>
             </ul>
 
             <ul>
