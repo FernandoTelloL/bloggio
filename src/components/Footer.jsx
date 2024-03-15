@@ -75,12 +75,12 @@ export const Footer = () => {
 
       <hr />
 
-      <section className="mt-10">
-        <div className="text-center mb-6">
+      <section className="mt-10 md:flex md:justify-between md:items-center ">
+        <div className="text-center mb-6 md:mb-0">
           2024 - <span className="font-bold">TrustCode Company</span>. Todos los
           derechos reservados
         </div>
-        <ul className="flex justify-evenly text-xl">
+        <ul className="flex justify-evenly text-xl md:gap-4 md:text-2xl">
           <li>
             <a href="#">
               <RiTwitterFill />
