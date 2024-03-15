@@ -4,9 +4,10 @@ export const Pagination = () => {
   return (
     <>
       <ul className="pagination flex justify-between items-center text-sm text-slate-500">
-        <li className="page-item border border-slate-500 rounded-full p-1">
+        <li className="page-item border border-slate-500 rounded-full p-2">
           <a className="page-link " href="#">
             <RiArrowLeftLine />
+            <span className="hidden"> Anterior </span>
           </a>
         </li>
         <div className="flex gap-2">
@@ -42,8 +43,9 @@ export const Pagination = () => {
             </a>
           </li>
         </div>
-        <li className="page-item border border-slate-500 rounded-full p-1">
+        <li className="page-item border border-slate-500 rounded-full p-2">
           <a className="page-link" href="#">
+            <span className="hidden"> Siguiente </span>
             <RiArrowRightLine />
           </a>
         </li>
