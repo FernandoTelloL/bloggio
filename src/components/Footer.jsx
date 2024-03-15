@@ -29,8 +29,8 @@ export const Footer = () => {
             Un espacio donde puedes expresar tus ideas con libertad
           </p>
         </div>
-        <div className="">
-          <div className="flex justify-around mb-10">
+        <div className="md:flex md:justify-between">
+          <div className="flex justify-around mb-10 md:w-1/2">
             <ul className="">
               <li className="text-slate-400">Empresa</li>
               <li>Nosotros</li>
@@ -46,7 +46,7 @@ export const Footer = () => {
               <li>Soporte</li>
             </ul>
           </div>
-          <div className="flex justify-around mb-10">
+          <div className="flex justify-around mb-10 md:w-1/2">
             <ul className="">
               <li className="text-slate-400">Redes Sociales</li>
               <li>Twitter</li>
@@ -65,6 +65,8 @@ export const Footer = () => {
           </div>
         </div>
       </section>
+
+      <hr />
     </div>
   );
 };
