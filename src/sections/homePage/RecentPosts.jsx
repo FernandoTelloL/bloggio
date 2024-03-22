@@ -1,4 +1,5 @@
 import img1 from "../../assets/images/img1.webp";
+import img2 from "../../assets/images/img3.jpeg";
 import {
   RiTwitterFill,
   RiFacebookCircleFill,
@@ -8,7 +9,7 @@ import {
 export const RecentPosts = () => {
   return (
     <section className="">
-      <h2 className="font-Oswald font-bold mb-4 text-slate-900">
+      <h2 className="text-2xl font-bold mb-4 text-slate-900">
         Recent blog posts
       </h2>
 
@@ -77,7 +78,7 @@ export const RecentPosts = () => {
             <div className="lg:flex lg:justify-between lg:gap-2">
               <img
                 className="w-full object-cover h-50 mb-3 lg:aspect-video lg:w-[35%] lg:mb-0 rounded-md"
-                src={img1}
+                src={img2}
                 alt="imagen"
               />
 
@@ -213,7 +214,7 @@ export const RecentPosts = () => {
             <div className="lg:flex lg:justify-between lg:gap-2">
               <img
                 className="w-full object-cover h-50 mb-3 lg:aspect-video lg:w-[35%] lg:mb-0 rounded-md"
-                src={img1}
+                src={img2}
                 alt="imagen"
               />
 

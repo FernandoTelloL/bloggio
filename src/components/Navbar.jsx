@@ -57,7 +57,7 @@ export const Navbar = () => {
             </a>
           </li>
 
-          <div className=" object-cover relative flex justify-center">
+          <div className=" object-cover relative flex justify-center cursor-pointer">
             <img
               className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950"
               onClick={handlePhotoClick}

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import img1 from "../assets/images/img2.webp";
 import {
   RiTwitterFill,
@@ -5,15 +6,14 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
-export const CardAllPosts = () => {
+export const CardAllPosts = ({ img }) => {
   return (
     <>
-      {/* <div className="md:mb-6 lg:w-[50%] mb-12 mt-4"> */}
       <div className="mb-12 mt-4">
         <div className="">
           <img
             className="w-full object-cover h-50 mb-3 lg:aspect-video lg:h-[235px] rounded-md"
-            src={img1}
+            src={img}
             alt="imagen"
           />
           <div className="">
