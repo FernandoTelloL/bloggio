@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   AboutUs,
   Categories,
@@ -10,35 +9,14 @@ import {
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  // useState para simular usuario ya que aun no hay backend
-  const [user, setUser] = useState(null);
-
-  const login = () => {
-    // request done
-    setUser({
-      id: 1,
-      name: "Fernando",
-    });
-  };
-
-  const logout = () => {
-    setUser(null);
-  };
-
   return (
     <BrowserRouter>
-      {user ? (
-        <button onClick={logout}>Logout</button>
-      ) : (
-        <button onClick={login}>Login</button>
-      )}
-
       <Routes>
         <Route
           path="/"
           element={
             <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
-              <HomePage user={user} login={login} />
+              <HomePage />
             </div>
           }
         />
@@ -47,7 +25,7 @@ function App() {
           path="/home"
           element={
             <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
-              <HomePage user={user} login={login} />
+              <HomePage />
             </div>
           }
         />

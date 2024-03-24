@@ -2,11 +2,10 @@
 import { AllPosts, HeroHome, RecentPosts } from "../sections";
 import { Footer, Headers } from "./../components";
 
-export const HomePage = ({ user }) => {
+export const HomePage = () => {
   return (
     <>
-      {user ? <p>hola {user.name}</p> : <></>}
-      <Headers user={user} />
+      <Headers />
 
       <HeroHome />
 

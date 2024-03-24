@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../store/userStore";
+
 import burgerMenu from "../assets/icons/icon-hamburger.svg";
 import closeMenu from "../assets/icons/icon-menu-close.svg";
 
 import userPhoto from "../assets/images/user-photo.jpg";
 
-export const Navbar = ({ user, login }) => {
+export const Navbar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
   const [photoClicked, setPhotoClicked] = useState(false);
 
@@ -15,6 +17,8 @@ export const Navbar = ({ user, login }) => {
   };
 
   const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)];
+
+  const { setUser, logoutUser, id, name } = useUserStore();
 
   return (
     <>
@@ -57,7 +61,7 @@ export const Navbar = ({ user, login }) => {
             </Link>
           </li>
 
-          {user ? (
+          {id ? (
             <div className=" object-cover relative flex justify-center cursor-pointer">
               <img
                 className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950"
@@ -72,6 +76,9 @@ export const Navbar = ({ user, login }) => {
                   photoClicked ? "block" : "hidden"
                 }`}
               >
+                <p className="text-[10px] text-secondary font-bold border-b border-b-secondary text-center mb-4">
+                  Hola {name}{" "}
+                </p>
                 <ul className="leading-8">
                   <li className="hover:text-secondary">
                     <a className="" href="#">
@@ -81,12 +88,20 @@ export const Navbar = ({ user, login }) => {
                   <li className="hover:text-secondary">
                     <a href="#">Configuración</a>
                   </li>
+                  <li className="hover:text-orange-700 text-orange-700">
+                    <a onClick={logoutUser}>Cerrar Sesión</a>
+                  </li>
                 </ul>
               </div>
               {/* fin submenu foto perfil */}
             </div>
           ) : (
-            <button onClick={login}>Login</button>
+            <button
+              className="bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl"
+              onClick={setUser}
+            >
+              Login
+            </button>
           )}
         </div>
       </ul>
