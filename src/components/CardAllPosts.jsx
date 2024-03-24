@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import img1 from "../assets/images/img2.webp";
+
 import {
   RiTwitterFill,
   RiFacebookCircleFill,

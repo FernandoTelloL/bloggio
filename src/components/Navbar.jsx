@@ -32,7 +32,7 @@ export const Navbar = () => {
           {/* TODO: Cambiar clases de color hover */}
           <li className="list-none mb-8 sm:mb-0 md:cursor-pointer border-b border-b-gray-500 w-[60%] text-center leading-loose md:leading-none md:text-start md:w-fit md:mr-2 md:border-none">
             <a
-              className="text-2xl font-bold uppercase hover:text-SoftRed text-4 p-3 md:hover:text-red-800 md:hover:border-b md:hover:border-red-800 transition-all md:text-base"
+              className="text-2xl font-extrabold uppercase hover:text-[#0ea5e9] text-4 p-3 md:hover:text-[#0ea5e9] md:hover:border-b md:hover:border-[#0ea5e9] transition-all md:text-base"
               href="#"
             >
               Inicio
@@ -41,7 +41,7 @@ export const Navbar = () => {
 
           <li className="list-none mb-8 sm:mb-0 md:cursor-pointer border-b border-b-gray-500 w-[60%] text-center leading-loose md:leading-none md:text-start md:w-fit md:mr-2 md:border-none">
             <a
-              className="text-2xl font-bold uppercase hover:text-SoftRed text-4 p-3 md:hover:text-red-800 md:hover:border-b md:hover:border-red-800 transition-all md:text-base"
+              className="text-2xl font-extrabold uppercase hover:text-[#0ea5e9] text-4 p-3 md:hover:text-[#0ea5e9] md:hover:border-b md:hover:border-[#0ea5e9] transition-all md:text-base"
               href="#"
             >
               Categorias
@@ -50,7 +50,7 @@ export const Navbar = () => {
 
           <li className="list-none mb-8 sm:mb-0 md:cursor-pointer border-b border-b-gray-500 w-[60%] text-center leading-loose md:leading-none md:text-start md:w-fit md:mr-2 md:border-none">
             <a
-              className="text-2xl font-bold uppercase hover:text-SoftRed text-4 p-3 md:hover:text-red-800 md:hover:border-b md:hover:border-red-800 transition-all md:text-base"
+              className="text-2xl font-extrabold uppercase hover:text-[#0ea5e9] text-4 p-3 md:hover:text-[#0ea5e9] md:hover:border-b md:hover:border-[#0ea5e9] transition-all md:text-base"
               href="#"
             >
               Nosotros
@@ -67,18 +67,18 @@ export const Navbar = () => {
 
             {/* inicio submenu foto perfil */}
             <div
-              className={`bg-slate-950 text-slate-200 text-sm absolute top-16 py-2 px-4 rounded-lg ${
+              className={`transition-all bg-slate-950 text-slate-200 text-sm absolute top-16 py-2 px-4 rounded-lg ${
                 photoClicked ? "block" : "hidden"
               }`}
             >
               {/* TODO: hacer bien el after para que se vea una flecha hacia arriba */}
-              <ul className="after:content[:''] after:h-2 after:bg-blue-400">
-                <li>
+              <ul className="leading-8">
+                <li className="hover:text-[#f9ceda]">
                   <a className="" href="#">
                     Mi perfil
                   </a>
                 </li>
-                <li>
+                <li className="hover:text-pink-300">
                   <a href="#">Configuración</a>
                 </li>
               </ul>
