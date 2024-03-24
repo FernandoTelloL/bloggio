@@ -52,17 +52,17 @@ export const RecentPosts = () => {
               {/* iconos redes sociales */}
               <div>
                 <ul className="flex gap-2">
-                  <li className="border border-gray-500 rounded-full p-2">
+                  <li className="border border-gray-500 rounded-full p-2 hover:scale-110 transition-all">
                     <a className="block text-2xl text-[#1DA1F2]" href="#">
                       <RiTwitterFill />
                     </a>
                   </li>
-                  <li className="border border-gray-500 rounded-full p-2">
+                  <li className="border border-gray-500 rounded-full p-2 hover:scale-110 transition-all">
                     <a className="block text-2xl text-[#4267B2]" href="#">
                       <RiFacebookCircleFill />
                     </a>
                   </li>
-                  <li className="border border-gray-500 rounded-full p-2">
+                  <li className="border border-gray-500 rounded-full p-2 hover:scale-110 transition-all">
                     <a className="block text-2xl text-[#833AB4]" href="#">
                       <RiInstagramFill />
                     </a>
@@ -112,7 +112,7 @@ export const RecentPosts = () => {
                 {/* iconos redes sociales */}
                 <div>
                   <ul className="flex gap-2 lg:hidden">
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#1DA1F2]"
                         href="#"
@@ -120,7 +120,7 @@ export const RecentPosts = () => {
                         <RiTwitterFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#4267B2]"
                         href="#"
@@ -128,7 +128,7 @@ export const RecentPosts = () => {
                         <RiFacebookCircleFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#833AB4]"
                         href="#"
@@ -180,7 +180,7 @@ export const RecentPosts = () => {
                 {/* iconos redes sociales */}
                 <div>
                   <ul className="flex gap-2 lg:hidden">
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#1DA1F2]"
                         href="#"
@@ -188,7 +188,7 @@ export const RecentPosts = () => {
                         <RiTwitterFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#4267B2]"
                         href="#"
@@ -196,7 +196,7 @@ export const RecentPosts = () => {
                         <RiFacebookCircleFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#833AB4]"
                         href="#"
@@ -248,7 +248,7 @@ export const RecentPosts = () => {
                 {/* iconos redes sociales */}
                 <div>
                   <ul className="flex gap-2 lg:hidden">
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#1DA1F2]"
                         href="#"
@@ -256,7 +256,7 @@ export const RecentPosts = () => {
                         <RiTwitterFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#4267B2]"
                         href="#"
@@ -264,7 +264,7 @@ export const RecentPosts = () => {
                         <RiFacebookCircleFill />
                       </a>
                     </li>
-                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1">
+                    <li className="border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all">
                       <a
                         className="block text-2xl lg:text-xl text-[#833AB4]"
                         href="#"
