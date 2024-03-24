@@ -6,10 +6,13 @@ export default {
   ],
   theme: {
     extend: {
-    fontFamily: {
-      nunito: ["'Nunito Sans', sans-serif"],
-      Oswald: ["'Oswald', sans-serif"],
-    }
+      fontFamily: {
+        nunito: ["'Nunito Sans', sans-serif"],
+        Oswald: ["'Oswald', sans-serif"],
+      },
+      colors: {
+        'secondary': '#0ea5e9'
+      }
     },
   },
   plugins: [],
