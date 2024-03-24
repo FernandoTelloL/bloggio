@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
 import { AllPosts, HeroHome, RecentPosts } from "../sections";
 import { Footer, Headers } from "./../components";
 
-export const HomePage = () => {
+export const HomePage = ({ user }) => {
   return (
     <>
-      <Headers />
+      {user ? <p>hola {user.name}</p> : <></>}
+      <Headers user={user} />
 
       <HeroHome />
 
