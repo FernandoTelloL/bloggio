@@ -1,34 +1,8 @@
-import {
-  RiTwitterFill,
-  RiInstagramFill,
-  RiFacebookCircleFill,
-  RiGithubFill,
-} from "react-icons/ri";
+import { FooterCopyright } from "./FooterCopyright";
 
 export const Footer = () => {
   return (
     <div className="text-sm">
-      <section className="mt-10 mb-12 lg:mb-14 md:flex md:justify-between">
-        <div className="text-center mb-6 md:text-start md:w-1/2">
-          <h2 className="text-xl font-bold lg:mb-2">
-            Suscríbete a nuestro boletin
-          </h2>
-          <p className="text-sm">
-            Mantente al día con las últimas noticias, anuncios y artículos.
-          </p>
-        </div>
-        <div className="text-sm flex gap-2 lg:gap-3 justify-between md:h-fit lg:w-[40%]">
-          <input
-            className="w-full border-[1px] border-slate-3 rounded-lg p-2 lg:px-4 lg:py-1"
-            type="email"
-            placeholder="Ingresa tu email"
-          />
-          <button className="bg-slate-900 text-slate-200 px-4 py-2 rounded-xl">
-            Suscribirse
-          </button>
-        </div>
-      </section>
-
       <section className="lg:flex lg:mb-11">
         <div className="flex gap-4 mb-12 md:items-center md:justify-center lg:flex-col lg:items-start lg:basis-[25%]">
           <h3 className="text-3xl font-bold">Bloggio</h3>
@@ -74,34 +48,7 @@ export const Footer = () => {
 
       <hr />
 
-      <section className="mt-10 md:flex md:justify-between md:items-center lg:mb-7 ">
-        <div className="text-center mb-6 md:mb-0">
-          2024 - <span className="font-bold">TrustCode Company</span>. Todos los
-          derechos reservados
-        </div>
-        <ul className="flex justify-evenly text-xl md:gap-4 md:text-2xl">
-          <li>
-            <a href="#">
-              <RiTwitterFill />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <RiInstagramFill />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <RiFacebookCircleFill />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <RiGithubFill />
-            </a>
-          </li>
-        </ul>
-      </section>
+      <FooterCopyright />
     </div>
   );
 };

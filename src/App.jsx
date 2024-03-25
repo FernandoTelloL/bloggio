@@ -15,7 +15,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <HomePage />
             </div>
           }
@@ -24,7 +24,7 @@ function App() {
         <Route
           path="/home"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <HomePage />
             </div>
           }
@@ -33,7 +33,7 @@ function App() {
         <Route
           path="/login"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <LoginPage />
             </div>
           }
@@ -42,7 +42,7 @@ function App() {
         <Route
           path="/detail-post"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <DetailPost />
             </div>
           }
@@ -51,7 +51,7 @@ function App() {
         <Route
           path="/create-post"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <CreatePost />
             </div>
           }
@@ -60,7 +60,7 @@ function App() {
         <Route
           path="/categories"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <Categories />
             </div>
           }
@@ -69,7 +69,7 @@ function App() {
         <Route
           path="/about"
           element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800">
+            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] md:m-auto text-gray-800 min-h-screen">
               <AboutUs />
             </div>
           }

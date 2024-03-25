@@ -1,3 +1,5 @@
+export { FooterCopyright } from "./FooterCopyright";
+
 export { Footer } from "./Footer";
 
 export { Pagination } from "./Pagination";
