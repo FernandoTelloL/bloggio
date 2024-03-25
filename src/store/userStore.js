@@ -3,6 +3,11 @@ import { create } from "zustand";
 export const useUserStore = create((set) => ({
   id: null,
   name: null,
+  logged: false,
+
+  setLogged: () => set( state =>({
+    logged: !state.logged
+  })),
 
   setUser: () => set(state => ({
     id: state.id = 1,

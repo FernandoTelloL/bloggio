@@ -18,7 +18,7 @@ export const Navbar = () => {
 
   const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)];
 
-  const { setUser, logoutUser, id, name } = useUserStore();
+  const { setUser, logoutUser, id, name, logged, setLogged } = useUserStore();
 
   return (
     <>
@@ -61,7 +61,7 @@ export const Navbar = () => {
             </Link>
           </li>
 
-          {id ? (
+          {logged ? (
             <div className=" object-cover relative flex justify-center cursor-pointer">
               <img
                 className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950"
@@ -96,12 +96,12 @@ export const Navbar = () => {
               {/* fin submenu foto perfil */}
             </div>
           ) : (
-            <button
+            <Link
               className="bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl"
-              onClick={setUser}
+              to="/login"
             >
               Login
-            </button>
+            </Link>
           )}
         </div>
       </ul>
