@@ -1,15 +1,23 @@
 import { useForm } from "react-hook-form";
 import { Headers } from "./../components";
+import { useUserStore } from "../store/userStore";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { setUser, setLogged } = useUserStore();
+
+  const onSubmit = ({ username, email, password }) => {
+    setUser(username, email, password);
+    setLogged();
+    navigate("/", { replace: true });
   };
 
   return (
@@ -19,10 +27,7 @@ export const LoginPage = () => {
         <h1 className="text-2xl font-extrabold mb-4">Login</h1>
         <form action="" className="w-[90%]" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6">
-            <label
-              htmlFor=""
-              className="block text-sm shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
-            >
+            <label className="block text-sm shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
               Nombre usuario
             </label>
             <input
@@ -47,9 +52,7 @@ export const LoginPage = () => {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="" className="block text-sm">
-              Correo
-            </label>
+            <label className="block text-sm">Correo</label>
             <input
               type="email"
               {...register("email", {
@@ -66,9 +69,7 @@ export const LoginPage = () => {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="" className="block text-sm">
-              Contraseña
-            </label>
+            <label className="block text-sm">Contraseña</label>
             <input
               type="password"
               {...register("password", {
