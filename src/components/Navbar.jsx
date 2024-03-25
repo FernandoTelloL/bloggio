@@ -64,9 +64,9 @@ export const Navbar = () => {
           {/* TODO: comprobar el codigo con logged */}
           {console.log(logged)}
           {name ? (
-            <div className=" object-cover relative flex justify-center cursor-pointer">
+            <div className=" object-cover relative flex justify-center">
               <img
-                className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950"
+                className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer"
                 onClick={handlePhotoClick}
                 src={userPhoto}
                 alt=""
@@ -90,8 +90,13 @@ export const Navbar = () => {
                   <li className="hover:text-secondary">
                     <a href="#">Configuración</a>
                   </li>
-                  <li className="hover:text-orange-700 text-orange-700 uppercase font-bold text-xs mt-2">
-                    <Link onClick={logoutUser}>Cerrar Sesión</Link>
+                  <li className="text-orange-700 uppercase font-bold text-xs ">
+                    <Link
+                      className=" hover:bg-orange-700 hover:text-slate-300 block w-full mt-2 py-2 rounded-md transition-all"
+                      onClick={logoutUser}
+                    >
+                      Cerrar Sesión
+                    </Link>
                   </li>
                 </ul>
               </div>
