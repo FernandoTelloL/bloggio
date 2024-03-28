@@ -1,5 +1,6 @@
 import { Footer, Headers } from "../components";
 import {
+  Comments,
   MainTitleDetailPostPage,
   MenuBottomDetailPost,
   RelatedPostsDetailPostPage,
@@ -11,13 +12,13 @@ export const DetailPost = () => {
   return (
     <>
       <Headers />
-      <div>
+      <div className="mt-16">
         <MainTitleDetailPostPage />
 
-        <img className="mt-6 mb-6 rounded-xl" src={mainImage} alt="" />
+        <img className="mt-16 mb-6 rounded-xl" src={mainImage} alt="" />
 
-        <section className="mb-5">
-          <article>
+        <section className="mb-5 flex flex-col gap-2">
+          <article className="md:w-[70%]">
             <p className="mb-3 first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In
               reprehenderit qui illum debitis odio nam consequuntur. Quisquam
@@ -37,7 +38,7 @@ export const DetailPost = () => {
             </p>
 
             <img
-              className="rounded-xl mt-6 mb-6 w-[80%] mr-auto ml-auto"
+              className="rounded-xl mt-6 mb-6 w-[80%] mr-auto ml-auto md:mt-10 md:mb-10 md:w-[70%] "
               src={secondaryImage}
               alt=""
             />
@@ -62,6 +63,8 @@ export const DetailPost = () => {
 
             <MenuBottomDetailPost />
           </article>
+
+          <Comments />
         </section>
         <hr className=" bg-slate-500" />
         <section className="mt-5 mb-6">

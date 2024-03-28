@@ -1,5 +1,7 @@
+export { Comments } from './detailPostPage/Comments';
+
+
 export { RiCommandLine } from 'react-icons/ri';
-export { comments } from './detailPostPage/comments';
 
 export { RelatedPostsDetailPostPage } from './detailPostPage/RelatedPostsDetailPostPage';
 
@@ -12,4 +14,3 @@ export { AllPosts } from './homePage/AllPosts';
 export { RecentPosts } from './homePage/RecentPosts';
 
 export { HeroHome } from './homePage/HeroHome';
-
