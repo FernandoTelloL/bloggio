@@ -20,8 +20,8 @@ export const MenuBottomDetailPost = () => {
   };
 
   return (
-    <div className="bg-slate-950 text-slate-300 px-2 py-4 mt-7 rounded-lg">
-      <ul className="flex text-xl justify-around">
+    <div className="bg-slate-950 text-slate-300 px-2 py-4 mt-7 rounded-lg  lg:mr-auto lg:ml-auto lg:py-3">
+      <ul className="flex text-xl lg:text-base justify-around">
         <li className="">
           <RiHeart3Fill
             onClick={handleClickLike}

@@ -15,9 +15,13 @@ export const DetailPost = () => {
       <div className="mt-16">
         <MainTitleDetailPostPage />
 
-        <img className="mt-16 mb-6 rounded-xl" src={mainImage} alt="" />
+        <img
+          className="mt-16 mb-6 rounded-xl md:h-[300px] lg:h-[400px] md:w-full md:object-cover md:object-top lg:object-center"
+          src={mainImage}
+          alt=""
+        />
 
-        <section className="mb-5 flex flex-col md:flex-row gap-2">
+        <section className="mb-5 flex flex-col md:flex-row gap-2 lg:gap-4">
           <article className="md:w-[70%]">
             <p className="mb-3 first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In
