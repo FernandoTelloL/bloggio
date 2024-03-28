@@ -1,5 +1,9 @@
 import { Footer, Headers } from "../components";
-import { MainTitleDetailPostPage, MenuBottomDetailPost } from "./../sections";
+import {
+  MainTitleDetailPostPage,
+  MenuBottomDetailPost,
+  RelatedPostsDetailPostPage,
+} from "./../sections";
 import mainImage from "../assets/images/img1.webp";
 import secondaryImage from "../assets/images/img4.jpeg";
 
@@ -12,7 +16,7 @@ export const DetailPost = () => {
 
         <img className="mt-6 rounded-xl" src={mainImage} alt="" />
 
-        <section>
+        <section className="mb-5">
           <article>
             <p>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In
@@ -54,6 +58,10 @@ export const DetailPost = () => {
 
             <MenuBottomDetailPost />
           </article>
+        </section>
+        <hr className=" bg-slate-500" />
+        <section className="mt-5 mb-6">
+          <RelatedPostsDetailPostPage />
         </section>
       </div>
       <Footer />

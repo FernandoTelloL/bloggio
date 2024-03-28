@@ -6,7 +6,7 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
-export const CardAllPosts = ({ img }) => {
+export const CardType1 = ({ img }) => {
   return (
     <>
       <div className="mb-12 mt-4">

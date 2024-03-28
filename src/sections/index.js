@@ -1,3 +1,5 @@
+export { RelatedPostsDetailPostPage } from './detailPostPage/RelatedPostsDetailPostPage';
+
 export { MenuBottomDetailPost } from './detailPostPage/MenuBottomDetailPost';
 
 export { MainTitleDetailPostPage } from './detailPostPage/MainTitleDetailPostPage';
