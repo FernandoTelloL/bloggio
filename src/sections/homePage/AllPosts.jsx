@@ -7,12 +7,12 @@ export const AllPosts = () => {
     <section>
       <h2 className="text-3xl font-bold">All blog posts</h2>
       <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <CardType1 img={img1} />
-        <CardType1 img={img2} />
-        <CardType1 img={img1} />
-        <CardType1 img={img2} />
-        <CardType1 img={img1} />
-        <CardType1 img={img2} />
+        <CardType1 img={img1} imgHeight="h-50" />
+        <CardType1 img={img2} imgHeight="h-50" />
+        <CardType1 img={img1} imgHeight="h-50" />
+        <CardType1 img={img2} imgHeight="h-50" />
+        <CardType1 img={img1} imgHeight="h-50" />
+        <CardType1 img={img2} imgHeight="h-50" />
       </div>
       <section>
         <Pagination />

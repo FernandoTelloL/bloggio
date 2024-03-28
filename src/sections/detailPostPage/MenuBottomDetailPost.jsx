@@ -20,7 +20,7 @@ export const MenuBottomDetailPost = () => {
   };
 
   return (
-    <div className="bg-slate-950 text-slate-300 px-2 py-4 rounded-lg">
+    <div className="bg-slate-950 text-slate-300 px-2 py-4 mt-7 rounded-lg">
       <ul className="flex text-xl justify-around">
         <li className="">
           <RiHeart3Fill

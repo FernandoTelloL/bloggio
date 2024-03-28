@@ -6,13 +6,13 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
-export const CardType1 = ({ img }) => {
+export const CardType1 = ({ img, imgHeight }) => {
   return (
     <>
       <div className="mb-12 mt-4">
         <div className="">
           <img
-            className="w-full object-cover h-50 mb-3 lg:aspect-video lg:h-[235px] rounded-md"
+            className={`w-full object-cover ${imgHeight} mb-3 lg:aspect-video lg:h-[235px] rounded-md`}
             src={img}
             alt="imagen"
           />
