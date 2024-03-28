@@ -17,7 +17,7 @@ export const DetailPost = () => {
 
         <img className="mt-16 mb-6 rounded-xl" src={mainImage} alt="" />
 
-        <section className="mb-5 flex flex-col gap-2">
+        <section className="mb-5 flex flex-col md:flex-row gap-2">
           <article className="md:w-[70%]">
             <p className="mb-3 first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In
