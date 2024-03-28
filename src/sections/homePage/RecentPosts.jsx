@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import img1 from "../../assets/images/img1.webp";
 import img2 from "../../assets/images/img3.jpeg";
 import {
@@ -25,7 +26,10 @@ export const RecentPosts = () => {
             <div className="">
               <p className="text-xs mb-4">Olivia Rhye - 20 Enero 2024</p>
               <h3 className="font-Oswald text-md font-bold text-slate-900">
-                Conversaciones con London Makr Co.
+                <Link to={"/detail-post"}>
+                  8 Best Practices Java Developers Should Know In Java
+                  Collection
+                </Link>
               </h3>
               <p className="text-sm mb-3">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -88,7 +92,9 @@ export const RecentPosts = () => {
                     Olivia Rhye - 20 Enero 2024
                   </p>
                   <h3 className="font-Oswald text-md font-bold text-slate-900">
-                    Conversaciones con London Makr Co.
+                    <Link to={"/detail-post"}>
+                      Conversaciones con London Makr Co.
+                    </Link>
                   </h3>
                   <p className="text-sm mb-3 lg:text-xs">
                     Lorem ipsum dolor sit amet consectetur adipisicing eli sit
@@ -156,7 +162,9 @@ export const RecentPosts = () => {
                     Olivia Rhye - 20 Enero 2024
                   </p>
                   <h3 className="font-Oswald text-md font-bold text-slate-900">
-                    Conversaciones con London Makr Co.
+                    <Link to={"/detail-post"}>
+                      Conversaciones con London Makr Co.
+                    </Link>
                   </h3>
                   <p className="text-sm mb-3 lg:text-xs">
                     Lorem ipsum dolor sit amet consectetur adipisicing eli sit
@@ -224,7 +232,9 @@ export const RecentPosts = () => {
                     Olivia Rhye - 20 Enero 2024
                   </p>
                   <h3 className="font-Oswald text-md font-bold text-slate-900">
-                    Conversaciones con London Makr Co.
+                    <Link to={"/detail-post"}>
+                      Conversaciones con London Makr Co.
+                    </Link>
                   </h3>
                   <p className="text-sm mb-3 lg:text-xs">
                     Lorem ipsum dolor sit amet consectetur adipisicing eli sit

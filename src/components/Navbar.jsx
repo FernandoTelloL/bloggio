@@ -6,7 +6,7 @@ import { useUserStore } from "../store/userStore";
 import burgerMenu from "../assets/icons/icon-hamburger.svg";
 import closeMenu from "../assets/icons/icon-menu-close.svg";
 
-import userPhoto from "../assets/images/user-photo.jpg";
+import userAvatar from "../assets/images/user-male-avatar.png";
 
 export const Navbar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
@@ -62,13 +62,12 @@ export const Navbar = () => {
           </li>
 
           {/* TODO: comprobar el codigo con logged */}
-          {console.log(logged)}
           {name ? (
             <div className=" object-cover relative flex justify-center">
               <img
                 className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer"
                 onClick={handlePhotoClick}
-                src={userPhoto}
+                src={userAvatar}
                 alt=""
               />
 
@@ -104,7 +103,7 @@ export const Navbar = () => {
             </div>
           ) : (
             <Link
-              className="bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl"
+              className="bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4"
               to="/login"
             >
               Login
