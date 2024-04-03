@@ -1,3 +1,22 @@
+import { Footer, Headers } from "../components";
+import {
+  AllPostsCategories,
+  HeroCategories,
+  SearchCategories,
+} from "../sections";
+
 export const Categories = () => {
-  return <div>Categories</div>;
+  return (
+    <>
+      <Headers />
+
+      <HeroCategories />
+
+      <SearchCategories />
+
+      <AllPostsCategories />
+
+      <Footer />
+    </>
+  );
 };

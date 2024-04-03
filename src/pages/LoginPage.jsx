@@ -35,9 +35,7 @@ export const LoginPage = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="mb-6">
-              <label className="block text-sm shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
-                Nombre usuario
-              </label>
+              <label className="block text-sm">Nombre usuario</label>
               <input
                 type="text"
                 name="username"

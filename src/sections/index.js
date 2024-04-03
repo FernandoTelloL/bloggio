@@ -1,16 +1,21 @@
-export { Comments } from './detailPostPage/Comments';
+export { SearchCategories } from "./categoriesPage/SearchCategories";
 
+export { AllPostsCategories } from "./categoriesPage/AllPostsCategories";
 
-export { RiCommandLine } from 'react-icons/ri';
+export { HeroCategories } from "./categoriesPage/HeroCategories";
 
-export { RelatedPostsDetailPostPage } from './detailPostPage/RelatedPostsDetailPostPage';
+export { Comments } from "./detailPostPage/Comments";
 
-export { MenuBottomDetailPost } from './detailPostPage/MenuBottomDetailPost';
+export { RiCommandLine } from "react-icons/ri";
 
-export { MainTitleDetailPostPage } from './detailPostPage/MainTitleDetailPostPage';
+export { RelatedPostsDetailPostPage } from "./detailPostPage/RelatedPostsDetailPostPage";
 
-export { AllPosts } from './homePage/AllPosts';
+export { MenuBottomDetailPost } from "./detailPostPage/MenuBottomDetailPost";
 
-export { RecentPosts } from './homePage/RecentPosts';
+export { MainTitleDetailPostPage } from "./detailPostPage/MainTitleDetailPostPage";
 
-export { HeroHome } from './homePage/HeroHome';
+export { AllPosts } from "./homePage/AllPosts";
+
+export { RecentPosts } from "./homePage/RecentPosts";
+
+export { HeroHome } from "./homePage/HeroHome";

@@ -82,6 +82,11 @@ export const Navbar = () => {
                 </p>
                 <ul className="leading-8">
                   <li className="hover:text-secondary">
+                    <Link className="" to="/create-post">
+                      Crear Post
+                    </Link>
+                  </li>
+                  <li className="hover:text-secondary">
                     <a className="" href="#">
                       Mi perfil
                     </a>
