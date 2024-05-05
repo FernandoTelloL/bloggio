@@ -6,7 +6,7 @@ import {
   RiInstagramFill,
 } from "react-icons/ri";
 
-export const CardType1 = ({ img, imgHeight }) => {
+export const CardType1 = ({ img, imgHeight, title }) => {
   return (
     <>
       <div className="mb-12 mt-4">
@@ -19,7 +19,7 @@ export const CardType1 = ({ img, imgHeight }) => {
           <div className="">
             <p className="text-xs mb-4">Olivia Rhye - 20 Enero 2024</p>
             <h3 className="font-Oswald text-md font-bold text-slate-900 text-xl">
-              A Continually Unfolding History - Hillview by Made by Hand
+              {title}
             </h3>
             <p className="text-sm mb-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo

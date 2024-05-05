@@ -4,7 +4,7 @@ export { AllPostsCategories } from "./categoriesPage/AllPostsCategories";
 
 export { HeroCategories } from "./categoriesPage/HeroCategories";
 
-export { Comments } from "./detailPostPage/Comments";
+export { Comments } from "./detailPostPage/comments";
 
 export { RiCommandLine } from "react-icons/ri";
 

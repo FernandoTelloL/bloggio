@@ -1,3 +1,5 @@
+export { CardCategory } from "./CardCategory";
+
 export { FooterCopyright } from "./FooterCopyright";
 
 export { Footer } from "./Footer";
