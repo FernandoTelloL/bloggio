@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form"
-import { Headers } from "../components/Headers"
 import { useState } from "react"
-import ReactQuill from "react-quill"
-import "react-quill/dist/quill.snow.css"
+import { TextEditor, Headers } from "../components"
+
 import parse from "html-react-parser"
 import "./CreatePost.css"
 
@@ -19,34 +18,6 @@ export const CreatePost = () => {
     data.mainContent = mainContent
     console.log("data con info: ", data)
   }
-
-  //Custom Tool Bar
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "color", "image"],
-      [{ "code-block": true }],
-      ["clean"]
-    ]
-  }
-
-  const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "link",
-    "indent",
-    "image",
-    "code-block",
-    "color"
-  ]
 
   return (
     <>
@@ -120,14 +91,9 @@ export const CreatePost = () => {
           <label htmlFor="body" className="block mb-1">
             Cuerpo del Post:
           </label>
-
-          <ReactQuill
-            theme="snow"
-            value={mainContent}
-            onChange={setMainContent}
-            modules={modules}
-            formats={formats}
-            className="rounded-lg"
+          <TextEditor
+            mainContent={mainContent}
+            setMainContent={setMainContent}
           />
         </div>
 

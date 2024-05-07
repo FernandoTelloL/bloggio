@@ -1,14 +1,15 @@
-export { CardCategory } from "./CardCategory";
+export { TextEditor } from './TextEditor'
 
-export { FooterCopyright } from "./FooterCopyright";
+export { CardCategory } from './CardCategory'
 
-export { Footer } from "./Footer";
+export { FooterCopyright } from './FooterCopyright'
 
-export { Pagination } from "./Pagination";
+export { Footer } from './Footer'
 
-export { CardType1 } from "./CardType1";
+export { Pagination } from './Pagination'
 
-export { Card1 } from "./Card1";
+export { CardType1 } from './CardType1'
 
+export { Card1 } from './Card1'
 
-export { Headers } from "./Headers";
+export { Headers } from './Headers'
