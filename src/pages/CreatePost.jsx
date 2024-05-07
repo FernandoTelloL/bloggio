@@ -5,8 +5,11 @@ import Swal from "sweetalert2"
 import parse from "html-react-parser"
 import "./CreatePost.css"
 import "animate.css"
+import { useNavigate } from "react-router-dom"
 
 export const CreatePost = () => {
+  const navigate = useNavigate() // Obtenemos la función de navegación del contexto
+
   const [mainContent, setMainContent] = useState("")
 
   const {
@@ -15,19 +18,35 @@ export const CreatePost = () => {
     formState: { errors }
   } = useForm()
 
-  // const onShowAlert = () => {
-  //   Swal.fire(
-  //     "Post creado con éxito",
-  //     "Puedes ver el post en la página principal",
-  //     "success"
-  //   )
-  // }
-
-  const onShowAlert = () => {
+  const onShowSuccessAlert = () => {
     Swal.fire({
       title: "¡Éxito!",
-      text: "Tu post se ha creado correctamente. Puedes verlo en la página principal.",
+      text: "Tu post se ha creado correctamente. Seras redirigido a la página principal.",
       icon: "success",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown"
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp"
+      },
+      customClass: {
+        popup: "my-custom-alert",
+        content: "my-custom-alert-content",
+        confirmButton: "my-custom-confirm-button"
+      },
+      confirmButtonText: "OK"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/") // Navegamos a la página principal
+      }
+    })
+  }
+
+  const onShowErrorAlert = () => {
+    Swal.fire({
+      title: "Error!",
+      text: "Es obligatorio contenido en el cuerpo del post.",
+      icon: "error",
       showClass: {
         popup: "animate__animated animate__fadeInDown"
       },
@@ -44,9 +63,15 @@ export const CreatePost = () => {
   }
 
   const onSubmit = (data) => {
+    if (mainContent === "") {
+      onShowErrorAlert()
+      return
+    }
+
     data.mainContent = mainContent
-    onShowAlert()
-    console.log("data con info: ", data)
+    onShowSuccessAlert()
+
+    // console.log("data con info: ", data)
   }
 
   return (
