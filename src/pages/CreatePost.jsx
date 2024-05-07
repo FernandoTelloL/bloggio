@@ -79,9 +79,12 @@ export const CreatePost = () => {
           <input
             type="text"
             id="subtitle"
-            {...register("subtitle")}
+            {...register("subtitle", { required: true })}
             className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none"
           />
+          {errors.subtitle && (
+            <span className="text-red-500">El subtitulo es requerido</span>
+          )}
         </div>
 
         <div className="mb-6">
