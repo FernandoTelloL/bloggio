@@ -38,7 +38,6 @@ export const TextEditor = ({ mainContent, setMainContent }) => {
       onChange={setMainContent}
       modules={modules}
       formats={formats}
-      className="rounded-lg"
     />
   )
 }
