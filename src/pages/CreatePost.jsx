@@ -1,25 +1,59 @@
-import { useForm } from "react-hook-form";
-import { Headers } from "../components/Headers";
+import { useForm } from "react-hook-form"
+import { Headers } from "../components/Headers"
+import { useState } from "react"
+import ReactQuill from "react-quill"
+import "react-quill/dist/quill.snow.css"
+import parse from "html-react-parser"
+import "./CreatePost.css"
 
 export const CreatePost = () => {
+  const [mainContent, setMainContent] = useState("")
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors }
+  } = useForm()
 
   const onSubmit = (data) => {
-    // Aquí puedes manejar la lógica para enviar los datos del formulario
-    console.log(data);
-  };
+    data.mainContent = mainContent
+    console.log("data con info: ", data)
+  }
+
+  //Custom Tool Bar
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "color", "image"],
+      [{ "code-block": true }],
+      ["clean"]
+    ]
+  }
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "link",
+    "indent",
+    "image",
+    "code-block",
+    "color"
+  ]
 
   return (
     <>
       <Headers />
-
       <h1 className="text-2xl text-center font-extrabold mb-6">CREAR POST</h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto">
         <div className="mb-6">
           <label htmlFor="title" className="block mb-1">
             Título Principal:
@@ -83,31 +117,18 @@ export const CreatePost = () => {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="secondaryImage" className="block mb-1">
-            Imagen Secundaria (Opcional):
-          </label>
-          <input
-            type="file"
-            id="secondaryImage"
-            {...register("secondaryImage")}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
-          />
-        </div>
-
-        <div className="mb-6">
           <label htmlFor="body" className="block mb-1">
             Cuerpo del Post:
           </label>
-          <textarea
-            id="body"
-            {...register("body", { required: true })}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none"
-          ></textarea>
-          {errors.body && (
-            <span className="text-red-500">
-              El cuerpo del post es requerido
-            </span>
-          )}
+
+          <ReactQuill
+            theme="snow"
+            value={mainContent}
+            onChange={setMainContent}
+            modules={modules}
+            formats={formats}
+            className="rounded-lg"
+          />
         </div>
 
         <div className="mb-10">
@@ -164,6 +185,12 @@ export const CreatePost = () => {
           </button>
         </div>
       </form>
+      <ul>
+        {/* {parse(`
+    <li class="bar">Item 1</li>
+    <li>Item 2</li>
+  `)} */}
+      </ul>
     </>
-  );
-};
+  )
+}
