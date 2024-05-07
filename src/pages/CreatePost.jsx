@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { TextEditor, Headers } from "../components"
-
+import Swal from "sweetalert2"
 import parse from "html-react-parser"
 import "./CreatePost.css"
+import "animate.css"
 
 export const CreatePost = () => {
   const [mainContent, setMainContent] = useState("")
@@ -14,8 +15,37 @@ export const CreatePost = () => {
     formState: { errors }
   } = useForm()
 
+  // const onShowAlert = () => {
+  //   Swal.fire(
+  //     "Post creado con éxito",
+  //     "Puedes ver el post en la página principal",
+  //     "success"
+  //   )
+  // }
+
+  const onShowAlert = () => {
+    Swal.fire({
+      title: "¡Éxito!",
+      text: "Tu post se ha creado correctamente. Puedes verlo en la página principal.",
+      icon: "success",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown"
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp"
+      },
+      customClass: {
+        popup: "my-custom-alert",
+        content: "my-custom-alert-content",
+        confirmButton: "my-custom-confirm-button"
+      },
+      confirmButtonText: "OK"
+    })
+  }
+
   const onSubmit = (data) => {
     data.mainContent = mainContent
+    onShowAlert()
     console.log("data con info: ", data)
   }
 
