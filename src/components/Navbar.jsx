@@ -1,24 +1,36 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useUserStore } from "../store/userStore";
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { useUserStore } from "../store/userStore"
 
-import burgerMenu from "../assets/icons/icon-hamburger.svg";
-import closeMenu from "../assets/icons/icon-menu-close.svg";
+import burgerMenu from "../assets/icons/icon-hamburger.svg"
+import closeMenu from "../assets/icons/icon-menu-close.svg"
 
-import userAvatar from "../assets/images/user-male-avatar.png";
+import userAvatar from "../assets/images/user-male-avatar.png"
+import { useNavigate } from "react-router-dom"
 
 export const Navbar = () => {
-  const [menuClicked, setMenuClicked] = useState(false);
-  const [photoClicked, setPhotoClicked] = useState(false);
+  const navigate = useNavigate()
+
+  const [menuClicked, setMenuClicked] = useState(false)
+  const [photoClicked, setPhotoClicked] = useState(false)
 
   const handleClick = () => {
-    setMenuClicked(() => !menuClicked);
-  };
+    setMenuClicked(() => !menuClicked)
+  }
 
-  const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)];
+  const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)]
 
-  const { logoutUser, name, logged } = useUserStore();
+  const { logoutUser, name } = useUserStore()
+
+  const verifySession = localStorage.getItem("user")
+  console.log(verifySession)
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem("user")
+    logoutUser()
+    navigate("/", { replace: true })
+  }
 
   return (
     <>
@@ -62,7 +74,7 @@ export const Navbar = () => {
           </li>
 
           {/* TODO: comprobar el codigo con logged */}
-          {name ? (
+          {verifySession ? (
             <div className=" object-cover relative flex justify-center">
               <img
                 className="w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer"
@@ -97,7 +109,7 @@ export const Navbar = () => {
                   <li className="text-orange-700 uppercase font-bold text-xs ">
                     <Link
                       className=" hover:bg-orange-700 hover:text-slate-300 block w-full mt-2 py-2 rounded-md transition-all"
-                      onClick={logoutUser}
+                      onClick={handleLogoutClick}
                     >
                       Cerrar Sesión
                     </Link>
@@ -128,5 +140,5 @@ export const Navbar = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}

@@ -4,11 +4,18 @@ import {
   CreatePost,
   DetailPost,
   HomePage,
-  LoginPage,
-} from "./pages";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+  LoginPage
+} from "./pages"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useUserStore } from "./store/userStore"
+import { ProtectedRoutes } from "./utils/ProtectedRoutes"
+import { useLocalStorage } from "react-use"
 
 function App() {
+  const { logged } = useUserStore()
+
+  const [user, setUser] = useLocalStorage("user")
+
   return (
     <BrowserRouter>
       <Routes>
@@ -47,15 +54,16 @@ function App() {
             </div>
           }
         />
-
-        <Route
-          path="/create-post"
-          element={
-            <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] lg:w-[80%] md:m-auto text-gray-800 min-h-screen">
-              <CreatePost />
-            </div>
-          }
-        />
+        <Route element={<ProtectedRoutes canActivate={user} />}>
+          <Route
+            path="/create-post"
+            element={
+              <div className="font-nunito p-6 md:max-w-[1200px] md:w-[90%] lg:w-[80%] md:m-auto text-gray-800 min-h-screen">
+                <CreatePost />
+              </div>
+            }
+          />
+        </Route>
 
         <Route
           path="/categories"
@@ -76,7 +84,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,24 +1,26 @@
-import { useForm } from "react-hook-form";
-import { Headers } from "./../components";
-import { useUserStore } from "../store/userStore";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"
+import { Headers } from "./../components"
+import { useUserStore } from "../store/userStore"
+import { useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const {
     register,
     formState: { errors },
-    handleSubmit,
-  } = useForm();
+    handleSubmit
+  } = useForm()
 
-  const { setUser, setLogged } = useUserStore();
+  const { setUser, setLogged } = useUserStore()
 
   const onSubmit = ({ username, email, password }) => {
-    setUser(username, email, password);
-    setLogged();
-    navigate("/", { replace: true });
-  };
+    // TODO: por ahora guardo en local storage
+    localStorage.setItem("user", JSON.stringify({ username, email, password }))
+    setUser(username, email, password)
+    setLogged()
+    navigate("/", { replace: true })
+  }
 
   return (
     <>
@@ -41,7 +43,7 @@ export const LoginPage = () => {
                 name="username"
                 {...register("username", {
                   required: true,
-                  maxLength: 15,
+                  maxLength: 15
                 })}
                 className="w-full border rounded-lg px-3 py-2 ring-1 ring-slate-400 text-sm ring:border-secondary focus:outline-secondary transition-all"
               />
@@ -63,7 +65,7 @@ export const LoginPage = () => {
                 type="email"
                 {...register("email", {
                   required: true,
-                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i,
+                  pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/i
                 })}
                 className="w-full border rounded-lg px-3 py-2 ring-1 ring-slate-400 text-sm ring:border-secondary focus:outline-secondary transition-all"
               />
@@ -80,7 +82,7 @@ export const LoginPage = () => {
                 type="password"
                 {...register("password", {
                   required: true,
-                  minLength: 6,
+                  minLength: 6
                 })}
                 className="w-full border rounded-lg px-3 py-2 ring-1 ring-slate-400 text-sm ring:border-secondary focus:outline-secondary transition-all"
               />
@@ -99,5 +101,5 @@ export const LoginPage = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}

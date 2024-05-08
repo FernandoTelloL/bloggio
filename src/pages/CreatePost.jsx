@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 export const CreatePost = () => {
   const navigate = useNavigate() // Obtenemos la función de navegación del contexto
 
-  const [mainContent, setMainContent] = useState("")
+  const [mainContent, setMainContent] = useState(null)
 
   const {
     register,
@@ -63,11 +63,10 @@ export const CreatePost = () => {
   }
 
   const onSubmit = (data) => {
-    if (mainContent === "") {
+    if (mainContent === null) {
       onShowErrorAlert()
       return
     }
-
     data.mainContent = mainContent
     onShowSuccessAlert()
 
