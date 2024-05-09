@@ -1,14 +1,1 @@
-[
-  {
-    "categoryId": "1",
-    "img": "assets/images/img1.webp",
-    "title": "Categoria 1",
-    "categoryDesc": "Descripcion de categoria 1"
-  },
-  {
-    "categoryId": "2",
-    "img": "../assets/images/img2.webp",
-    "title": "Categoria 2",
-    "categoryDesc": "Descripcion de categoria 2"
-  }
-]
+

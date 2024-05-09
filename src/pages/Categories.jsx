@@ -1,9 +1,9 @@
-import { Footer, Headers } from "../components";
+import { Footer, Headers } from '../components'
 import {
   AllPostsCategories,
   HeroCategories,
-  SearchCategories,
-} from "../sections";
+  SearchCategories
+} from '../sections'
 
 export const Categories = () => {
   return (
@@ -18,5 +18,5 @@ export const Categories = () => {
 
       <Footer />
     </>
-  );
-};
+  )
+}
