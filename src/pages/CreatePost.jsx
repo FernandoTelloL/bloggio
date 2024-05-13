@@ -46,11 +46,11 @@ export const CreatePost = () => {
     data.mainContent = mainContent
 
     // URL a la que enviarás la información
-    const url = 'https://bloggio-b.onrender.com/post/create'
+    const url = 'https://bloggio-bl.onrender.com/Post/Create'
 
     // Datos que enviarás en el cuerpo de la petición POST
     const dataPrueba = {
-      categoryId: 'capturar',
+      categoryId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
       postContent: 'Piero',
       postDescription: 'chipiiii',
       postPriority: 1,
@@ -65,7 +65,7 @@ export const CreatePost = () => {
       headers: {
         'Content-Type': 'application/json' // Tipo de contenido JSON
       },
-      body: JSON.stringify(data) // Convertir los datos a JSON
+      body: JSON.stringify(dataPrueba) // Convertir los datos a JSON
     }
 
     // Realizar la petición
