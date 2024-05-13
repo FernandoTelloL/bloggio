@@ -6,7 +6,6 @@ import {
 } from './../sections'
 import mainImage from '../assets/images/img1.webp'
 import secondaryImage from '../assets/images/img4.jpeg'
-import { Comments } from '../sections/detailPostPage/Comments'
 
 export const DetailPost = () => {
   return (
@@ -68,7 +67,6 @@ export const DetailPost = () => {
             <MenuBottomDetailPost />
           </article>
 
-          <Comments />
         </section>
         <hr className=' bg-slate-500' />
         <section className='mt-5 mb-6'>
