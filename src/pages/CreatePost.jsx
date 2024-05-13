@@ -1,11 +1,11 @@
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { TextEditor, Headers } from "../components"
-import Swal from "sweetalert2"
-import parse from "html-react-parser"
-import "./CreatePost.css"
-import "animate.css"
-import { useNavigate } from "react-router-dom"
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { TextEditor, Headers } from '../components'
+import Swal from 'sweetalert2'
+import parse from 'html-react-parser'
+import './CreatePost.css'
+import 'animate.css'
+import { useNavigate } from 'react-router-dom'
 
 export const CreatePost = () => {
   const navigate = useNavigate() // Obtenemos la función de navegación del contexto
@@ -18,47 +18,23 @@ export const CreatePost = () => {
     formState: { errors }
   } = useForm()
 
-  const onShowSuccessAlert = () => {
-    Swal.fire({
-      title: "¡Éxito!",
-      text: "Tu post se ha creado correctamente. Seras redirigido a la página principal.",
-      icon: "success",
-      showClass: {
-        popup: "animate__animated animate__fadeInDown"
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp"
-      },
-      customClass: {
-        popup: "my-custom-alert",
-        content: "my-custom-alert-content",
-        confirmButton: "my-custom-confirm-button"
-      },
-      confirmButtonText: "OK"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/") // Navegamos a la página principal
-      }
-    })
-  }
-
   const onShowErrorAlert = () => {
     Swal.fire({
-      title: "Error!",
-      text: "Es obligatorio contenido en el cuerpo del post.",
-      icon: "error",
+      title: 'Error!',
+      text: 'Es obligatorio contenido en el cuerpo del post.',
+      icon: 'error',
       showClass: {
-        popup: "animate__animated animate__fadeInDown"
+        popup: 'animate__animated animate__fadeInDown'
       },
       hideClass: {
-        popup: "animate__animated animate__fadeOutUp"
+        popup: 'animate__animated animate__fadeOutUp'
       },
       customClass: {
-        popup: "my-custom-alert",
-        content: "my-custom-alert-content",
-        confirmButton: "my-custom-confirm-button"
+        popup: 'my-custom-alert',
+        content: 'my-custom-alert-content',
+        confirmButton: 'my-custom-confirm-button'
       },
-      confirmButtonText: "OK"
+      confirmButtonText: 'OK'
     })
   }
 
@@ -68,86 +44,147 @@ export const CreatePost = () => {
       return
     }
     data.mainContent = mainContent
-    onShowSuccessAlert()
 
-    // console.log("data con info: ", data)
+    // URL a la que enviarás la información
+    const url = 'https://bloggio-b.onrender.com/post/create'
+
+    // Datos que enviarás en el cuerpo de la petición POST
+    const dataPrueba = {
+      categoryId: 'capturar',
+      postContent: 'Piero',
+      postDescription: 'chipiiii',
+      postPriority: 1,
+      postState: 1,
+      postTitle: 'Piero y su miembro de 2 cm',
+      userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba'
+    }
+
+    // Configuración de la petición
+    const opciones = {
+      method: 'POST', // Método POST
+      headers: {
+        'Content-Type': 'application/json' // Tipo de contenido JSON
+      },
+      body: JSON.stringify(data) // Convertir los datos a JSON
+    }
+
+    // Realizar la petición
+    fetch(url, opciones)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Hubo un problema con la petición: ' + response.status)
+        }
+        return response.json() // Convertir la respuesta a JSON
+      })
+      .then(data => {
+        console.log('Respuesta del servidor:', dataPrueba)
+      })
+      .catch(error => {
+        console.error('Error al enviar la petición:', error)
+      })
+
+    // onShowSuccessAlert()
+  }
+
+  const onShowSuccessAlert = () => {
+    Swal.fire({
+      title: '¡Éxito!',
+      text: 'Tu post se ha creado correctamente. Seras redirigido a la página principal.',
+      icon: 'success',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'my-custom-alert',
+        content: 'my-custom-alert-content',
+        confirmButton: 'my-custom-confirm-button'
+      },
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/') // Navegamos a la página principal
+      }
+    })
   }
 
   return (
     <>
       <Headers />
-      <h1 className="text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14">
+      <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
         CREAR POST
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto">
-        <div className="mb-6">
-          <label htmlFor="title" className="block mb-1">
+      <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto'>
+        <div className='mb-6'>
+          <label htmlFor='title' className='block mb-1'>
             Título Principal:
           </label>
           <input
-            type="text"
-            id="title"
-            {...register("title", { required: true })}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none"
+            type='text'
+            id='title'
+            {...register('title', { required: true })}
+            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
           />
           {errors.title && (
-            <span className="text-red-500">
+            <span className='text-red-500'>
               El título principal es requerido
             </span>
           )}
         </div>
 
-        <div className="mb-6">
-          <label htmlFor="subtitle" className="block mb-1">
+        <div className='mb-6'>
+          <label htmlFor='subtitle' className='block mb-1'>
             Subtítulo:
           </label>
           <input
-            type="text"
-            id="subtitle"
-            {...register("subtitle", { required: true })}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none"
+            type='text'
+            id='subtitle'
+            {...register('subtitle', { required: true })}
+            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
           />
           {errors.subtitle && (
-            <span className="text-red-500">El subtitulo es requerido</span>
+            <span className='text-red-500'>El subtitulo es requerido</span>
           )}
         </div>
 
-        <div className="mb-6">
-          <label htmlFor="description" className="block mb-1">
+        <div className='mb-6'>
+          <label htmlFor='description' className='block mb-1'>
             Descripción Corta:
           </label>
           <textarea
-            id="description"
-            {...register("description", { required: true })}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none"
-          ></textarea>
+            id='description'
+            {...register('description', { required: true })}
+            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
+          />
           {errors.description && (
-            <span className="text-red-500">
+            <span className='text-red-500'>
               La descripción corta es requerida
             </span>
           )}
         </div>
 
-        <div className="mb-6">
-          <label htmlFor="mainImage" className="block mb-1">
+        <div className='mb-6'>
+          <label htmlFor='mainImage' className='block mb-1'>
             Imagen Principal:
           </label>
           <input
-            type="file"
-            id="mainImage"
-            {...register("mainImage", { required: true })}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
+            type='file'
+            id='mainImage'
+            {...register('mainImage', { required: true })}
+            className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
           />
           {errors.mainImage && (
-            <span className="text-red-500">
+            <span className='text-red-500'>
               La imagen principal es requerida
             </span>
           )}
         </div>
 
-        <div className="mb-6">
-          <label htmlFor="body" className="block mb-1">
+        <div className='mb-6'>
+          <label htmlFor='body' className='block mb-1'>
             Cuerpo del Post:
           </label>
           <TextEditor
@@ -156,55 +193,55 @@ export const CreatePost = () => {
           />
         </div>
 
-        <div className="mb-10">
-          <label className="block mb-1">Tags:</label>
-          <div className="flex justify-between">
-            <label className="inline-flex items-center">
+        <div className='mb-10'>
+          <label className='block mb-1'>Tags:</label>
+          <div className='flex justify-between'>
+            <label className='inline-flex items-center'>
               <input
-                type="checkbox"
-                {...register("tags")}
-                value="Tecnología"
-                className="mr-2"
+                type='checkbox'
+                {...register('tags')}
+                value='Tecnología'
+                className='mr-2'
               />
               Tecnología
             </label>
-            <label className="inline-flex items-center">
+            <label className='inline-flex items-center'>
               <input
-                type="checkbox"
-                {...register("tags")}
-                value="Viajes"
-                className="mr-2"
+                type='checkbox'
+                {...register('tags')}
+                value='Viajes'
+                className='mr-2'
               />
               Viajes
             </label>
-            <label className="inline-flex items-center">
+            <label className='inline-flex items-center'>
               <input
-                type="checkbox"
-                {...register("tags")}
-                value="Comida"
-                className="mr-2"
+                type='checkbox'
+                {...register('tags')}
+                value='Comida'
+                className='mr-2'
               />
               Comida
             </label>
           </div>
         </div>
 
-        <div className="mb-6 flex flex-col">
+        <div className='mb-6 flex flex-col'>
           <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4 leading-8"
+            type='submit'
+            className='bg-blue-500 text-white px-4 py-2 rounded-lg mb-4 leading-8'
           >
             Publicar
           </button>
           <button
-            type="button"
-            className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mb-4 leading-8"
+            type='button'
+            className='bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mb-4 leading-8'
           >
             Guardar en Borrador
           </button>
           <button
-            type="button"
-            className="bg-red-500 text-white px-4 py-2 rounded-lg leading-8"
+            type='button'
+            className='bg-red-500 text-white px-4 py-2 rounded-lg leading-8'
           >
             Descartar
           </button>
