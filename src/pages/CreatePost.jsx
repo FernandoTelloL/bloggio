@@ -84,7 +84,7 @@ export const CreatePost = () => {
         console.error('Error al enviar la petición:', error)
       })
 
-    // onShowSuccessAlert()
+    onShowSuccessAlert()
   }
 
   const onShowSuccessAlert = () => {
