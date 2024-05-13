@@ -1,6 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
 import { CardCategory, Pagination } from '../../components'
-import { CategoryContext } from '../../context/CategoryContext'
 
 export const AllPostsCategories = () => {
   // const { setCategory, category } = useContext(CategoryContext)
