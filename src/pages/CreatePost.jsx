@@ -6,6 +6,7 @@ import parse from 'html-react-parser'
 import './CreatePost.css'
 import 'animate.css'
 import { useNavigate } from 'react-router-dom'
+import { usePostStore } from './../store/postStore'
 
 export const CreatePost = () => {
   const navigate = useNavigate() // Obtenemos la función de navegación del contexto
@@ -17,6 +18,8 @@ export const CreatePost = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
+
+  const { getCategory } = usePostStore()
 
   const onShowErrorAlert = () => {
     Swal.fire({
@@ -44,19 +47,20 @@ export const CreatePost = () => {
       return
     }
     data.mainContent = mainContent
+    console.log(data)
 
     // URL a la que enviarás la información
     const url = 'https://bloggio-bl.onrender.com/Post/Create'
 
     // Datos que enviarás en el cuerpo de la petición POST
-    const dataPrueba = {
+    const dataFormatted = {
       postId: '',
-      categoryId: '2702fec7-c43e-46f8-b140-055f6feccb70',
-      postContent: 'Piero',
-      postDescription: 'chipiiii',
+      categoryId: getCategory().category,
+      postContent: data.mainContent,
+      postDescription: data.description,
       postPriority: 1,
       postState: 1,
-      postTitle: 'Piero y su miembro de 2 cm',
+      postTitle: data.title,
       userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba'
     }
 
@@ -66,7 +70,7 @@ export const CreatePost = () => {
       headers: {
         'Content-Type': 'application/json' // Tipo de contenido JSON
       },
-      body: JSON.stringify(dataPrueba) // Convertir los datos a JSON
+      body: JSON.stringify(dataFormatted) // Convertir los datos a JSON
     }
 
     // Realizar la petición
@@ -78,12 +82,14 @@ export const CreatePost = () => {
         return response.json() // Convertir la respuesta a JSON
       })
       .then(data => {
-        console.log('Respuesta del servidor:', dataPrueba)
+        console.log('Respuesta del servidor:', dataFormatted)
       })
       .catch(error => {
         console.error('Error al enviar la petición:', error)
       })
 
+    console.log('usando getCategory', getCategory())
+    console.log('data formatted: ', dataFormatted)
     onShowSuccessAlert()
   }
 

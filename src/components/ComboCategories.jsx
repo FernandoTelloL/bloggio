@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import AsyncSelect from 'react-select/async'
 import makeAnimated from 'react-select/animated'
+import { usePostStore } from './../store/postStore'
 
 export const ComboCategories = () => {
+  const { setCategory } = usePostStore()
   const animatedComponents = makeAnimated()
 
   // Estado para almacenar las opciones de categorías
@@ -44,7 +46,8 @@ export const ComboCategories = () => {
   // Manejador de cambio de selección
   const handleCategoryChange = (selectedOption) => {
     // Aquí puedes manejar la selección de categoría como desees
-    console.log('Categoría seleccionada:', selectedOption)
+    console.log('Categoría seleccionada:', selectedOption.value)
+    setCategory(selectedOption.value)
   }
 
   return (
