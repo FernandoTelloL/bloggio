@@ -1,3 +1,5 @@
+export { ComboCategories } from './ComboCategories'
+
 export { TextEditor } from './TextEditor'
 
 export { CardCategory } from './CardCategory'

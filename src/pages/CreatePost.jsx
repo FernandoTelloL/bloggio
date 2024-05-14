@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { TextEditor, Headers } from '../components'
+import { TextEditor, Headers, ComboCategories } from '../components'
 import Swal from 'sweetalert2'
 import parse from 'html-react-parser'
 import './CreatePost.css'
@@ -195,36 +195,9 @@ export const CreatePost = () => {
         </div>
 
         <div className='mb-10'>
-          <label className='block mb-1'>Tags:</label>
-          <div className='flex justify-between'>
-            <label className='inline-flex items-center'>
-              <input
-                type='checkbox'
-                {...register('tags')}
-                value='Tecnología'
-                className='mr-2'
-              />
-              Tecnología
-            </label>
-            <label className='inline-flex items-center'>
-              <input
-                type='checkbox'
-                {...register('tags')}
-                value='Viajes'
-                className='mr-2'
-              />
-              Viajes
-            </label>
-            <label className='inline-flex items-center'>
-              <input
-                type='checkbox'
-                {...register('tags')}
-                value='Comida'
-                className='mr-2'
-              />
-              Comida
-            </label>
-          </div>
+          <p>Seleccione categoría del post</p>
+
+          <ComboCategories />
         </div>
 
         <div className='mb-6 flex flex-col'>
