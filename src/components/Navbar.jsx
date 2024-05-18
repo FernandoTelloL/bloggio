@@ -120,12 +120,23 @@ export const Navbar = () => {
               </div>
               )
             : (
-              <Link
-                className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
-                to='/login'
-              >
-                Login
-              </Link>
+              <>
+                {/* boton de Login */}
+                <Link
+                  className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
+                  to='/login'
+                >
+                  Login
+                </Link>
+
+                {/* boton de Crear Usuario */}
+                <Link
+                  className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
+                  to='/create-user'
+                >
+                  Crear Usuario
+                </Link>
+              </>
               )}
         </div>
       </ul>

@@ -1,11 +1,13 @@
-export { AboutUs } from "./AboutUs";
+export { SignUp } from './SignUp'
 
-export { Categories } from "./Categories";
+export { AboutUs } from './AboutUs'
 
-export { DetailPost } from "./DetailPost";
+export { Categories } from './Categories'
 
-export { CreatePost } from "./CreatePost";
+export { DetailPost } from './DetailPost'
 
-export { LoginPage } from "./LoginPage";
+export { CreatePost } from './CreatePost'
 
-export { HomePage } from "./HomePage";
+export { LoginPage } from './LoginPage'
+
+export { HomePage } from './HomePage'

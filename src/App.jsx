@@ -4,7 +4,8 @@ import {
   CreatePost,
   DetailPost,
   HomePage,
-  LoginPage
+  LoginPage,
+  SignUp
 } from './pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useUserStore } from './store/userStore'
@@ -42,6 +43,15 @@ function App () {
           element={
             <div className='font-nunito p-6 md:max-w-[1200px] md:w-[90%] lg:w-[80%] md:m-auto text-gray-800 min-h-screen'>
               <LoginPage />
+            </div>
+          }
+        />
+
+        <Route
+          path='/create-user'
+          element={
+            <div className='font-nunito p-6 md:max-w-[1200px] md:w-[90%] lg:w-[80%] md:m-auto text-gray-800 min-h-screen'>
+              <SignUp />
             </div>
           }
         />
