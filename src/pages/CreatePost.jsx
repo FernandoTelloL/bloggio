@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { TextEditor, Headers, ComboCategories } from '../components'
 import Swal from 'sweetalert2'
-import parse from 'html-react-parser'
+// import parse from 'html-react-parser'
 import './CreatePost.css'
 import 'animate.css'
 import { useNavigate } from 'react-router-dom'
@@ -21,10 +21,11 @@ export const CreatePost = () => {
 
   const { getCategory } = usePostStore()
 
-  const onShowErrorAlert = () => {
+  // mensaje de error
+  const onShowErrorAlert = (text) => {
     Swal.fire({
       title: 'Error!',
-      text: 'Es obligatorio contenido en el cuerpo del post.',
+      text,
       icon: 'error',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
@@ -41,9 +42,34 @@ export const CreatePost = () => {
     })
   }
 
+  // mensaje de exito
+  const onShowSuccessAlert = () => {
+    Swal.fire({
+      title: '¡Éxito!',
+      text: 'Tu post se ha creado correctamente. Seras redirigido a la página principal.',
+      icon: 'success',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      },
+      customClass: {
+        popup: 'my-custom-alert',
+        content: 'my-custom-alert-content',
+        confirmButton: 'my-custom-confirm-button'
+      },
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/') // Navegamos a la página principal
+      }
+    })
+  }
+
   const onSubmit = (data) => {
     if (mainContent === null) {
-      onShowErrorAlert()
+      onShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
       return
     }
     data.mainContent = mainContent
@@ -79,6 +105,7 @@ export const CreatePost = () => {
         if (!response.ok) {
           throw new Error('Hubo un problema con la petición: ' + response.status)
         }
+        onShowSuccessAlert()
         return response.json() // Convertir la respuesta a JSON
       })
       .then(data => {
@@ -86,35 +113,8 @@ export const CreatePost = () => {
       })
       .catch(error => {
         console.error('Error al enviar la petición:', error)
+        onShowErrorAlert(`${error}`)
       })
-
-    console.log('usando getCategory', getCategory())
-    console.log('data formatted: ', dataFormatted)
-    onShowSuccessAlert()
-  }
-
-  const onShowSuccessAlert = () => {
-    Swal.fire({
-      title: '¡Éxito!',
-      text: 'Tu post se ha creado correctamente. Seras redirigido a la página principal.',
-      icon: 'success',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      },
-      customClass: {
-        popup: 'my-custom-alert',
-        content: 'my-custom-alert-content',
-        confirmButton: 'my-custom-confirm-button'
-      },
-      confirmButtonText: 'OK'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate('/') // Navegamos a la página principal
-      }
-    })
   }
 
   return (
@@ -139,21 +139,6 @@ export const CreatePost = () => {
             <span className='text-red-500'>
               El título principal es requerido
             </span>
-          )}
-        </div>
-
-        <div className='mb-6'>
-          <label htmlFor='subtitle' className='block mb-1'>
-            Subtítulo:
-          </label>
-          <input
-            type='text'
-            id='subtitle'
-            {...register('subtitle', { required: true })}
-            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
-          />
-          {errors.subtitle && (
-            <span className='text-red-500'>El subtitulo es requerido</span>
           )}
         </div>
 
