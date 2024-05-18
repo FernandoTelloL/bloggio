@@ -28,7 +28,7 @@ export const ComboCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('https://bloggio-bl.onrender.com/api/v1/Category/GetAll')
+        const response = await fetch('https://bloggio-blo-latest.onrender.com/api/v1/Category/GetAll')
         if (!response.ok) {
           throw new Error('Error al obtener las categorías')
         }

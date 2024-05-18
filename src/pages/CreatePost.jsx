@@ -12,6 +12,7 @@ export const CreatePost = () => {
   const navigate = useNavigate() // Obtenemos la función de navegación del contexto
 
   const [mainContent, setMainContent] = useState(null)
+  const [imageFile, setImageFile] = useState(null) // Estado para la imagen
 
   const {
     register,
@@ -67,18 +68,13 @@ export const CreatePost = () => {
     })
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (mainContent === null) {
       onShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
       return
     }
     data.mainContent = mainContent
-    console.log(data)
 
-    // URL a la que enviarás la información
-    const url = 'https://bloggio-bl.onrender.com/Post/Create'
-
-    // Datos que enviarás en el cuerpo de la petición POST
     const dataFormatted = {
       postId: '',
       categoryId: getCategory().category,
@@ -87,29 +83,59 @@ export const CreatePost = () => {
       postPriority: 1,
       postState: 1,
       postTitle: data.title,
-      userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba'
+      userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba',
+      mainImageUrl: data.mainImageUrl || '',
+      published: 1
     }
 
-    // Configuración de la petición
+    console.log(dataFormatted)
+    console.log(imageFile)
+    if (imageFile) {
+      const formData = new FormData()
+      const blob = new Blob([imageFile], { type: 'application/octet-stream' })
+      // formData.append('file', imageFile)
+      formData.append('post', new Blob([JSON.stringify(dataFormatted)], { type: 'application/json' }))
+      formData.append('file', blob)
+      console.log(formData)
+      try {
+        const response = await fetch('https://bloggio-blo-latest.onrender.com/Post/Create', {
+          method: 'POST',
+          body: formData
+        })
+
+        if (!response.ok) {
+          throw new Error('Error al subir la imagen a Cloudinary')
+        }
+
+        const imageData = await response.json()
+        data.mainImageUrl = imageData.secure_url
+      } catch (error) {
+        console.error('Error al subir la imagen:', error)
+        onShowErrorAlert('Error al subir la imagen.')
+        return
+      }
+    }
+
+    const url = 'https://bloggio-blo-latest.onrender.com/Post/Create'
+
     const opciones = {
-      method: 'POST', // Método POST
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json' // Tipo de contenido JSON
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(dataFormatted) // Convertir los datos a JSON
+      body: JSON.stringify(dataFormatted)
     }
 
-    // Realizar la petición
     fetch(url, opciones)
       .then(response => {
         if (!response.ok) {
           throw new Error('Hubo un problema con la petición: ' + response.status)
         }
         onShowSuccessAlert()
-        return response.json() // Convertir la respuesta a JSON
+        return response.json()
       })
       .then(data => {
-        console.log('Respuesta del servidor:', dataFormatted)
+        console.log('Respuesta del servidor:', data)
       })
       .catch(error => {
         console.error('Error al enviar la petición:', error)
@@ -165,14 +191,9 @@ export const CreatePost = () => {
           <input
             type='file'
             id='mainImage'
-            {...register('mainImage', { required: true })}
+            onChange={(e) => setImageFile(e.target.files[0])}
             className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
           />
-          {errors.mainImage && (
-            <span className='text-red-500'>
-              La imagen principal es requerida
-            </span>
-          )}
         </div>
 
         <div className='mb-6'>
@@ -187,7 +208,6 @@ export const CreatePost = () => {
 
         <div className='mb-10'>
           <p>Seleccione categoría del post</p>
-
           <ComboCategories />
         </div>
 
@@ -212,12 +232,6 @@ export const CreatePost = () => {
           </button>
         </div>
       </form>
-      <ul>
-        {/* {parse(`
-    <li class="bar">Item 1</li>
-    <li>Item 2</li>
-  `)} */}
-      </ul>
     </>
   )
 }
