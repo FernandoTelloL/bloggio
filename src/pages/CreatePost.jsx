@@ -13,6 +13,7 @@ export const CreatePost = () => {
 
   const [mainContent, setMainContent] = useState(null)
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
+  const basepath = 'https://bloggio-blo-latest.onrender.com/'
 
   const {
     register,
@@ -88,17 +89,16 @@ export const CreatePost = () => {
       published: 1
     }
 
-    console.log(dataFormatted)
-    console.log(imageFile)
-    if (imageFile) {
-      const formData = new FormData()
-      const blob = new Blob([imageFile], { type: 'application/octet-stream' })
-      // formData.append('file', imageFile)
-      formData.append('post', new Blob([JSON.stringify(dataFormatted)], { type: 'application/json' }))
-      formData.append('file', blob)
-      console.log(formData)
-      try {
-        const response = await fetch('https://bloggio-blo-latest.onrender.com/Post/Create', {
+    // if (imageFile) {
+    const formData = new FormData()
+    const blob = new Blob([imageFile], { type: 'application/octet-stream' })
+    // formData.append('file', imageFile)
+    // formData.append('post', new Blob([JSON.stringify(dataFormatted)], { type: 'application/json' }))
+    formData.append('post', JSON.stringify(dataFormatted))
+    formData.append('file', blob)
+
+    /* try {
+        const response = await fetch(`${basepath}/Post/Create`, {
           method: 'POST',
           body: formData
         })
@@ -114,16 +114,16 @@ export const CreatePost = () => {
         onShowErrorAlert('Error al subir la imagen.')
         return
       }
-    }
+    } */
 
-    const url = 'https://bloggio-blo-latest.onrender.com/Post/Create'
+    const url = `${basepath}/Post/Create`
 
     const opciones = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(dataFormatted)
+      /* headers: {
+          'Content-Type': 'application/json'
+        }, */
+      body: formData
     }
 
     fetch(url, opciones)
@@ -142,7 +142,6 @@ export const CreatePost = () => {
         onShowErrorAlert(`${error}`)
       })
   }
-
   return (
     <>
       <Headers />

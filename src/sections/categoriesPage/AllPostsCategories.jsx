@@ -4,13 +4,14 @@ import { CardCategory, Pagination } from '../../components'
 export const AllPostsCategories = () => {
   const [category, setCategory] = useState([])
 
+  const basepath = 'https://bloggio-blo-latest.onrender.com/'
   // useEffect para obtener las categorias
   useEffect(() => {
     const fetchData = async () => {
       try {
         // aqui la direccion del back con el ARRAY DE OBJETOS CON LOS TIPOS DE CONTROL
-        const response = await fetch('https://bloggio-blog.onrender.com/api/v1/Category/GetAll')
-
+        const response = await fetch(`${basepath}/api/v1/Category/GetAll`)
+        console.log('espereando.....')
         if (!response.ok) {
           throw new Error(
             `Error al cargar los datos: ${response.status} ${response.statusText}`

@@ -6,6 +6,7 @@ import { usePostStore } from './../store/postStore'
 export const ComboCategories = () => {
   const { setCategory } = usePostStore()
   const animatedComponents = makeAnimated()
+  const basepath = 'https://bloggio-blo-latest.onrender.com'
 
   // Estado para almacenar las opciones de categorías
   const [categories, setCategories] = useState([])
@@ -28,7 +29,7 @@ export const ComboCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('https://bloggio-blo-latest.onrender.com/api/v1/Category/GetAll')
+        const response = await fetch(`${basepath}/api/v1/Category/GetAll`)
         if (!response.ok) {
           throw new Error('Error al obtener las categorías')
         }
