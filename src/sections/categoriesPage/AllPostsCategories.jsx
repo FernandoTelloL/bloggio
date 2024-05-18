@@ -4,7 +4,7 @@ import { CardCategory, Pagination } from '../../components'
 export const AllPostsCategories = () => {
   const [category, setCategory] = useState([])
 
-  const basepath = 'https://bloggio-blo-latest.onrender.com/'
+  const basepath = 'https://bloggio-blo-latest.onrender.com'
   // useEffect para obtener las categorias
   useEffect(() => {
     const fetchData = async () => {
