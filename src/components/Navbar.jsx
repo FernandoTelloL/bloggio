@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)]
 
-  const { logoutUser, name } = useUserStore()
+  const { logoutUser, userName } = useUserStore()
 
   const verifySession = localStorage.getItem('user')
   console.log(verifySession)
@@ -90,7 +90,7 @@ export const Navbar = () => {
                 }`}
                 >
                   <p className='text-[10px] text-secondary font-bold border-b border-b-secondary text-center mb-4'>
-                    {`Hola ${name}`}
+                    {`Hola ${userName}`}
                   </p>
                   <ul className='leading-8'>
                     <li className='hover:text-secondary'>

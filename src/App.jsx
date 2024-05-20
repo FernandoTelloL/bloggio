@@ -10,12 +10,14 @@ import {
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useUserStore } from './store/userStore'
 import { ProtectedRoutes } from './utils/ProtectedRoutes'
-import { useLocalStorage } from 'react-use'
+// import { useLocalStorage } from 'react-use'
 
 function App () {
   const { logged } = useUserStore()
+  console.log(logged)
 
-  const [user, setUser] = useLocalStorage('user')
+  // const [user] = useLocalStorage('user')
+  // console.log(user)
 
   return (
     <BrowserRouter>
@@ -64,7 +66,7 @@ function App () {
             </div>
           }
         />
-        <Route element={<ProtectedRoutes canActivate={user} />}>
+        <Route element={<ProtectedRoutes canActivate={logged} />}>
           <Route
             path='/create-post'
             element={

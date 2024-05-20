@@ -17,11 +17,12 @@ export const LoginPage = () => {
     handleSubmit
   } = useForm()
 
-  const { setUser, setLogged } = useUserStore()
+  const { setUser } = useUserStore()
 
   const onSubmit = async ({ username, password }) => {
     const dataFormated = { userNickname: username, userPassword: password }
     setLoading(true) // Mostrar spinner
+
     try {
       const response = await fetch(`${basepath}/auth/signin`, {
         method: 'POST',
@@ -34,10 +35,13 @@ export const LoginPage = () => {
       if (response.ok) {
         const data = await response.json()
         console.log(data)
+        const dataToLocalStorage = {
+          userNickName: data.userNickname,
+          userEmail: data.userEmail
+        }
         // Guardar datos del usuario en local storage
-        localStorage.setItem('user', JSON.stringify(data))
-        setUser(data.username, data.password)
-        setLogged()
+        localStorage.setItem('user', JSON.stringify(dataToLocalStorage))
+        setUser(data.userId, data.userNickname, data.userEmail, data.token)
         navigate('/', { replace: true })
       } else {
         ShowErrorAlert('Credenciales incorrectas. Por favor, intenta de nuevo.')

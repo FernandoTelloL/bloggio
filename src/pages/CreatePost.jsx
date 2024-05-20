@@ -69,6 +69,55 @@ export const CreatePost = () => {
     })
   }
 
+  // const onSubmit = async (data) => {
+  //   if (mainContent === null) {
+  //     onShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
+  //     return
+  //   }
+  //   data.mainContent = mainContent
+
+  //   const dataFormatted = {
+  //     postId: '',
+  //     categoryId: getCategory().category,
+  //     postContent: data.mainContent,
+  //     postDescription: data.description,
+  //     postPriority: 1,
+  //     postState: 1,
+  //     postTitle: data.title,
+  //     userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba',
+  //     mainImageUrl: data.mainImageUrl || '',
+  //     published: 1
+  //   }
+
+  //   const formData = new FormData()
+  //   const blob = new Blob([imageFile], { type: 'application/octet-stream' })
+  //   formData.append('post', JSON.stringify(dataFormatted))
+  //   formData.append('file', blob)
+
+  //   const url = `${basepath}/Post/Create`
+
+  //   const opciones = {
+  //     method: 'POST',
+  //     body: formData
+  //   }
+
+  //   fetch(url, opciones)
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Hubo un problema con la petición: ' + response.status)
+  //       }
+  //       onShowSuccessAlert()
+  //       return response.json()
+  //     })
+  //     .then(data => {
+  //       console.log('Respuesta del servidor:', data)
+  //     })
+  //     .catch(error => {
+  //       console.error('Error al enviar la petición:', error)
+  //       onShowErrorAlert(`${error}`)
+  //     })
+  // }
+
   const onSubmit = async (data) => {
     if (mainContent === null) {
       onShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
@@ -89,59 +138,32 @@ export const CreatePost = () => {
       published: 1
     }
 
-    // if (imageFile) {
     const formData = new FormData()
     const blob = new Blob([imageFile], { type: 'application/octet-stream' })
-    // formData.append('file', imageFile)
-    // formData.append('post', new Blob([JSON.stringify(dataFormatted)], { type: 'application/json' }))
     formData.append('post', JSON.stringify(dataFormatted))
     formData.append('file', blob)
 
-    /* try {
-        const response = await fetch(`${basepath}/Post/Create`, {
-          method: 'POST',
-          body: formData
-        })
-
-        if (!response.ok) {
-          throw new Error('Error al subir la imagen a Cloudinary')
-        }
-
-        const imageData = await response.json()
-        data.mainImageUrl = imageData.secure_url
-      } catch (error) {
-        console.error('Error al subir la imagen:', error)
-        onShowErrorAlert('Error al subir la imagen.')
-        return
-      }
-    } */
-
     const url = `${basepath}/Post/Create`
 
-    const opciones = {
-      method: 'POST',
-      /* headers: {
-          'Content-Type': 'application/json'
-        }, */
-      body: formData
-    }
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      })
 
-    fetch(url, opciones)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Hubo un problema con la petición: ' + response.status)
-        }
-        onShowSuccessAlert()
-        return response.json()
-      })
-      .then(data => {
-        console.log('Respuesta del servidor:', data)
-      })
-      .catch(error => {
-        console.error('Error al enviar la petición:', error)
-        onShowErrorAlert(`${error}`)
-      })
+      if (!response.ok) {
+        throw new Error('Hubo un problema con la petición: ' + response.status)
+      }
+
+      const result = await response.json()
+      onShowSuccessAlert()
+      console.log('Respuesta del servidor:', result)
+    } catch (error) {
+      console.error('Error al enviar la petición:', error)
+      onShowErrorAlert('Error al enviar la petición: ' + error.message)
+    }
   }
+
   return (
     <>
       <Headers />

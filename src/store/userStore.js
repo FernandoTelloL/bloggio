@@ -2,33 +2,33 @@ import { create } from 'zustand'
 
 export const useUserStore = create((set, get) => ({
   id: null,
-  name: null,
+  userName: null,
   email: null,
   password: null,
+  token: null,
   logged: false,
+  role: [],
 
   setLogged: () =>
     set((state) => ({
       logged: !state.logged
     })),
 
-  getLogged: () =>
-    get((state) => ({
-      logged: state.logged
-    })),
-
-  setUser: (nombre, correo, contra) =>
+  setUser: (id, nombre, correo, token) =>
     set((state) => ({
-      id: (state.id = 1),
-      name: (state.name = nombre),
+      id: (state.id = id),
+      userName: (state.userName = nombre),
       email: (state.email = correo),
-      password: (state.password = contra)
+      token: (state.token = token),
+      logged: (state.logged = true)
     })),
 
   logoutUser: () =>
     set((state) => ({
       id: (state.id = null),
-      name: (state.name = null),
+      userName: (state.userName = null),
+      email: (state.email = null),
+      token: (state.token = null),
       logged: (state.logged = false)
     }))
 }))
