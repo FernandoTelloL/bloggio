@@ -6,7 +6,7 @@ import { usePostStore } from './../store/postStore'
 export const ComboCategories = () => {
   const { setCategory } = usePostStore()
   const animatedComponents = makeAnimated()
-  const basepath = 'https://bloggio-blo-latest.onrender.com'
+  const basepath = 'https://bloggio-api.onrender.com'
 
   // Estado para almacenar las opciones de categorías
   const [categories, setCategories] = useState([])

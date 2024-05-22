@@ -7,7 +7,7 @@ import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 import { MutatingDots } from 'react-loader-spinner'
 
 export const SignUp = () => {
-  const basepath = 'https://bloggio-blo-latest.onrender.com'
+  const basepath = 'https://bloggio-api.onrender.com'
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false) // Estado para el spinner
 

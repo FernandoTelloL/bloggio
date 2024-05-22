@@ -13,7 +13,7 @@ export const CreatePost = () => {
 
   const [mainContent, setMainContent] = useState(null)
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
-  const basepath = 'https://bloggio-blo-latest.onrender.com'
+  const basepath = 'https://bloggio-api.onrender.com'
 
   const {
     register,

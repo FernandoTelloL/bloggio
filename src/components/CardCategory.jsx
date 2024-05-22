@@ -1,9 +1,17 @@
 /* eslint-disable react/prop-types */
 
+import { useNavigate } from 'react-router-dom'
+
 export const CardCategory = ({ img, imgHeight, title, description }) => {
+  const navigate = useNavigate()
+
   return (
     <>
-      <div className='relative mt-14 rounded-2xl lg:hover:shadow-lg overflow-hidden transition-transform transform-gpu lg:hover:scale-110 hover:duration-500 cursor-pointer' onClick={() => { console.log(`click en ${title}`) }}>
+      <div
+        className='relative mt-14 rounded-2xl lg:hover:shadow-lg overflow-hidden transition-transform transform-gpu lg:hover:scale-110 hover:duration-500 cursor-pointer' onClick={() => {
+          navigate('/')
+        }}
+      >
         <img
           className={`w-full object-cover ${imgHeight} rounded-xl min-h-full`}
           src={img}
