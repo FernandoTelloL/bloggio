@@ -1,3 +1,5 @@
+export { Layout } from './Layout'
+
 export { ComboCategories } from './ComboCategories'
 
 export { TextEditor } from './TextEditor'

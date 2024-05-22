@@ -1,4 +1,3 @@
-import { Footer, Headers } from '../components'
 import {
   AllPostsCategories,
   HeroCategories,
@@ -8,7 +7,6 @@ import {
 export const Categories = () => {
   return (
     <>
-      <Headers />
 
       <HeroCategories />
 
@@ -16,7 +14,6 @@ export const Categories = () => {
 
       <AllPostsCategories />
 
-      <Footer />
     </>
   )
 }

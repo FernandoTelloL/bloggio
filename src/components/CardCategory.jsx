@@ -9,7 +9,7 @@ export const CardCategory = ({ img, imgHeight, title, description }) => {
     <>
       <div
         className='relative mt-14 rounded-2xl lg:hover:shadow-lg overflow-hidden transition-transform transform-gpu lg:hover:scale-110 hover:duration-500 cursor-pointer' onClick={() => {
-          navigate('/')
+          navigate(`/category-${title}`)
         }}
       >
         <img

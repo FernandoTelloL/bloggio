@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Headers } from './../components'
 import { useUserStore } from '../store/userStore'
 import { useNavigate } from 'react-router-dom'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
@@ -56,7 +55,6 @@ export const LoginPage = () => {
 
   return (
     <>
-      <Headers />
 
       {loading && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>

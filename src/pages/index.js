@@ -1,3 +1,5 @@
+export { ViajesPage } from './categories/ViajesPage'
+
 export { SignUp } from './SignUp'
 
 export { AboutUs } from './AboutUs'

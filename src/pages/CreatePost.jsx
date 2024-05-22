@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { TextEditor, Headers, ComboCategories } from '../components'
+import { TextEditor, ComboCategories } from '../components'
 import Swal from 'sweetalert2'
 // import parse from 'html-react-parser'
 import './CreatePost.css'
@@ -166,7 +166,6 @@ export const CreatePost = () => {
 
   return (
     <>
-      <Headers />
       <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
         CREAR POST
       </h1>

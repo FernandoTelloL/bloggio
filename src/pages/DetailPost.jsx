@@ -1,4 +1,4 @@
-import { Footer, Headers } from '../components'
+import { Footer } from '../components'
 import {
   MainTitleDetailPostPage,
   MenuBottomDetailPost,
@@ -10,7 +10,6 @@ import secondaryImage from '../assets/images/img4.jpeg'
 export const DetailPost = () => {
   return (
     <>
-      <Headers />
       <div className='mt-16'>
         <MainTitleDetailPostPage />
 
@@ -76,7 +75,6 @@ export const DetailPost = () => {
 
       <hr className='mb-6 bg-slate-500' />
 
-      <Footer />
     </>
   )
 }
