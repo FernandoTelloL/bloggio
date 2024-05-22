@@ -1,10 +1,10 @@
 export { Layout } from './Layout'
 
-export { ComboCategories } from './ComboCategories'
+export { ComboCategories } from './categories/ComboCategories'
 
 export { TextEditor } from './TextEditor'
 
-export { CardCategory } from './CardCategory'
+export { CardCategory } from './categories/CardCategory'
 
 export { FooterCopyright } from './FooterCopyright'
 

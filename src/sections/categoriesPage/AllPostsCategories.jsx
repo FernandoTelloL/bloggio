@@ -13,7 +13,7 @@ export const AllPostsCategories = () => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        // aqui la direccion del back con el ARRAY DE OBJETOS CON LOS TIPOS DE CONTROL
+        // aqui la direccion del back con el ARRAY DE OBJETOS CON LAS CATEGORIAS
         const response = await fetch(`${basepath}/api/v1/Category/GetAll`)
         if (!response.ok) {
           throw new Error(
