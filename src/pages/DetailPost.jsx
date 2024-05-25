@@ -49,7 +49,7 @@ export const DetailPost = () => {
         />
 
         <section className='mb-5 flex flex-col md:flex-row gap-2 lg:gap-4'>
-          {/* <article className='md:w-[70%]'>
+          <article className='md:w-[70%]'>
             {post.content.split('\n').map((paragraph, index) => (
               <p key={index} className='mb-3 first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left'>
                 {paragraph}
@@ -63,7 +63,7 @@ export const DetailPost = () => {
             />
 
             <MenuBottomDetailPost />
-          </article> */}
+          </article>
         </section>
         <hr className='bg-slate-500' />
         <section className='mt-5 mb-6'>
