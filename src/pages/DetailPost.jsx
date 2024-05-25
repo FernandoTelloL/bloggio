@@ -1,4 +1,3 @@
-import { Footer } from '../components'
 import {
   MainTitleDetailPostPage,
   MenuBottomDetailPost,
