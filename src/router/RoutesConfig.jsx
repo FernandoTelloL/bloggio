@@ -15,7 +15,7 @@ export const RoutesConfig = () => {
         <Route path='/home' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/create-user' element={<SignUp />} />
-        <Route path='/detail-post' element={<DetailPost />} />
+        <Route path='/detail-post/:id' element={<DetailPost />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/category-viajes' element={<ViajesPage />} />
         <Route path='/about' element={<AboutUs />} />
@@ -25,6 +25,5 @@ export const RoutesConfig = () => {
         </Route>
       </Route>
     </Routes>
-
   )
 }
