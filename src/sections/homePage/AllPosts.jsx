@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { CardType1, Pagination } from '../../components'
+import { fetchAllPosts } from '../../api'
 
 export const AllPosts = () => {
   const [posts, setPosts] = useState([])
@@ -7,29 +8,13 @@ export const AllPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://bloggio-api.onrender.com/Post/GetAllPostByDateAndPage', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            limit: 10,
-            offset: 1
-          })
-        })
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-
-        const responseData = await response.json()
+        const responseData = await fetchAllPosts(9, 1)
         console.log(responseData)
-
-        // Verificar si responseData.data es un arreglo
-        if (responseData.data && Array.isArray(responseData.data)) {
-          setPosts(responseData.data)
+        // Verificar si responseData es un arreglo
+        if (responseData && Array.isArray(responseData)) {
+          setPosts(responseData)
         } else {
-          console.error('Data fetched is not an array:', responseData.data)
+          console.error('Data fetched is not an array:', responseData)
           setPosts([]) // Si no es un arreglo, setPosts a un arreglo vacío
         }
       } catch (error) {

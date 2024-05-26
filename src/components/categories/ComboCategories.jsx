@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import AsyncSelect from 'react-select/async'
 import makeAnimated from 'react-select/animated'
 import { usePostStore } from '../../store/postStore'
+import { fetchAllCategories } from '../../api/api'
 
 export const ComboCategories = () => {
   const { setCategory } = usePostStore()
   const animatedComponents = makeAnimated()
-  const basepath = 'https://bloggio-api.onrender.com'
 
   // Estado para almacenar las opciones de categorías
   const [categories, setCategories] = useState([])
@@ -29,12 +29,8 @@ export const ComboCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${basepath}/api/v1/Category/GetAll`)
-        if (!response.ok) {
-          throw new Error('Error al obtener las categorías')
-        }
-        const data = await response.json()
-        const formattedCategories = formatCategories(data)
+        const response = await fetchAllCategories()
+        const formattedCategories = formatCategories(response)
         setCategories(formattedCategories)
       } catch (error) {
         console.error('Error al cargar las categorías:', error)

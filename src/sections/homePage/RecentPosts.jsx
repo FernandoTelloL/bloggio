@@ -36,7 +36,7 @@ export const RecentPosts = () => {
 
       <section className='lg:flex lg:gap-6'>
         {posts.map((post, index) => (
-          <div key={post.id} className={`md:mb-6 lg:w-[50%] mb-5 ${index === 0 ? 'lg:mr-6' : ''}`}>
+          <div key={post.postId} className={`md:mb-6 lg:w-[50%] mb-5 ${index === 0 ? 'lg:mr-6' : ''}`}>
             <div className=''>
               <img
                 className='w-full object-cover h-50 mb-3 lg:aspect-video lg:h-[235px] rounded-md'

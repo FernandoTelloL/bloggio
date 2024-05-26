@@ -1,27 +1,19 @@
 import { useEffect, useState } from 'react'
 import { CardCategory, Pagination } from '../../components'
 import { MutatingDots } from 'react-loader-spinner'
+import { fetchAllCategories } from '../../api/api'
 
 export const AllPostsCategories = () => {
   const [category, setCategory] = useState([])
   const [loading, setLoading] = useState(false)
   console.log(category)
 
-  const basepath = 'https://bloggio-api.onrender.com'
   // useEffect para obtener las categorias
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        // aqui la direccion del back con el ARRAY DE OBJETOS CON LAS CATEGORIAS
-        const response = await fetch(`${basepath}/api/v1/Category/GetAll`)
-        if (!response.ok) {
-          throw new Error(
-            `Error al cargar los datos: ${response.status} ${response.statusText}`
-          )
-        }
-
-        const data = await response.json()
+        const data = await fetchAllCategories()
         setCategory(data)
       } catch (error) {
         console.error('Error al hacer el fetch:', error)
