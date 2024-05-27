@@ -1,5 +1,4 @@
-// mensaje de error
-
+import 'animate.css'
 import Swal from 'sweetalert2'
 
 export const ShowErrorAlert = (text) => {

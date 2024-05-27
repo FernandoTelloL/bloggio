@@ -1,6 +1,4 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-
 import { useLocalStorage } from 'react-use'
 import { HomePage, LoginPage, AboutUs, ViajesPage, SignUp, DetailPost, Categories, CreatePost } from './../pages'
 import { ProtectedRoutes } from './../utils/ProtectedRoutes'

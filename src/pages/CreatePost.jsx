@@ -1,16 +1,13 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { TextEditor, ComboCategories } from '../components'
-import Swal from 'sweetalert2'
 import './CreatePost.css'
 import 'animate.css'
-import { useNavigate } from 'react-router-dom'
 import { usePostStore } from './../store/postStore'
 import { fetchCreatePost } from '../api/api'
+import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 
 export const CreatePost = () => {
-  const navigate = useNavigate() // Obtenemos la función de navegación del contexto
-
   const [mainContent, setMainContent] = useState(null)
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
 
@@ -21,59 +18,14 @@ export const CreatePost = () => {
   } = useForm()
 
   const { getCategory } = usePostStore()
-
-  // mensaje de error
-  const onShowErrorAlert = (text) => {
-    Swal.fire({
-      title: 'Error!',
-      text,
-      icon: 'error',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      },
-      customClass: {
-        popup: 'my-custom-alert',
-        content: 'my-custom-alert-content',
-        confirmButton: 'my-custom-confirm-button'
-      },
-      confirmButtonText: 'OK'
-    })
-  }
-
-  // mensaje de exito
-  const onShowSuccessAlert = () => {
-    Swal.fire({
-      title: '¡Éxito!',
-      text: 'Tu post se ha creado correctamente. Seras redirigido a la página principal.',
-      icon: 'success',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown'
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      },
-      customClass: {
-        popup: 'my-custom-alert',
-        content: 'my-custom-alert-content',
-        confirmButton: 'my-custom-confirm-button'
-      },
-      confirmButtonText: 'OK'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate('/') // Navegamos a la página principal
-      }
-    })
-  }
-
+  console.log(mainContent)
   const onSubmit = async (data) => {
     if (mainContent === null) {
-      onShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
+      ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
       return
     }
     data.mainContent = mainContent
+    console.log(data)
 
     const dataFormatted = {
       postId: '',
@@ -83,16 +35,17 @@ export const CreatePost = () => {
       postPriority: 1,
       postState: 1,
       postTitle: data.title,
-      userId: '8f9a3dd3-cb2e-46a1-8f87-68545b2353ba',
+      userId: '2eb23861-cdc1-4291-b5cc-95a690c29454',
       mainImageUrl: data.mainImageUrl || '',
       published: 1
     }
-
+    console.log(dataFormatted)
+    console.log(imageFile)
     const formData = new FormData()
     const blob = new Blob([imageFile], { type: 'application/octet-stream' })
     formData.append('post', JSON.stringify(dataFormatted))
     formData.append('file', blob)
-
+    console.log(formData)
     await fetchCreatePost(formData)
   }
 

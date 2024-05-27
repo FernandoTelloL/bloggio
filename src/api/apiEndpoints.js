@@ -8,5 +8,8 @@ export const ENDPOINTS = {
   getAllCategories: `${API_BASE_URL}/api/v1/Category/GetAll`,
 
   // crear un nuevo post
-  createPost: `${API_BASE_URL}/Post/Create`
+  createPost: `${API_BASE_URL}/Post/Create`,
+
+  // obtener todos los posts de la categoría Viajes, usando paginación
+  getAllPostByViajesCategory: `${API_BASE_URL}/Post/find-all-by-filters`
 }

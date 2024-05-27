@@ -1,19 +1,19 @@
-export { Layout } from './Layout'
+export { Headers } from './header/Headers'
+
+export { Pagination } from './shared/Pagination'
+
+export { CardType1 } from './shared/CardType1'
+
+export { TextEditor } from './createPost/TextEditor'
+
+export { Layout } from './shared/Layout'
+
+export { Footer } from './footer/Footer'
+
+export { FooterCopyright } from './footer/FooterCopyright'
 
 export { ComboCategories } from './categories/ComboCategories'
 
-export { TextEditor } from './TextEditor'
-
 export { CardCategory } from './categories/CardCategory'
 
-export { FooterCopyright } from './FooterCopyright'
-
-export { Footer } from './Footer'
-
-export { Pagination } from './Pagination'
-
-export { CardType1 } from './CardType1'
-
 export { Card1 } from './Card1'
-
-export { Headers } from './Headers'

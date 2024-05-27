@@ -1,3 +1,3 @@
-export { ShowErrorAlert } from './ShowErrorAlert'
+export { ShowSuccessAlert } from './ShowSuccessAlert'
 
-export { SuccessAlertMessage } from './SuccessAlertMessage'
+export { ShowErrorAlert } from './ShowErrorAlert'

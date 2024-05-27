@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Navbar } from './Navbar'
+
 import { Logo } from './Logo'
+import { Navbar } from './Navbar'
 
 export const Headers = () => {
   return (

@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable react/prop-types */
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useUserStore } from '../../store/userStore'
 
 import burgerMenu from '../../assets/icons/icon-hamburger.svg'
 import closeMenu from '../../assets/icons/icon-menu-close.svg'
+
 import userAvatar from '../../assets/images/user-male-avatar.png'
 
 export const Navbar = () => {
@@ -13,27 +15,20 @@ export const Navbar = () => {
   const [photoClicked, setPhotoClicked] = useState(false)
 
   const handleClick = () => {
-    setMenuClicked(prevState => !prevState)
+    setMenuClicked(() => !menuClicked)
   }
 
-  const handlePhotoClick = () => {
-    setPhotoClicked(prevState => !prevState)
-  }
+  const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)]
 
-  const { logged, loginUser, logoutUser } = useUserStore()
+  const { logoutUser, userName } = useUserStore()
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser)
-      loginUser(parsedUser)
-    }
-  }, [loginUser])
+  const verifySession = localStorage.getItem('user')
+  console.log(verifySession)
 
   const handleLogoutClick = () => {
+    localStorage.removeItem('user')
     logoutUser()
     navigate('/', { replace: true })
-    localStorage.removeItem('user')
   }
 
   return (
@@ -77,7 +72,8 @@ export const Navbar = () => {
             </Link>
           </li>
 
-          {logged && user
+          {/* TODO: comprobar el codigo con logged */}
+          {verifySession
             ? (
               <div className=' object-cover relative flex justify-center'>
                 <img
@@ -87,13 +83,14 @@ export const Navbar = () => {
                   alt=''
                 />
 
+                {/* inicio submenu foto perfil */}
                 <div
                   className={`transition-all bg-slate-950 text-slate-200 text-sm absolute top-16 md:right-0 py-4 px-4 rounded-lg text-center w-[200px] ${
                   photoClicked ? 'block' : 'hidden'
                 }`}
                 >
                   <p className='text-[10px] text-secondary font-bold border-b border-b-secondary text-center mb-4'>
-                    {`Hola ${user.userNickName}`}
+                    {`Hola ${userName}`}
                   </p>
                   <ul className='leading-8'>
                     <li className='hover:text-secondary'>
@@ -119,16 +116,20 @@ export const Navbar = () => {
                     </li>
                   </ul>
                 </div>
+                {/* fin submenu foto perfil */}
               </div>
               )
             : (
               <>
+                {/* boton de Login */}
                 <Link
                   className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
                   to='/login'
                 >
                   Login
                 </Link>
+
+                {/* boton de Crear Usuario */}
                 <Link
                   className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
                   to='/create-user'

@@ -1,3 +1,5 @@
+import { ShowErrorAlert } from '../utils/ShowErrorAlert'
+import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 import { ENDPOINTS } from './apiEndpoints'
 
 // obtener todos los posts ordenados por fecha de creacion
@@ -41,7 +43,9 @@ export const fetchAllCategories = async () => {
   }
 }
 
-export const fetchCreatePost = async ({ formData }) => {
+// crear nuevo post
+export const fetchCreatePost = async (formData) => {
+  console.log(formData)
   try {
     const response = fetch(ENDPOINTS.createPost, {
       method: 'POST',
@@ -56,10 +60,26 @@ export const fetchCreatePost = async ({ formData }) => {
     }
 
     const result = (await response).json()
-    // onShowSuccessAlert()
+
+    ShowSuccessAlert(
+      'Tu post se ha creado correctamente. Seras redirigido a la página principal.'
+    )
     console.log('Respuesta del servidor:', result)
   } catch (error) {
     console.error('Error al enviar la petición:', error)
-    // onShowErrorAlert('Error al enviar la petición: ' + error.message)
+    ShowErrorAlert('Error al enviar la petición: ' + error.message)
   }
+}
+
+// obtener todos los posts de la categoría Viajes, usando paginación
+export const fetchGetAllPostByViajesCategory = async (filters) => {
+  try {
+    const response = await fetch(ENDPOINTS.getAllPostByViajesCategory, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    })
+  } catch (error) {}
 }

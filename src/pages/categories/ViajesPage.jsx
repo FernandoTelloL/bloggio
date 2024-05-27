@@ -23,6 +23,7 @@ export const ViajesPage = () => {
       const result = await response.json()
       // Asegúrate de que `result.data` es un array
       if (Array.isArray(result.data)) {
+        console.log(result.data)
         setCategoryViajes(result.data)
       } else {
         console.error('La respuesta de la API no contiene un array en `data`:', result.data)
@@ -38,10 +39,10 @@ export const ViajesPage = () => {
 
   useEffect(() => {
     fetchData({
-      categoryName: '',
+      categoryName: 'Viajes',
       date_end: '',
       date_start: '',
-      limit: 10,
+      limit: 9,
       offset: 1,
       postTitle: ''
     })
@@ -55,8 +56,8 @@ export const ViajesPage = () => {
             visible
             height='100'
             width='100'
-            color='#4fa94d'
-            secondaryColor='#4fa94d'
+            color='#172A99'
+            secondaryColor='#69141B'
             radius='12.5'
             ariaLabel='mutating-dots-loading'
           />
