@@ -16,8 +16,9 @@ export const DetailPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`https://bloggio-api.onrender.com/post/${id}`)
+        const response = await fetch(`https://bloggio-api.onrender.com/Post/${id}`)
         const data = await response.json()
+        console.log('data', data)
         setPost(data)
         setLoading(false)
       } catch (error) {
@@ -28,6 +29,35 @@ export const DetailPost = () => {
 
     fetchPost()
   }, [id])
+
+  /*
+  {
+    "postId": "6be90d25-7ede-4ae8-905d-2e1a4ffd413c",
+    "postContent": "Piero",
+    "postTitle": "Piero y su miembro de 2 cm",
+    "postDescription": "chipiiii",
+    "postState": 1,
+    "postPriority": 1,
+    "postImage": "https://res.cloudinary.com/dbxivsisb/image/upload/v1/bloggio/evyhfolkzi0la5juk3lu",
+    "user": {
+        "userId": "0ec69a79-4db4-4cc3-a03f-8635aa7c8b27",
+        "userEmail": "whiston@gmail.com",
+        "userNickname": "whiston",
+        "userPassword": "$2a$10$bSjUR.Nz/sUFNsuofcJNWeGkFKXXWoL.UYAwDR7zshY5eI.MOgnom",
+        "userPhoto": null,
+        "userShortBio": null,
+        "userState": 1,
+        "userFCreate": "2024-05-18T17:00:34.144+00:00",
+        "userFUpdate": null,
+        "roles": [
+            {
+                "roleId": "10ed6e4a-8081-4332-aa89-f69663d627db",
+                "name": "T_ROLE_USER"
+            }
+        ]
+    }
+}
+  */
 
   if (loading) {
     return <div>Loading...</div>
@@ -40,28 +70,17 @@ export const DetailPost = () => {
   return (
     <>
       <div className='mt-16'>
-        <MainTitleDetailPostPage title={post.title} />
+        <MainTitleDetailPostPage title={post.postTitle} description={post.postDescription} />
 
         <img
           className='mt-16 mb-6 rounded-xl md:h-[300px] lg:h-[400px] md:w-full md:object-cover md:object-top lg:object-center'
-          src={post.mainImage || mainImage}
-          alt={post.title}
+          src={post.postImage || mainImage}
+          alt={post.postTitle}
         />
 
         <section className='mb-5 flex flex-col md:flex-row gap-2 lg:gap-4'>
           <article className='md:w-[70%]'>
-            {post.content.split('\n').map((paragraph, index) => (
-              <p key={index} className='mb-3 first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:mr-3 first-letter:float-left'>
-                {paragraph}
-              </p>
-            ))}
-
-            <img
-              className='rounded-xl mt-6 mb-6 w-[80%] mr-auto ml-auto md:mt-10 md:mb-10 md:w-[70%]'
-              src={post.secondaryImage || secondaryImage}
-              alt={post.title}
-            />
-
+            {post.postContent}
             <MenuBottomDetailPost />
           </article>
         </section>
