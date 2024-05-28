@@ -20,13 +20,13 @@ export const Navbar = () => {
 
   const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)]
 
-  const { logoutUser, userName } = useUserStore()
+  const { logoutUser, userName, logged } = useUserStore()
 
-  const verifySession = localStorage.getItem('user')
-  console.log(verifySession)
+  // const verifySession = localStorage.getItem('user')
+  // console.log(verifySession)
 
   const handleLogoutClick = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('userState')
     logoutUser()
     navigate('/', { replace: true })
   }
@@ -73,7 +73,7 @@ export const Navbar = () => {
           </li>
 
           {/* TODO: comprobar el codigo con logged */}
-          {verifySession
+          {logged
             ? (
               <div className=' object-cover relative flex justify-center'>
                 <img

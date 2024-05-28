@@ -32,8 +32,8 @@ export const AllPostsCategories = () => {
             visible
             height='100'
             width='100'
-            color='#4fa94d'
-            secondaryColor='#4fa94d'
+            color='#172A99'
+            secondaryColor='#69141B'
             radius='12.5'
             ariaLabel='mutating-dots-loading'
           />

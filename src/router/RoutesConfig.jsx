@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-import { useLocalStorage } from 'react-use'
+// import { useLocalStorage } from 'react-use'
+import { useUserStore } from '../store/userStore'
 import { HomePage, LoginPage, AboutUs, ViajesPage, SignUp, DetailPost, Categories, CreatePost } from './../pages'
 import { ProtectedRoutes } from './../utils/ProtectedRoutes'
 import { Layout } from '../components'
 
 export const RoutesConfig = () => {
-  const [user] = useLocalStorage('user')
+  const { logged } = useUserStore()
   return (
     <Routes>
       <Route element={<Layout />}>
@@ -18,7 +19,7 @@ export const RoutesConfig = () => {
         <Route path='/category-viajes' element={<ViajesPage />} />
         <Route path='/about' element={<AboutUs />} />
 
-        <Route element={<ProtectedRoutes canActivate={user?.userNickName !== undefined} />}>
+        <Route element={<ProtectedRoutes canActivate={logged} />}>
           <Route path='/create-post' element={<CreatePost />} />
         </Route>
       </Route>

@@ -42,7 +42,7 @@ export const SignUp = () => {
         // Guardar datos del usuario en local storage
         localStorage.setItem('user', JSON.stringify(data))
         setUser(data.username, data.password)
-        setLogged()
+        // setLogged()
         navigate('/', { replace: true })
       } else {
         ShowErrorAlert('Error en la creación de nuevo usuario')
@@ -64,8 +64,8 @@ export const SignUp = () => {
             visible
             height='100'
             width='100'
-            color='#4fa94d'
-            secondaryColor='#4fa94d'
+            color='#172A99'
+            secondaryColor='#69141B'
             radius='12.5'
             ariaLabel='mutating-dots-loading'
           />

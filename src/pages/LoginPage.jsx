@@ -20,6 +20,7 @@ export const LoginPage = () => {
 
   const onSubmit = async ({ username, password }) => {
     const dataFormated = { userNickname: username, userPassword: password }
+
     setLoading(true) // Mostrar spinner
 
     try {
@@ -34,12 +35,6 @@ export const LoginPage = () => {
       if (response.ok) {
         const data = await response.json()
         console.log(data)
-        const dataToLocalStorage = {
-          userNickName: data.userNickname,
-          userEmail: data.userEmail
-        }
-        // Guardar datos del usuario en local storage
-        localStorage.setItem('user', JSON.stringify(dataToLocalStorage))
         setUser(data.userId, data.userNickname, data.userEmail, data.token)
         navigate('/', { replace: true })
       } else {
@@ -62,8 +57,8 @@ export const LoginPage = () => {
             visible
             height='100'
             width='100'
-            color='#4fa94d'
-            secondaryColor='#4fa94d'
+            color='#172A99'
+            secondaryColor='#69141B'
             radius='12.5'
             ariaLabel='mutating-dots-loading'
           />
