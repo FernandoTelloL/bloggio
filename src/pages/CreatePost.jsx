@@ -6,6 +6,8 @@ import 'animate.css'
 import { usePostStore } from './../store/postStore'
 import { fetchCreatePost } from '../api/api'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
+import { FaTrashCan, FaUpload } from 'react-icons/fa6'
+import { IoSave } from 'react-icons/io5'
 
 export const CreatePost = () => {
   const [mainContent, setMainContent] = useState(null)
@@ -50,103 +52,104 @@ export const CreatePost = () => {
   }
 
   return (
-    <>
+    <div className='mb-32'>
       <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
         CREAR POST
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto'>
-        <div className='mb-6'>
+      <div className=''>
 
-          {/* titulo principal */}
-          <label htmlFor='title' className='block mb-1'>
-            Título Principal:
-          </label>
-          <input
-            type='text'
-            id='title'
-            {...register('title', { required: true })}
-            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
-          />
-          {errors.title && (
-            <span className='text-red-500'>
-              El título principal es requerido
-            </span>
-          )}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex'>
 
-        {/* descripcion corta */}
-        <div className='mb-6'>
-          <label htmlFor='description' className='block mb-1'>
-            Descripción Corta:
-          </label>
-          <textarea
-            id='description'
-            {...register('description', { required: true })}
-            className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
-          />
-          {errors.description && (
-            <span className='text-red-500'>
-              La descripción corta es requerida
-            </span>
-          )}
-        </div>
+          {/* sección de botones de acción */}
+          <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10'>
+            <button className='p-4 rounded-full border-red-500 border-2'>
+              <FaTrashCan className='text-red-500' />
+            </button>
 
-        {/* seleccionar imagen */}
-        <div className='mb-6'>
-          <label htmlFor='mainImage' className='block mb-1'>
-            Imagen Principal:
-          </label>
-          <input
-            type='file'
-            id='mainImage'
-            onChange={(e) => setImageFile(e.target.files[0])}
-            className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
-          />
-        </div>
+            <button
+              className='p-4 rounded-full border-sky-500 border-2'
+              type='submit'
+            >
+              <IoSave className='text-sky-500' />
+            </button>
 
-        {/* text editor */}
-        <div className='mb-6'>
-          <label htmlFor='body' className='block mb-1'>
-            Cuerpo del Post:
-          </label>
-          <TextEditor
-            mainContent={mainContent}
-            setMainContent={setMainContent}
-          />
-        </div>
+            <button className='p-4 rounded-full border-green-600 border-2'>
+              <FaUpload className='text-green-600' />
+            </button>
+          </section>
 
-        {/* combo de categorias */}
-        <div className='mb-10'>
-          <p>Seleccione categoría del post</p>
-          <ComboCategories />
-        </div>
+          {/* cuerpo del formulario */}
+          <div>
+            <div className='mb-6'>
+              {/* titulo principal */}
+              <label htmlFor='title' className='block mb-1'>
+                Título Principal:
+              </label>
+              <input
+                type='text'
+                id='title'
+                {...register('title', { required: true })}
+                className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
+              />
+              {errors.title && (
+                <span className='text-red-500'>
+                  El título principal es requerido
+                </span>
+              )}
+            </div>
 
-        {/* botones de accion */}
-        <div className='mb-6 flex flex-col'>
-          <button
-            type='submit'
-            className='bg-blue-500 text-white px-4 py-2 rounded-lg mb-4 leading-8'
-          >
-            Publicar
-          </button>
+            {/* descripcion corta */}
+            <div className='mb-6'>
+              <label htmlFor='description' className='block mb-1'>
+                Descripción Corta:
+              </label>
+              <textarea
+                id='description'
+                {...register('description', { required: true })}
+                className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
+              />
+              {errors.description && (
+                <span className='text-red-500'>
+                  La descripción corta es requerida
+                </span>
+              )}
+            </div>
 
-          <button
-            type='button'
-            className='bg-gray-300 text-gray-700 px-4 py-2 rounded-lg mb-4 leading-8'
-          >
-            Guardar en Borrador
-          </button>
+            {/* seleccionar imagen */}
+            <div className='mb-6'>
 
-          <button
-            type='button'
-            className='bg-red-500 text-white px-4 py-2 rounded-lg leading-8'
-          >
-            Descartar
-          </button>
+              <label htmlFor='mainImage' className='block mb-1'>
+                Imagen Principal:
+              </label>
+              <input
+                type='file'
+                id='mainImage'
+                onChange={(e) => setImageFile(e.target.files[0])}
+                className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
+              />
+            </div>
 
-        </div>
-      </form>
-    </>
+            {/* text editor */}
+            <div className='mb-6'>
+              <label htmlFor='body' className='block mb-1'>
+                Cuerpo del Post:
+              </label>
+              <TextEditor
+                mainContent={mainContent}
+                setMainContent={setMainContent}
+              />
+            </div>
+
+            {/* combo de categorias */}
+            <div className='mb-10'>
+              <p>Seleccione categoría del post</p>
+              <ComboCategories />
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
   )
 }
