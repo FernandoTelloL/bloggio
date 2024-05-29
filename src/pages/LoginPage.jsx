@@ -65,7 +65,7 @@ export const LoginPage = () => {
         </div>
       )}
 
-      <div className='flex flex-col justify-between mt-20'>
+      <div className='flex flex-col justify-between mt-20 mb-20'>
         <div className='flex flex-col justify-center items-center '>
           <h1 className='text-2xl font-extrabold mb-4 md:text-3xl md:mb-8'>
             Login de Usuario

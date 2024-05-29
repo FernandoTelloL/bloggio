@@ -59,29 +59,29 @@ export const CreatePost = () => {
 
       <div className=''>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex'>
+        <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex md:min-w-full md:mx-0 justify-between'>
 
           {/* sección de botones de acción */}
-          <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10'>
-            <button className='p-4 rounded-full border-red-500 border-2'>
+          <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10 md:order-1 md:text-base'>
+            <button className='p-4 rounded-full border-red-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
               <FaTrashCan className='text-red-500' />
             </button>
 
             <button
-              className='p-4 rounded-full border-sky-500 border-2'
+              className='p-4 rounded-full border-sky-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'
               type='submit'
             >
               <IoSave className='text-sky-500' />
             </button>
 
-            <button className='p-4 rounded-full border-green-600 border-2'>
+            <button className='p-4 rounded-full border-green-600 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
               <FaUpload className='text-green-600' />
             </button>
           </section>
 
           {/* cuerpo del formulario */}
-          <div>
-            <div className='mb-6'>
+          <div className='md:text-center md:w-[70%]'>
+            <div className='mb-6 md:mb-14'>
               {/* titulo principal */}
               <label htmlFor='title' className='block mb-1'>
                 Título Principal:
@@ -100,7 +100,7 @@ export const CreatePost = () => {
             </div>
 
             {/* descripcion corta */}
-            <div className='mb-6'>
+            <div className='mb-6 md:mb-14'>
               <label htmlFor='description' className='block mb-1'>
                 Descripción Corta:
               </label>
@@ -117,7 +117,7 @@ export const CreatePost = () => {
             </div>
 
             {/* seleccionar imagen */}
-            <div className='mb-6'>
+            <div className='mb-6 md:mb-14'>
 
               <label htmlFor='mainImage' className='block mb-1'>
                 Imagen Principal:
@@ -131,7 +131,7 @@ export const CreatePost = () => {
             </div>
 
             {/* text editor */}
-            <div className='mb-6'>
+            <div className='mb-6 md:mb-14'>
               <label htmlFor='body' className='block mb-1'>
                 Cuerpo del Post:
               </label>

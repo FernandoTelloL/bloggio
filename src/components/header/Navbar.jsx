@@ -22,9 +22,6 @@ export const Navbar = () => {
 
   const { logoutUser, userName, logged } = useUserStore()
 
-  // const verifySession = localStorage.getItem('user')
-  // console.log(verifySession)
-
   const handleLogoutClick = () => {
     localStorage.removeItem('userState')
     logoutUser()
@@ -123,7 +120,7 @@ export const Navbar = () => {
               <>
                 {/* boton de Login */}
                 <Link
-                  className='bg-slate-900 text-slate-200 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 mt-10 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-base md:py-4'
+                  className='bg-slate-900 text-slate-200 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 mt-10 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-xs md:py-2 md:px-8'
                   to='/login'
                 >
                   Login
@@ -131,7 +128,7 @@ export const Navbar = () => {
 
                 {/* boton de Crear Usuario */}
                 <Link
-                  className='text-slate-900 border-slate-900 border-2 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-base md:py-4'
+                  className='text-slate-900 border-slate-900 border-2 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-xs md:py-2 md:px-8'
                   to='/create-user'
                 >
                   Crear Usuario
