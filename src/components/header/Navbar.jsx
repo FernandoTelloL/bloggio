@@ -123,7 +123,7 @@ export const Navbar = () => {
               <>
                 {/* boton de Login */}
                 <Link
-                  className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
+                  className='bg-slate-900 text-slate-200 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 mt-10 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-base md:py-4'
                   to='/login'
                 >
                   Login
@@ -131,7 +131,7 @@ export const Navbar = () => {
 
                 {/* boton de Crear Usuario */}
                 <Link
-                  className='bg-slate-900 text-slate-300 font-bold px-4 py-2 rounded-lg transition-all hover:text-secondary hover:shadow-xl ml-4'
+                  className='text-slate-900 border-slate-900 border-2 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-base md:py-4'
                   to='/create-user'
                 >
                   Crear Usuario
