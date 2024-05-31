@@ -81,5 +81,15 @@ export const fetchGetAllPostByViajesCategory = async (filters) => {
       },
       body: JSON.stringify(filters)
     })
-  } catch (error) {}
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Viajes:', error)
+  }
 }
