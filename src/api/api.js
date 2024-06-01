@@ -95,6 +95,7 @@ export const fetchGetAllPostByViajesCategory = async (filters) => {
   }
 }
 
+// obtener todos los posts de la categoría Salud, usando paginación
 export const fetchGetAllPostBySaludCategory = async (filters) => {
   try {
     const response = await fetch(ENDPOINTS.getAllPostBySaludCategory, {
@@ -115,5 +116,77 @@ export const fetchGetAllPostBySaludCategory = async (filters) => {
     return responseData.data
   } catch (error) {
     console.error('Error al cargar los posts de la categoría Salud:', error)
+  }
+}
+
+// obtener todos los posts de lacategoria Cocina, usando paginacion
+export const fetchGetAllPostByCocinaCategory = async (filters) => {
+  try {
+    const response = await fetch(ENDPOINTS.getAllPostByCocinaCategory, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    })
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    console.log(responseData.data)
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Cocina:', error)
+  }
+}
+
+// obtener todos los posts de la categoría Paternidad, usando paginación
+export const fetchGetAllPostByPaternidadCategory = async (filters) => {
+  try {
+    const response = await fetch(ENDPOINTS.getAllPostByPaternidadCategory, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    })
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    console.log(responseData.data)
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Paternidad:', error)
+  }
+}
+
+// obtener todos los posts de la categoría Deportes, usando paginación
+export const fetchGetAllPostByDeportesCategory = async (filters) => {
+  try {
+    const response = await fetch(ENDPOINTS.getAllPostByDeportesCategory, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    })
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    console.log(responseData.data)
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Deportes:', error)
   }
 }

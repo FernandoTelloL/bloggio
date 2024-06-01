@@ -21,6 +21,7 @@ export const CreatePost = () => {
 
   const { getCategory } = usePostStore()
   console.log(mainContent)
+
   const onSubmit = async (data) => {
     if (mainContent === null) {
       ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
