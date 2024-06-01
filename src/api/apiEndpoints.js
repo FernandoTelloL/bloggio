@@ -1,6 +1,10 @@
 const API_BASE_URL = 'https://bloggio-api.onrender.com'
 
 export const ENDPOINTS = {
+
+  // url de login
+  login: `${API_BASE_URL}/auth/signin`,
+
   // obtener todos los posts desde el más reciente usando paginación
   getAllPostsByDateAndPage: `${API_BASE_URL}/Post/GetAllPostByDateAndPage`,
 

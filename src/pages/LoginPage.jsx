@@ -4,9 +4,10 @@ import { useUserStore } from '../store/userStore'
 import { useNavigate } from 'react-router-dom'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 import { MutatingDots } from 'react-loader-spinner'
+import { fetchLogin } from './../api/api'
+import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 
 export const LoginPage = () => {
-  const basepath = 'https://bloggio-api.onrender.com'
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false) // Estado para el spinner
 
@@ -22,27 +23,20 @@ export const LoginPage = () => {
     const dataFormated = { userNickname: username, userPassword: password }
 
     setLoading(true) // Mostrar spinner
-
     try {
-      const response = await fetch(`${basepath}/auth/signin`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataFormated)
-      })
+      const dataLogin = await fetchLogin(dataFormated)
+      console.log(dataLogin)
 
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-        setUser(data.userId, data.userNickname, data.userEmail, data.token)
-        navigate('/', { replace: true })
-      } else {
-        ShowErrorAlert('Credenciales incorrectas. Por favor, intenta de nuevo.')
+      if (dataLogin === undefined) {
+        throw new Error('Hubo un problema con la petición: ' + dataLogin.status)
       }
-    } catch (error) {
-      console.error('Error en la solicitud de login:', error)
-      ShowErrorAlert('Ocurrió un error. Por favor, intenta de nuevo más tarde.')
+
+      ShowSuccessAlert(
+        'Tu usuario se ha autenticado correctamente. Serás redirigido a la página principal.'
+      )
+
+      setUser(dataLogin.userId, dataLogin.userNickname, dataLogin.userEmail, dataLogin.token)
+      navigate('/', { replace: true })
     } finally {
       setLoading(false) // Ocultar spinner
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import mainImage from '../assets/images/img1.webp'
+import parse from 'html-react-parser'
 import {
   MainTitleDetailPostPage,
   MenuBottomDetailPost,
@@ -17,7 +18,6 @@ export const DetailPost = () => {
       try {
         const response = await fetch(`https://bloggio-api.onrender.com/Post/${id}`)
         const data = await response.json()
-        console.log('data', data)
         setPost(data)
         setLoading(false)
       } catch (error) {
@@ -50,7 +50,7 @@ export const DetailPost = () => {
 
         <section className='mb-5 flex flex-col md:flex-row gap-2 lg:gap-4'>
           <article className='md:w-[70%]'>
-            {post.postContent}
+            {parse(post.postContent)} {/* Aquí usamos html-react-parser */}
             <MenuBottomDetailPost />
           </article>
         </section>
