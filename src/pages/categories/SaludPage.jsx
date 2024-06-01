@@ -52,26 +52,28 @@ export const SaludPage = () => {
       )}
 
       <section>
-
         <h2 className='text-3xl font-bold lg:mt-16 mb-12'>Listado de Posts de categoria SALUD</h2>
-        <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-          {categorySalud.map((post) => (
-            <div key={post.postId} className='col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4'>
-              <div className='card' key={post.postId}>
-                <div className='card-body'>
-                  <h3 className='card-title'>{post.postTitle}</h3>
-                  <p className='card-text'>{post.postContent}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 lg:mb-16'>
+          {categorySalud.length > 0
+            ? (
+                categorySalud.map((viaje) => (
+                  <div key={viaje.postId} className='card'>
+                    <img src={viaje.postImage} alt={viaje.postTitle} className='card-img-top' />
+                    <div className='card-body'>
+                      <h5 className='card-title'>{viaje.postTitle}</h5>
+                      <p className='card-text'>{viaje.postDescription}</p>
+                      <p className='card-text'><small className='text-muted'>By {viaje.userNickname} on {new Date(viaje.postCreated).toLocaleDateString()}</small></p>
+                    </div>
+                  </div>
+                ))
+              )
+            : (
+              <p>No hay resultados.</p>
+              )}
         </div>
-
-        <section className='mb-12 lg:mb-24'>
-          <Pagination />
-        </section>
-
+        <Pagination />
       </section>
     </>
+
   )
 }

@@ -14,5 +14,18 @@ export const ENDPOINTS = {
   getAllPostByViajesCategory: `${API_BASE_URL}/Post/find-all-by-filters`,
 
   // obtener todos los posts de la categoría Salud, usando paginación
-  getAllPostBySaludCategory: `${API_BASE_URL}/Post/find-all-by-filters`
+  getAllPostBySaludCategory: `${API_BASE_URL}/Post/find-all-by-filters`,
+
+  // obtener todos los posts de la categoría Cocina, usando paginacion
+  getAllPostByCocinaCategory: `${API_BASE_URL}/Post/find-all-by-filters`,
+
+  // obtener todos los posts de la categoría Tecnología, usando paginación
+  getAllPostByTecnologiaCategory: `${API_BASE_URL}/Post/find-all-by-filters`,
+
+  // obtener todos los posts de la categoria Paternidad, usando paginación
+  getAllPostByPaternidadCategory: `${API_BASE_URL}/Post/find-all-by-filters`,
+
+  // obtener todos los posts de la categoria Deportes, usando paginación
+  getAllPostByDeportesCategory: `${API_BASE_URL}/Post/find-all-by-filters`
+
 }
