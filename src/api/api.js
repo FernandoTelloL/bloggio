@@ -2,6 +2,29 @@ import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 import { ENDPOINTS } from './apiEndpoints'
 
+// fetch para login
+export const fetchLogin = async (formData) => {
+  try {
+    const response = await fetch(ENDPOINTS.login, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la petición: ' + response.status)
+    }
+
+    const result = await response.json()
+
+    return result
+  } catch (error) {
+    ShowErrorAlert('Error al autenticarr usuario: ' + error.message)
+  }
+}
+
 // obtener todos los posts ordenados por fecha de creacion
 export const fetchAllPosts = async (limit, offset) => {
   try {
