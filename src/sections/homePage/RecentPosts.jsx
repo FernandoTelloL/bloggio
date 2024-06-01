@@ -48,7 +48,7 @@ export const RecentPosts = () => {
                 <div className=''>
                   <p className='text-xs mb-4'>{posts[0].user.userNickname} - {posts[0].date}</p>
                   <h3 className='font-Oswald text-md font-bold text-slate-900'>
-                    <Link to='/detail-post'>
+                    <Link to={`/detail-post/${posts[0].postId}`}>
                       {posts[0].postTitle}
                     </Link>
                   </h3>
@@ -108,7 +108,7 @@ export const RecentPosts = () => {
                       {post.userNickname} - {post.date}
                     </p>
                     <h3 className='font-Oswald text-md font-bold text-slate-900'>
-                      <Link to='/detail-post'>
+                      <Link to={`/detail-post/${post.postId}`}>
                         {post.postTitle}
                       </Link>
                     </h3>
