@@ -1,34 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Pagination } from '../../components'
 import { MutatingDots } from 'react-loader-spinner'
+import { fetchGetAllPostByViajesCategory } from '../../api/api'
+import { Pagination } from '../../components'
 
 export const ViajesPage = () => {
   const [categoryViajes, setCategoryViajes] = useState([])
   const [loading, setLoading] = useState(false)
-  const basepath = 'https://bloggio-api.onrender.com'
 
   const fetchData = async (filters) => {
     setLoading(true)
     try {
-      const response = await fetch(`${basepath}/Post/find-all-by-filters`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(filters)
-      })
-      if (!response.ok) {
-        throw new Error(`Error al cargar los datos: ${response.status} ${response.statusText}`)
-      }
-      const result = await response.json()
-      // Asegúrate de que `result.data` es un array
-      if (Array.isArray(result.data)) {
-        console.log(result.data)
-        setCategoryViajes(result.data)
-      } else {
-        console.error('La respuesta de la API no contiene un array en `data`:', result.data)
-        setCategoryViajes([])
-      }
+      const data = await fetchGetAllPostByViajesCategory(filters)
+      setCategoryViajes(data)
     } catch (error) {
       console.error('Error al hacer el fetch:', error)
       setCategoryViajes([])
@@ -63,6 +46,7 @@ export const ViajesPage = () => {
           />
         </div>
       )}
+
       <section>
         <h2 className='text-3xl font-bold lg:mt-16 mb-12'>Listado de Posts de categoria VIAJES</h2>
         <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8 lg:mb-16'>

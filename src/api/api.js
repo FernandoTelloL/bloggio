@@ -81,5 +81,39 @@ export const fetchGetAllPostByViajesCategory = async (filters) => {
       },
       body: JSON.stringify(filters)
     })
-  } catch (error) {}
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    console.log(responseData.data)
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Viajes:', error)
+  }
+}
+
+export const fetchGetAllPostBySaludCategory = async (filters) => {
+  try {
+    const response = await fetch(ENDPOINTS.getAllPostBySaludCategory, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(filters)
+    })
+
+    if (!response.ok) {
+      throw new Error('Hubo un problema con la conexión a la base de datos')
+    }
+
+    const responseData = await response.json()
+
+    console.log(responseData.data)
+    return responseData.data
+  } catch (error) {
+    console.error('Error al cargar los posts de la categoría Salud:', error)
+  }
 }

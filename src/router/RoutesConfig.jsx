@@ -1,9 +1,9 @@
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 // import { useLocalStorage } from 'react-use'
-import { useUserStore } from '../store/userStore'
-import { HomePage, LoginPage, AboutUs, ViajesPage, SignUp, DetailPost, Categories, CreatePost } from './../pages'
-import { ProtectedRoutes } from './../utils/ProtectedRoutes'
 import { Layout } from '../components'
+import { useUserStore } from '../store/userStore'
+import { AboutUs, Categories, CocinaPage, CreatePost, DeportesPage, DetailPost, HomePage, LoginPage, OtrosCategoriesPage, PaternidadPage, SaludPage, SignUp, TecnologiaPage, ViajesPage } from './../pages'
+import { ProtectedRoutes } from './../utils/ProtectedRoutes'
 
 export const RoutesConfig = () => {
   const { logged } = useUserStore()
@@ -17,7 +17,14 @@ export const RoutesConfig = () => {
         <Route path='/detail-post/:id' element={<DetailPost />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/category-viajes' element={<ViajesPage />} />
+        <Route path='/category-salud' element={<SaludPage />} />
+        <Route path='/category-cocina' element={<CocinaPage />} />
+        <Route path='/category-tecnologia' element={<TecnologiaPage />} />
+        <Route path='/category-paternidad' element={<PaternidadPage />} />
+        <Route path='/category-deportes' element={<DeportesPage />} />
+        <Route path='/category-otros' element={<OtrosCategoriesPage />} />
         <Route path='/about' element={<AboutUs />} />
+        <Route path='*' element={<HomePage />} />
 
         <Route element={<ProtectedRoutes canActivate={logged} />}>
           <Route path='/create-post' element={<CreatePost />} />

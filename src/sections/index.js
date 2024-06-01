@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 export { SearchCategories } from './categoriesPage/SearchCategories'
 
 export { AllPostsCategories } from './categoriesPage/AllPostsCategories'
@@ -17,3 +18,4 @@ export { AllPosts } from './homePage/AllPosts'
 export { RecentPosts } from './homePage/RecentPosts'
 
 export { HeroHome } from './homePage/HeroHome'
+
