@@ -8,6 +8,8 @@ import { fetchCreatePost } from '../api/api'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 import { FaTrashCan, FaUpload } from 'react-icons/fa6'
 import { IoSave } from 'react-icons/io5'
+import { ENDPOINTS } from '../api/apiEndpoints.js'
+import { ShowSuccessAlert } from '../utils/index.js'
 
 export const CreatePost = () => {
   const [mainContent, setMainContent] = useState(null)
@@ -28,9 +30,8 @@ export const CreatePost = () => {
       return
     }
     data.mainContent = mainContent
-    console.log(data)
 
-    const dataFormatted = {
+    let dataFormatted = {
       postId: '',
       categoryId: getCategory().category,
       postContent: data.mainContent,
@@ -42,14 +43,38 @@ export const CreatePost = () => {
       mainImageUrl: data.mainImageUrl || '',
       published: 1
     }
-    console.log(dataFormatted)
-    console.log(imageFile)
     const formData = new FormData()
-    const blob = new Blob([imageFile], { type: 'application/octet-stream' })
-    formData.append('post', JSON.stringify(dataFormatted))
-    formData.append('file', blob)
-    console.log(formData)
-    await fetchCreatePost(formData)
+    // const blob = new Blob([imageFile], { type: 'application/json' })
+    /* formData.append('post', JSON.stringify(dataFormatted))
+    formData.append('file', imageFile) */
+    dataFormatted = JSON.stringify(dataFormatted)
+    formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
+    formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
+
+    // SEPARAR TODO ESTO EN SU METODO CORRESPONDIENTE
+    try {
+      const response = fetch(ENDPOINTS.createPost, {
+        method: 'POST',
+        /* headers: {
+          'Content-Type': 'multipart/form-data'
+        }, */
+        body: formData
+      })
+      console.log(response)
+      if (response.status !== '201') { // TELLO ARREGLAR ESTO!!!!!!!!!
+        throw new Error('Hubo un problema con la petición: ' + response.status)
+      }
+
+      const result = (await response).json()
+
+      ShowSuccessAlert('Tu post se ha creado correctamente. Seras redirigido a la página principal.')
+      console.log('Respuesta del servidor:', result)
+    } catch (error) {
+      console.error('Error al enviar la petición:', error)
+      ShowErrorAlert('Error al enviar la petición: ' + error.message)
+    }
+    // console.log(formData)
+    // await fetchCreatePost(formData)
   }
 
   return (

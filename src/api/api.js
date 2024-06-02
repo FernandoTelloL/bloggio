@@ -68,6 +68,7 @@ export const fetchAllCategories = async () => {
 
 // crear nuevo post
 export const fetchCreatePost = async (formData) => {
+  debugger
   console.log(formData)
   try {
     const response = fetch(ENDPOINTS.createPost, {
