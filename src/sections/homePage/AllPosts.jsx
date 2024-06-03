@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { CardType1, Pagination } from '../../components'
 import { fetchAllPosts } from '../../api'
+import { useNavigate } from 'react-router-dom'
 
 export const AllPosts = () => {
   const [posts, setPosts] = useState([])
+  const navigate = useNavigate()
+  console.log(posts)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +30,7 @@ export const AllPosts = () => {
 
   return (
     <section>
-      <h2 className='text-3xl font-bold'>All blog posts</h2>
+      <h2 className='text-3xl font-bold'>Todos los posts</h2>
       <div className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
         {Array.isArray(posts) && posts.map((post, index) => (
           <CardType1
@@ -36,6 +39,9 @@ export const AllPosts = () => {
             imgHeight='h-50'
             title={post.postTitle}
             description={post.postDescription}
+            userNickName={post.userNickname}
+            postCreated={post.postCreated}
+            postId={post.postId}
           />
         ))}
       </div>
