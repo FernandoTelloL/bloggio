@@ -68,14 +68,9 @@ export const fetchAllCategories = async () => {
 
 // crear nuevo post
 export const fetchCreatePost = async (formData) => {
-  debugger
-  console.log(formData)
   try {
-    const response = fetch(ENDPOINTS.createPost, {
+    const response = await fetch(ENDPOINTS.createPost, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: formData
     })
 

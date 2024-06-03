@@ -44,37 +44,10 @@ export const CreatePost = () => {
       published: 1
     }
     const formData = new FormData()
-    // const blob = new Blob([imageFile], { type: 'application/json' })
-    /* formData.append('post', JSON.stringify(dataFormatted))
-    formData.append('file', imageFile) */
     dataFormatted = JSON.stringify(dataFormatted)
     formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
     formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
-
-    // SEPARAR TODO ESTO EN SU METODO CORRESPONDIENTE
-    try {
-      const response = fetch(ENDPOINTS.createPost, {
-        method: 'POST',
-        /* headers: {
-          'Content-Type': 'multipart/form-data'
-        }, */
-        body: formData
-      })
-      console.log(response)
-      if (response.status !== '201') { // TELLO ARREGLAR ESTO!!!!!!!!!
-        throw new Error('Hubo un problema con la petición: ' + response.status)
-      }
-
-      const result = (await response).json()
-
-      ShowSuccessAlert('Tu post se ha creado correctamente. Seras redirigido a la página principal.')
-      console.log('Respuesta del servidor:', result)
-    } catch (error) {
-      console.error('Error al enviar la petición:', error)
-      ShowErrorAlert('Error al enviar la petición: ' + error.message)
-    }
-    // console.log(formData)
-    // await fetchCreatePost(formData)
+    await fetchCreatePost(formData)
   }
 
   return (
