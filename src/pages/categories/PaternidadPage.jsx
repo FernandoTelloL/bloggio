@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { MutatingDots } from 'react-loader-spinner'
 import { fetchGetAllPostByViajesCategory } from '../../api/api'
 import { Pagination } from '../../components'
+import { useNavigate } from 'react-router-dom'
 
 export const PaternidadPage = () => {
   const [categoryPaternidad, setCategoryPaternidad] = useState([])
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const fetchData = async (filters) => {
     setLoading(true)
@@ -31,6 +33,10 @@ export const PaternidadPage = () => {
     })
   }, [])
 
+  const redirectToPost = (postId) => {
+    navigate(`/detail-post/${postId}`)
+  }
+
   return (
     <>
       {loading && (
@@ -53,7 +59,7 @@ export const PaternidadPage = () => {
           {categoryPaternidad.length > 0
             ? (
                 categoryPaternidad.map((viaje) => (
-                  <div key={viaje.postId} className='card'>
+                  <div key={viaje.postId} className='card cursor-pointer' onClick={() => redirectToPost(viaje.postId)}>
                     <img src={viaje.postImage} alt={viaje.postTitle} className='card-img-top' />
                     <div className='card-body'>
                       <h5 className='card-title'>{viaje.postTitle}</h5>
