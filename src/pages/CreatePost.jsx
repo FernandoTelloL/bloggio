@@ -39,7 +39,7 @@ export const CreatePost = () => {
       postPriority: 1,
       postState: 1,
       postTitle: data.title,
-      userId: '2eb23861-cdc1-4291-b5cc-95a690c29454',
+      userId: '898a93d0-7070-4044-8e11-897e61667737',
       mainImageUrl: data.mainImageUrl || '',
       published: 1
     }
