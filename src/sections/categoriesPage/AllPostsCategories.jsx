@@ -46,7 +46,7 @@ export const AllPostsCategories = () => {
           {category.map(({ categoryId, categoryImage, categoryName, categoryDesc }) => (
             <CardCategory
               key={categoryId}
-              img={`https://res.cloudinary.com/dbxivsisb/image/upload/v1715565237/${categoryImage}`}
+              img={categoryImage}
               imgHeight='max-h-64'
               title={categoryName}
               description={categoryDesc}
