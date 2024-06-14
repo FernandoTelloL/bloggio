@@ -19,6 +19,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true }
     ],
-    'react/eol-last': 'off',
+    'react/eol-last': 'off'
   }
 }
