@@ -78,7 +78,7 @@ export const fetchCreatePost = async (formData) => {
       throw new Error('Hubo un problema con la petición: ' + response.status)
     }
 
-    const result = (await response).json()
+    const result = await (response).json()
 
     ShowSuccessAlert(
       'Tu post se ha creado correctamente. Seras redirigido a la página principal.'

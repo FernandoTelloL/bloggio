@@ -28,44 +28,38 @@ export const CreatePost = () => {
   } = useForm()
 
   const { getCategory } = usePostStore()
-  console.log(mainContent)
+  // console.log(mainContent)
 
   const onSubmit = async (data) => {
     setLoading(true)
-    try {
-      if (mainContent === null) {
-        ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
-        return
-      }
 
-      data.mainContent = mainContent
-
-      let dataFormatted = {
-        postId: '',
-        categoryId: getCategory().category,
-        postContent: data.mainContent,
-        postDescription: data.description,
-        postPriority: 1,
-        postState: 1,
-        postTitle: data.title,
-        userId: id,
-        mainImageUrl: data.mainImageUrl || '',
-        published: 1
-      }
-      const formData = new FormData()
-      dataFormatted = JSON.stringify(dataFormatted)
-      formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
-      formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
-
-      await fetchCreatePost(formData)
-      // ShowSuccessAlert('Post creado correctamente')
-      // navigate('/')
-    } catch (error) {
-      console.log(error)
-      ShowErrorAlert('Error al crear el post')
-    } finally {
-      setLoading(false)
+    if (mainContent === null) {
+      ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
+      return
     }
+
+    data.mainContent = mainContent
+
+    let dataFormatted = {
+      postId: '',
+      categoryId: getCategory().category,
+      postContent: data.mainContent,
+      postDescription: data.description,
+      postPriority: 1,
+      postState: 1,
+      postTitle: data.title,
+      userId: id,
+      mainImageUrl: data.mainImageUrl || '',
+      published: 1
+    }
+    const formData = new FormData()
+    dataFormatted = JSON.stringify(dataFormatted)
+    formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
+    formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
+
+    await fetchCreatePost(formData)
+    setLoading(false)
+    navigate('/')
   }
 
   return (

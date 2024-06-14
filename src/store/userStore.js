@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-
 export const useUserStore = create(
   persist(
     (set) => ({
@@ -37,13 +36,11 @@ export const useUserStore = create(
     }),
     {
       name: 'userState',
-      storage: createJSONStorage(() => localStorage), // (opcional) valor por defecto 'localStorage'
+      storage: createJSONStorage(() => localStorage), // Default es 'localStorage'
       partialize: (state) => ({
-        // id: state.id,
         userName: state.userName,
-        // email: state.email,
+        id: state.id,
         logged: state.logged
-        // role: state.role
       })
     }
   )
