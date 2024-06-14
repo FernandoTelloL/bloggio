@@ -1,19 +1,20 @@
-import { useForm } from 'react-hook-form'
-import { useState } from 'react'
-import { TextEditor, ComboCategories } from '../components'
-import './CreatePost.css'
 import 'animate.css'
-import { usePostStore } from './../store/postStore'
-import { fetchCreatePost } from '../api/api'
-import { ShowErrorAlert } from '../utils/ShowErrorAlert'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { FaTrashCan, FaUpload } from 'react-icons/fa6'
 import { IoSave } from 'react-icons/io5'
-import { ENDPOINTS } from '../api/apiEndpoints.js'
-import { ShowSuccessAlert } from '../utils/index.js'
+import { fetchCreatePost } from '../api/api'
+import { ComboCategories, TextEditor } from '../components'
+import { useUserStore } from '../store/userStore.js'
+import { ShowErrorAlert } from '../utils/ShowErrorAlert'
+import { usePostStore } from './../store/postStore'
+import './CreatePost.css'
 
 export const CreatePost = () => {
   const [mainContent, setMainContent] = useState(null)
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
+
+  const { id } = useUserStore()
 
   const {
     register,
@@ -39,7 +40,7 @@ export const CreatePost = () => {
       postPriority: 1,
       postState: 1,
       postTitle: data.title,
-      userId: '898a93d0-7070-4044-8e11-897e61667737',
+      userId: id,
       mainImageUrl: data.mainImageUrl || '',
       published: 1
     }
