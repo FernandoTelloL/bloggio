@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaTrashCan, FaUpload } from 'react-icons/fa6'
 import { IoSave } from 'react-icons/io5'
+import { MutatingDots } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
 import { fetchCreatePost } from '../api/api'
 import { ComboCategories, TextEditor } from '../components'
 import { useUserStore } from '../store/userStore.js'
@@ -13,6 +15,9 @@ import './CreatePost.css'
 export const CreatePost = () => {
   const [mainContent, setMainContent] = useState(null)
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
+  const [loading, setLoading] = useState(false)
+
+  const navigate = useNavigate()
 
   const { id } = useUserStore()
 
@@ -26,130 +31,161 @@ export const CreatePost = () => {
   console.log(mainContent)
 
   const onSubmit = async (data) => {
-    if (mainContent === null) {
-      ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
-      return
-    }
-    data.mainContent = mainContent
+    setLoading(true)
+    try {
+      if (mainContent === null) {
+        ShowErrorAlert('Es obligatorio contenido en el cuerpo del post.')
+        return
+      }
 
-    let dataFormatted = {
-      postId: '',
-      categoryId: getCategory().category,
-      postContent: data.mainContent,
-      postDescription: data.description,
-      postPriority: 1,
-      postState: 1,
-      postTitle: data.title,
-      userId: id,
-      mainImageUrl: data.mainImageUrl || '',
-      published: 1
+      data.mainContent = mainContent
+
+      let dataFormatted = {
+        postId: '',
+        categoryId: getCategory().category,
+        postContent: data.mainContent,
+        postDescription: data.description,
+        postPriority: 1,
+        postState: 1,
+        postTitle: data.title,
+        userId: id,
+        mainImageUrl: data.mainImageUrl || '',
+        published: 1
+      }
+      const formData = new FormData()
+      dataFormatted = JSON.stringify(dataFormatted)
+      formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
+      formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
+
+      await fetchCreatePost(formData)
+      // ShowSuccessAlert('Post creado correctamente')
+      // navigate('/')
+    } catch (error) {
+      console.log(error)
+      ShowErrorAlert('Error al crear el post')
+    } finally {
+      setLoading(false)
     }
-    const formData = new FormData()
-    dataFormatted = JSON.stringify(dataFormatted)
-    formData.append('post', new Blob([dataFormatted], { type: 'application/json' }))
-    formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
-    await fetchCreatePost(formData)
   }
 
   return (
-    <div className='mb-32'>
-      <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
-        CREAR POST
-      </h1>
 
-      <div className=''>
+    loading
+      ? (
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
+          <MutatingDots
+            visible
+            height='100'
+            width='100'
+            color='#172A99'
+            secondaryColor='#69141B'
+            radius='12.5'
+            ariaLabel='mutating-dots-loading'
+          />
+        </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex md:min-w-full md:mx-0 justify-between'>
+        )
+      : (
 
-          {/* sección de botones de acción */}
-          <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10 md:order-1 md:text-base'>
-            <button className='p-4 rounded-full border-red-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
-              <FaTrashCan className='text-red-500' />
-            </button>
+        <div className='mb-32'>
+          <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
+            CREAR POST
+          </h1>
 
-            <button
-              className='p-4 rounded-full border-sky-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'
-              type='submit'
-            >
-              <IoSave className='text-sky-500' />
-            </button>
+          <div className=''>
 
-            <button className='p-4 rounded-full border-green-600 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
-              <FaUpload className='text-green-600' />
-            </button>
-          </section>
+            <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex md:min-w-full md:mx-0 justify-between'>
 
-          {/* cuerpo del formulario */}
-          <div className='md:text-center md:w-[70%]'>
-            <div className='mb-6 md:mb-14'>
-              {/* titulo principal */}
-              <label htmlFor='title' className='block mb-1'>
-                Título Principal:
-              </label>
-              <input
-                type='text'
-                id='title'
-                {...register('title', { required: true })}
-                className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
-              />
-              {errors.title && (
-                <span className='text-red-500'>
-                  El título principal es requerido
-                </span>
-              )}
-            </div>
+              {/* sección de botones de acción */}
+              <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10 md:order-1 md:text-base'>
+                <button className='p-4 rounded-full border-red-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
+                  <FaTrashCan className='text-red-500' />
+                </button>
 
-            {/* descripcion corta */}
-            <div className='mb-6 md:mb-14'>
-              <label htmlFor='description' className='block mb-1'>
-                Descripción Corta:
-              </label>
-              <textarea
-                id='description'
-                {...register('description', { required: true })}
-                className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
-              />
-              {errors.description && (
-                <span className='text-red-500'>
-                  La descripción corta es requerida
-                </span>
-              )}
-            </div>
+                <button
+                  className='p-4 rounded-full border-sky-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'
+                  type='submit'
+                >
+                  <IoSave className='text-sky-500' />
+                </button>
 
-            {/* seleccionar imagen */}
-            <div className='mb-6 md:mb-14'>
+                <button className='p-4 rounded-full border-green-600 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
+                  <FaUpload className='text-green-600' />
+                </button>
+              </section>
 
-              <label htmlFor='mainImage' className='block mb-1'>
-                Imagen Principal:
-              </label>
-              <input
-                type='file'
-                id='mainImage'
-                onChange={(e) => setImageFile(e.target.files[0])}
-                className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
-              />
-            </div>
+              {/* cuerpo del formulario */}
+              <div className='md:text-center md:w-[70%]'>
+                <div className='mb-6 md:mb-14'>
+                  {/* titulo principal */}
+                  <label htmlFor='title' className='block mb-1'>
+                    Título Principal:
+                  </label>
+                  <input
+                    type='text'
+                    id='title'
+                    {...register('title', { required: true })}
+                    className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
+                  />
+                  {errors.title && (
+                    <span className='text-red-500'>
+                      El título principal es requerido
+                    </span>
+                  )}
+                </div>
 
-            {/* text editor */}
-            <div className='mb-6 md:mb-14'>
-              <label htmlFor='body' className='block mb-1'>
-                Cuerpo del Post:
-              </label>
-              <TextEditor
-                mainContent={mainContent}
-                setMainContent={setMainContent}
-              />
-            </div>
+                {/* descripcion corta */}
+                <div className='mb-6 md:mb-14'>
+                  <label htmlFor='description' className='block mb-1'>
+                    Descripción Corta:
+                  </label>
+                  <textarea
+                    id='description'
+                    {...register('description', { required: true })}
+                    className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
+                  />
+                  {errors.description && (
+                    <span className='text-red-500'>
+                      La descripción corta es requerida
+                    </span>
+                  )}
+                </div>
 
-            {/* combo de categorias */}
-            <div className='mb-10'>
-              <p>Seleccione categoría del post</p>
-              <ComboCategories />
-            </div>
+                {/* seleccionar imagen */}
+                <div className='mb-6 md:mb-14'>
+
+                  <label htmlFor='mainImage' className='block mb-1'>
+                    Imagen Principal:
+                  </label>
+                  <input
+                    type='file'
+                    id='mainImage'
+                    onChange={(e) => setImageFile(e.target.files[0])}
+                    className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
+                  />
+                </div>
+
+                {/* text editor */}
+                <div className='mb-6 md:mb-14'>
+                  <label htmlFor='body' className='block mb-1'>
+                    Cuerpo del Post:
+                  </label>
+                  <TextEditor
+                    mainContent={mainContent}
+                    setMainContent={setMainContent}
+                  />
+                </div>
+
+                {/* combo de categorias */}
+                <div className='mb-10'>
+                  <p>Seleccione categoría del post</p>
+                  <ComboCategories />
+                </div>
+              </div>
+
+            </form>
           </div>
-
-        </form>
-      </div>
-    </div>
+        </div>
+        )
   )
 }

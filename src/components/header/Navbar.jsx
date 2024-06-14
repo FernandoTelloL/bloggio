@@ -23,7 +23,7 @@ export const Navbar = () => {
   const { logoutUser, userName, logged } = useUserStore()
 
   const handleLogoutClick = () => {
-    localStorage.removeItem('userState')
+    // localStorage.removeItem('userState')
     logoutUser()
     navigate('/', { replace: true })
   }

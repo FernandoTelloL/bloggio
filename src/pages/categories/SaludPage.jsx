@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { MutatingDots } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom'
 import { fetchGetAllPostBySaludCategory } from '../../api/api'
 import { Pagination } from '../../components'
-import { useNavigate } from 'react-router-dom'
 
 export const SaludPage = () => {
   const [categorySalud, setCategorySalud] = useState([])
