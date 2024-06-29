@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 // import { useLocalStorage } from 'react-use'
 import { Layout } from '../components'
 import { useUserStore } from '../store/userStore'
-import { AboutUs, Categories, CocinaPage, CreatePost, DeportesPage, DetailPost, HomePage, LoginPage, OtrosCategoriesPage, PaternidadPage, SaludPage, SignUp, TecnologiaPage, ViajesPage } from './../pages'
+import { AboutUs, Categories, CocinaPage, CreatePost, DeportesPage, DetailPost, HomePage, LoginPage, MyProfile, OtrosCategoriesPage, PaternidadPage, SaludPage, SignUp, TecnologiaPage, ViajesPage } from './../pages'
 import { ProtectedRoutes } from './../utils/ProtectedRoutes'
 
 export const RoutesConfig = () => {
@@ -14,6 +14,7 @@ export const RoutesConfig = () => {
         <Route path='/home' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/create-user' element={<SignUp />} />
+        <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/detail-post/:id' element={<DetailPost />} />
         <Route path='/categories' element={<Categories />} />
         <Route path='/category-viajes' element={<ViajesPage />} />

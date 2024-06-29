@@ -2,7 +2,7 @@ import { FooterCopyright } from './FooterCopyright'
 
 export const Footer = () => {
   return (
-    <div className='text-sm'>
+    <div className='text-sm mt-24'>
       <section className='lg:flex lg:mb-11'>
         <div className='flex gap-4 mb-12 md:items-center md:justify-center lg:flex-col lg:items-start lg:basis-[25%]'>
           <h3 className='text-3xl font-bold'>Bloggio</h3>

@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import {
-  RiTwitterFill,
   RiFacebookCircleFill,
-  RiInstagramFill
+  RiInstagramFill,
+  RiTwitterFill
 } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
 
-export const CardType1 = ({ img, imgHeight, title, userNickName, postCreated, description, postId }) => {
+export const CardType1 = ({ img, title, userNickName, postCreated, description, postId }) => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
     return new Date(dateString).toLocaleDateString(undefined, options)
@@ -21,9 +21,9 @@ export const CardType1 = ({ img, imgHeight, title, userNickName, postCreated, de
 
   return (
     <div className='mb-12 mt-4 cursor-pointer' onClick={() => redirectToPost(postId)}>
-      <div>
+      <div className='flex flex-col border-gray-400 border rounded-md p-4 h-[400px]'>
         <img
-          className={`w-full object-cover ${imgHeight} mb-3 lg:aspect-video lg:h-[235px] rounded-md`}
+          className='w-full object-cover mb-3 lg:aspect-video h-[150px] rounded-md'
           src={img}
           alt='imagen'
         />
@@ -32,11 +32,11 @@ export const CardType1 = ({ img, imgHeight, title, userNickName, postCreated, de
           <h3 className='font-Oswald text-md font-bold text-slate-900 text-xl'>
             {title}
           </h3>
-          <p className='text-sm mb-3'>
+          <p className='text-sm mb-3 text-clip overflow-hidden h-[2.5em] leading-[1.25em] mt-4'>
             {description}
           </p>
         </div>
-        <div className='lg:flex lg:justify-between lg:items-center '>
+        <div className='lg:flex mt-auto lg:justify-between lg:items-center '>
           {/* pills */}
           <div className='mb-3 lg:flex lg:mb-0 text-gray-500'>
             <ul className='flex items-center'>

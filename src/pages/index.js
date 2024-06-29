@@ -1,4 +1,6 @@
 /* eslint-disable eol-last */
+export { MyProfile } from './MyProfile'
+
 export { OtrosCategoriesPage } from './categories/OtrosCategoriesPage'
 
 export { DeportesPage } from './categories/DeportesPage'

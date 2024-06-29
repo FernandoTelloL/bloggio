@@ -96,9 +96,9 @@ export const Navbar = () => {
                       </Link>
                     </li>
                     <li className='hover:text-secondary'>
-                      <a className='' href='#'>
-                        Mi perfil
-                      </a>
+                      <Link className='' to='/my-profile'>
+                        Mi Perfil
+                      </Link>
                     </li>
                     <li className='hover:text-secondary'>
                       <a href='#'>Configuración</a>
@@ -127,12 +127,12 @@ export const Navbar = () => {
                 </Link>
 
                 {/* boton de Crear Usuario */}
-                <Link
+                {/* <Link
                   className='text-slate-900 border-slate-900 border-2 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-xs md:py-2 md:px-8'
                   to='/create-user'
                 >
                   Crear Usuario
-                </Link>
+                </Link> */}
               </>
               )}
         </div>

@@ -7,13 +7,10 @@ export const AllPosts = () => {
   const [posts, setPosts] = useState([])
   const [loader, setLoader] = useState(true)
 
-  console.log(posts)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await fetchAllPosts(9, 1)
-        console.log(responseData)
         // Verificar si responseData es un arreglo
         if (responseData && Array.isArray(responseData)) {
           setPosts(responseData)
@@ -54,7 +51,6 @@ export const AllPosts = () => {
               <CardType1
                 key={post.postId}
                 img={post.postImage}
-                imgHeight='h-50'
                 title={post.postTitle}
                 description={post.postDescription}
                 userNickName={post.userNickname}

@@ -54,14 +54,14 @@ export const RecentPosts = () => {
           </h2>
           {console.log(posts)}
 
-          <section className='lg:flex lg:gap-6'>
+          <section className='lg:flex lg:gap-3'>
             {/* card 1 */}
             {posts[0] && (
-              <div className='md:mb-6 lg:w-[50%] mb-5'>
+              <div className='md:mb-6 lg:w-[50%] mb-3'>
                 <div className='min-h-full flex flex-col justify-between border border-slate-300 rounded-md p-3'>
                   <div>
                     <img
-                      className='w-full object-cover h-50 mb-3 lg:aspect-video lg:h-[235px] rounded-md'
+                      className='w-full object-cover h-50 lg:aspect-video lg:h-[235px] rounded-md'
                       src={posts[0].postImage}
                       alt='imagen'
                     />
@@ -112,12 +112,12 @@ export const RecentPosts = () => {
             )}
 
             {/* cards 2,3,4 */}
-            <div className='md:flex md:justify-between  lg:w-[50%] lg:flex lg:flex-row flex-wrap'>
+            <div className='md:flex md:justify-between lg:w-[50%] lg:flex lg:flex-row flex-wrap'>
               {posts.slice(1).map((post) => (
-                <div key={post.postId} className='md:w-[32%] lg:w-full mb-5'>
+                <div key={post.postId} className='md:w-[32%] lg:w-full mb-3'>
                   <div className='lg:flex lg:justify-between lg:gap-2 border border-slate-300 rounded-md p-3'>
                     <img
-                      className='w-full object-cover h-50 mb-3 lg:aspect-video lg:w-[35%] lg:mb-0 rounded-md'
+                      className='w-full object-cover h-50 lg:aspect-video lg:w-[25%] lg:mb-0 rounded-md'
                       src={post.postImage}
                       alt='imagen'
                     />
