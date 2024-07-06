@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import userAvatar from '../assets/images/user-male-avatar.png'
+import { useUserStore } from '../store/userStore'
 
 const Card = ({ image, title, description, date }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false)
@@ -39,46 +40,60 @@ const Card = ({ image, title, description, date }) => {
 }
 
 export const MyProfile = () => {
+  // const [userData, setUserData] = useState(null)
+  const [posts, setPosts] = useState([])
+  const { id, userName } = useUserStore()
+  console.log(id)
+
+  // Supongamos que esta es tu URL de API
+  const API_URL = `https://bloggio-api.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
+
+  console.log(API_URL)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(API_URL)
+        const data = await response.json()
+        console.log(data.data)
+        // setUserData(data.user)
+        setPosts(data.data)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  // if (!userData) {
+  //   return <div>Loading...</div>
+  // }
+
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
       {/* Left Column */}
       <div className='md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4'>
-        {/* Example cards */}
-        <Card
-          image='https://via.placeholder.com/150'
-          title='Post Title 1'
-          description='This is a description for post 1.'
-          date='2023-01-01'
-        />
-        <Card
-          image='https://via.placeholder.com/150'
-          title='Post Title 2'
-          description='This is a description for post 2.'
-          date='2023-01-02'
-        />
-        <Card
-          image='https://via.placeholder.com/150'
-          title='Post Title 3'
-          description='This is a description for post 3.'
-          date='2023-01-01'
-        />
-        <Card
-          image='https://via.placeholder.com/150'
-          title='Post Title 4'
-          description='This is a description for post 4.'
-          date='2023-01-02'
-        />
-        {/* Add more cards as needed */}
+        {posts.map((post, index) => (
+          <Card
+            key={index}
+            image={post.postImage}
+            title={post.postTitle}
+            description={post.postDescription}
+            date={post.postDate}
+
+          />
+        ))}
       </div>
 
       {/* Right Column */}
       <div className='bg-white rounded-lg shadow-md p-4 flex flex-col items-center'>
         <img
-          src='https://via.placeholder.com/100'
+          src={userAvatar}
           alt='Profile'
           className='w-24 h-24 rounded-full'
         />
-        <h2 className='text-xl font-semibold mt-4'>John Doe</h2>
+        <h2 className='text-xl font-semibold mt-4'>{userName}</h2>
         <a
           href='#'
           className='mt-2 text-blue-500 hover:underline'
