@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useUserStore } from '../store/userStore'
+import { MutatingDots } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
-import { MutatingDots } from 'react-loader-spinner'
+import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 
 export const SignUp = () => {
   const basepath = 'https://bloggio-api.onrender.com'
@@ -16,7 +16,7 @@ export const SignUp = () => {
     handleSubmit
   } = useForm()
 
-  const { setUser, setLogged } = useUserStore()
+  // const { setUser, setLogged } = useUserStore()
 
   const onSubmit = async ({ username, email, password }) => {
     const dataFormated = {
@@ -37,13 +37,8 @@ export const SignUp = () => {
       })
 
       if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-        // Guardar datos del usuario en local storage
-        localStorage.setItem('user', JSON.stringify(data))
-        setUser(data.username, data.password)
-        // setLogged()
-        navigate('/', { replace: true })
+        ShowSuccessAlert('Usuario creado exitosamente')
+        navigate('/login', { replace: true })
       } else {
         ShowErrorAlert('Error en la creación de nuevo usuario')
       }

@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { MutatingDots } from 'react-loader-spinner'
 import { Link, useNavigate } from 'react-router-dom'
-import { useUserStore } from '../store/userStore'
-import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 import { fetchLogin } from './../api/api'
+import { useUserStore } from './../store/userStore'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
@@ -29,10 +28,6 @@ export const LoginPage = () => {
       if (dataLogin === undefined) {
         throw new Error('Hubo un problema con la petición: ' + dataLogin.status)
       }
-
-      ShowSuccessAlert(
-        'Tu usuario se ha autenticado correctamente. Serás redirigido a la página principal.'
-      )
 
       setUser(dataLogin.userId, dataLogin.userNickname, dataLogin.userEmail, dataLogin.token)
       navigate('/', { replace: true })
