@@ -1,12 +1,13 @@
+import parse from 'html-react-parser'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import mainImage from '../assets/images/img1.webp'
-import parse from 'html-react-parser'
 import {
   MainTitleDetailPostPage,
   MenuBottomDetailPost,
   RelatedPostsDetailPostPage
 } from './../sections'
+import './DetailPost.css'
 
 export const DetailPost = () => {
   const { id } = useParams() // Extrae el ID de los parámetros de la URL
@@ -39,11 +40,11 @@ export const DetailPost = () => {
 
   return (
     <>
-      <div className='mt-16'>
+      <div className='mt-16 transition-all duration-500 ease-in-out'>
         <MainTitleDetailPostPage title={post.postTitle} description={post.postDescription} />
 
         <img
-          className='mt-16 mb-6 rounded-xl md:h-[300px] lg:h-[400px] md:w-full md:object-cover md:object-top lg:object-center'
+          className='mt-16 mb-6 rounded-xl md:h-[300px] lg:w-[500px] md:w-full md:object-cover md:object-top lg:object-center lg:mx-auto'
           src={post.postImage || mainImage}
           alt={post.postTitle}
         />
