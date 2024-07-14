@@ -135,12 +135,17 @@ export const CreatePost = () => {
                   </label>
                   <textarea
                     id='description'
-                    {...register('description', { required: true })}
+                    {...register('description', { required: true, maxLength: 255 })}
                     className='w-full border border-slate-300 rounded-lg px-3 py-2 text-sm tracking-wider focus:shadow-md focus:outline-none'
                   />
-                  {errors.description && (
+                  {errors.description?.type === 'required' && (
                     <span className='text-red-500'>
                       La descripción corta es requerida
+                    </span>
+                  )}
+                  {errors.description?.type === 'maxLength' && (
+                    <span className='text-red-500'>
+                      La descripción corta debe tener menos de 255 caracteres
                     </span>
                   )}
                 </div>
