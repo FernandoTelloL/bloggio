@@ -9,8 +9,10 @@ export const TextEditor = ({ mainContent, setMainContent }) => {
       [{ header: [1, 2, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'color', 'image'],
-      [{ 'code-block': true }],
+      ['link', 'image'],
+      [{ color: [] }],
+      [{ align: [] }],
+      ['code-block'],
       ['clean']
     ]
   }
@@ -28,7 +30,8 @@ export const TextEditor = ({ mainContent, setMainContent }) => {
     'indent',
     'image',
     'code-block',
-    'color'
+    'color',
+    'align'
   ]
 
   return (
