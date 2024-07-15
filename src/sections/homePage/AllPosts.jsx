@@ -5,15 +5,19 @@ import { CardType1, Pagination } from '../../components'
 
 export const AllPosts = () => {
   const [posts, setPosts] = useState([])
+  const [page, setPage] = useState([])
+  console.log(page)
   const [loader, setLoader] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const responseData = await fetchAllPosts(9, 1)
+        console.log(responseData)
         // Verificar si responseData es un arreglo
         if (responseData && Array.isArray(responseData)) {
-          setPosts(responseData)
+          setPosts(responseData[0])
+          setPage(responseData[1])
           setLoader(false)
         } else {
           console.error('Data fetched is not an array:', responseData)

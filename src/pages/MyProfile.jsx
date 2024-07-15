@@ -1,12 +1,48 @@
 import React, { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 import userAvatar from '../assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
 
-const Card = ({ image, title, description, date }) => {
+const Card = ({ image, title, description, date, postId, onDelete }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false)
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible)
+  }
+
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'No podrás revertir esto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo!'
+    })
+
+    if (result.isConfirmed) {
+      try {
+        await fetch(`https://bloggio-api.onrender.com/Post/${postId}`, {
+          method: 'DELETE'
+        })
+
+        setDropdownVisible(false) // Ocultar el menú después de la confirmación
+        Swal.fire(
+          'Eliminado!',
+          'El post ha sido eliminado.',
+          'success'
+        )
+        onDelete() // Notificar al componente padre que se eliminó el post
+      } catch (error) {
+        console.error('Error eliminando el post:', error)
+        Swal.fire(
+          'Error!',
+          'Hubo un problema eliminando el post.',
+          'error'
+        )
+      }
+    }
   }
 
   return (
@@ -30,7 +66,7 @@ const Card = ({ image, title, description, date }) => {
           {dropdownVisible && (
             <div className='absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10'>
               <a href='#' className='block px-4 py-2 text-gray-800 hover:bg-gray-100'>Edit Post</a>
-              <a href='#' className='block px-4 py-2 text-gray-800 hover:bg-gray-100'>Delete Post</a>
+              <button onClick={handleDelete} className='block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100'>Delete Post</button>
             </div>
           )}
         </div>
@@ -40,23 +76,18 @@ const Card = ({ image, title, description, date }) => {
 }
 
 export const MyProfile = () => {
-  // const [userData, setUserData] = useState(null)
   const [posts, setPosts] = useState([])
   const { id, userName } = useUserStore()
-  console.log(id)
+  const [reloadPosts, setReloadPosts] = useState(false)
 
-  // Supongamos que esta es tu URL de API
   const API_URL = `https://bloggio-api.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
-
-  console.log(API_URL)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(API_URL)
         const data = await response.json()
-        console.log(data.data)
-        // setUserData(data.user)
+        console.log(data)
         setPosts(data.data)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -64,15 +95,14 @@ export const MyProfile = () => {
     }
 
     fetchData()
-  }, [])
+  }, [API_URL, reloadPosts])
 
-  // if (!userData) {
-  //   return <div>Loading...</div>
-  // }
+  const handleDeletePost = () => {
+    setReloadPosts(!reloadPosts)
+  }
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
-      {/* Left Column */}
       <div className='md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4'>
         {posts.map((post, index) => (
           <Card
@@ -81,12 +111,12 @@ export const MyProfile = () => {
             title={post.postTitle}
             description={post.postDescription}
             date={post.postDate}
-
+            postId={post.postId}
+            onDelete={handleDeletePost}
           />
         ))}
       </div>
 
-      {/* Right Column */}
       <div className='bg-white rounded-lg shadow-md p-4 flex flex-col items-center'>
         <img
           src={userAvatar}

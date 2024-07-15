@@ -1,3 +1,5 @@
+export { CommentsSection } from './detailPost/CommentsSection'
+
 export { Headers } from './header/Headers'
 
 export { Pagination } from './shared/Pagination'
