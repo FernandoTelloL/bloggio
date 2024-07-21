@@ -44,7 +44,8 @@ export const fetchAllPosts = async (limit, offset) => {
     }
 
     const responseData = await response.json()
-    return [responseData.data, responseData.total, responseData.limit, responseData.page]
+    return responseData
+    // return [responseData.data, responseData.total, responseData.limit, responseData.page]
   } catch (error) {
     console.error('Hubo un error con la llamada al servidor', error)
     throw error

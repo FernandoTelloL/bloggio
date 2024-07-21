@@ -86,17 +86,17 @@ export const AllPosts = () => {
       try {
         const responseData = await fetchAllPosts(6, page.currentPage)
         console.log(responseData)
-        // Verificar si responseData es un arreglo
-        if (responseData && Array.isArray(responseData)) {
-          setPosts(responseData[0])
+        // Verificar si responseData tiene la estructura esperada
+        if (responseData && responseData.data && typeof responseData.page === 'number' && typeof responseData.total === 'number') {
+          setPosts(responseData.data)
           setPage({
             currentPage: responseData.page, // Página actual
-            totalPages: Math.ceil(responseData[1] / responseData[2]) // Total de páginas
+            totalPages: Math.ceil(responseData.total / 6) // Total de páginas
           })
           setLoader(false)
         } else {
-          console.error('Data fetched is not an array:', responseData)
-          setPosts([]) // Si no es un arreglo, setPosts a un arreglo vacío
+          console.error('Data fetched is not in the expected format:', responseData)
+          setPosts([]) // Si no es el formato esperado, setPosts a un arreglo vacío
         }
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error)
