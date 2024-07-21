@@ -21,6 +21,7 @@ export const DetailPost = () => {
       try {
         const response = await fetch(`https://bloggio-api.onrender.com/Post/${id}`)
         const data = await response.json()
+        console.log(data)
         setPost(data)
         setLoading(false)
       } catch (error) {
@@ -28,7 +29,6 @@ export const DetailPost = () => {
         setLoading(false)
       }
     }
-
     fetchPost()
   }, [id])
 

@@ -20,7 +20,7 @@ export const SignUp = () => {
 
   const onSubmit = async ({ username, email, password }) => {
     const dataFormated = {
-      roles: ['T_ROLE_USER'],
+      roles: ['ROLE_USER'],
       userEmail: email,
       userNickname: username,
       userPassword: password
