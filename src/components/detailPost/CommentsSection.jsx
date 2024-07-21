@@ -5,12 +5,15 @@ import userAvatar from '../../assets/images/user-male-avatar.png'
 export const CommentsSection = ({ author, category, date, postId }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
+  console.log(postId)
+  console.log(comments)
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await fetch(`https://bloggio-api.onrender.com/comments/${postId}`)
+        const response = await fetch(`https://bloggio-api.onrender.com/Comment?postId=${postId}`)
         const data = await response.json()
+        console.log(data)
         setComments(data)
       } catch (error) {
         console.error('Error fetching comments:', error)
@@ -22,7 +25,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await fetch(`https://bloggio-api.onrender.com/comments/${postId}`, {
+      const response = await fetch(`https://bloggio-api.onrender.com/Comment?postId=${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -30,7 +33,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
         body: JSON.stringify({ content: newComment })
       })
       const data = await response.json()
-      setComments([...comments, data])
+      setComments(data)
       setNewComment('')
     } catch (error) {
       console.error('Error posting comment:', error)
@@ -39,8 +42,8 @@ export const CommentsSection = ({ author, category, date, postId }) => {
 
   return (
     <div className='comments-section'>
-      <div className='author-info'>
-        <img src={userAvatar} alt={author.name} className='author-photo' />
+      <div className='flex gap-3 mb-4'>
+        <img src={userAvatar} alt={author.name} className='author-photo max-w-24 rounded-full' />
         <div>
           <p className='font-bold'>{author}</p>
           <p>Publicado en {category}</p>
@@ -48,12 +51,12 @@ export const CommentsSection = ({ author, category, date, postId }) => {
         </div>
       </div>
       <div className='responses'>
-        <h3>RESPUESTAS</h3>
+        <h3 className='font-bold'>RESPUESTAS</h3>
         {comments.length > 0
           ? (
               comments.map((comment, index) => (
                 <div key={index} className='comment'>
-                  <p>{comment.content}</p>
+                  <p>{comment.commentContent}</p>
                 </div>
               ))
             )
