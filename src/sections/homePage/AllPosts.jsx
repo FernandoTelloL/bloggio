@@ -65,6 +65,7 @@ export const AllPosts = () => {
                 userNickName={post.userNickname}
                 postCreated={post.postCreated}
                 postId={post.postId}
+                category={post.categoryName}
               />
             ))}
           </div>

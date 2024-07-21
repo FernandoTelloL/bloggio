@@ -81,7 +81,7 @@ export const RecentPosts = () => {
                     <div className='mb-3 md:hidden lg:flex lg:mb-0 '>
                       <ul className='flex justify-between'>
                         <li className='mr-2 text-[10px] border rounded-full px-3 py-[2px] border-gray-700'>
-                          <a href='#' />Diseño
+                          <a href='#' />{posts[0].categoryName}
                         </li>
                       </ul>
                     </div>
@@ -138,7 +138,7 @@ export const RecentPosts = () => {
                         <div className='mb-3 md:hidden lg:block lg:mb-0'>
                           <ul className='flex justify-between lg:justify-start'>
                             <li className='mr-2 text-[10px] border rounded-full px-3 py-[2px] border-gray-700'>
-                              <a href='#' />Diseño
+                              <a href='#' />{posts[0].categoryName}
                             </li>
                           </ul>
                         </div>

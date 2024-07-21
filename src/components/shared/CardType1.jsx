@@ -6,7 +6,7 @@ import {
 } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
 
-export const CardType1 = ({ img, title, userNickName, postCreated, description, postId }) => {
+export const CardType1 = ({ img, title, userNickName, postCreated, description, postId, category }) => {
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
     return new Date(dateString).toLocaleDateString(undefined, options)
@@ -41,7 +41,7 @@ export const CardType1 = ({ img, title, userNickName, postCreated, description, 
           <div className='mb-3 lg:flex lg:mb-0 text-gray-500'>
             <ul className='flex items-center'>
               <li className='mr-1 text-[10px] border rounded-full px-3 py-[2px] border-gray-500'>
-                <a href='#' />Diseño
+                <a href='#' />{category}
               </li>
               {/* <li className='mr-1 text-[10px] border rounded-full px-3 py-[2px] border-gray-500'>
                 <a href='#' />Investigación
