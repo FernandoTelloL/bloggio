@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 export const RecentPosts = () => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
-
+  console.log(posts)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +20,7 @@ export const RecentPosts = () => {
         }
         const data = await response.json()
         console.log(data)
-        setPosts(data)
+        setPosts(data.data)
         setLoading(false)
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error)
@@ -65,7 +65,7 @@ export const RecentPosts = () => {
                       alt='imagen'
                     />
                     <div className=''>
-                      <p className='text-xs mb-4'>{posts[0].user.userNickname} - {posts[0].date}</p>
+                      <p className='text-xs mb-4'>{posts[0].userNickname} - {posts[0].date}</p>
                       <h3 className='font-Oswald text-md font-bold text-slate-900'>
                         <Link to={`/detail-post/${posts[0].postId}`}>
                           {posts[0].postTitle}
