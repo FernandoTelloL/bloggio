@@ -78,10 +78,10 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       pageNumbers.push(
         <li
           key={i}
-          className={`page-item rounded-full ${i === currentPage ? 'bg-slate-900 text-slate-200' : 'bg-slate-100 text-slate-500'}`}
+          className={`page-item rounded-full hover:bg-slate-900 hover:text-slate-200 transition-colors ${i === currentPage ? 'bg-slate-900 text-slate-200' : 'bg-slate-100 text-slate-500'}`}
         >
           <button
-            className='page-link'
+            className='page-link w-7 h-5 flex justify-center items-center'
             onClick={(event) => handlePageClick(i, event)}
             disabled={i === currentPage} // Deshabilitar el botón de la página actual
           >

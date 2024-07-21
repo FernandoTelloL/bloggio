@@ -18,12 +18,12 @@ export const Navbar = () => {
     setMenuClicked(() => !menuClicked)
   }
 
-  const handlePhotoClick = () => [setPhotoClicked(() => !photoClicked)]
+  const handlePhotoClick = () => setPhotoClicked(() => !photoClicked)
 
   const { logoutUser, userName, logged } = useUserStore()
 
-  const handleLogoutClick = () => {
-    // localStorage.removeItem('userState')
+  const handleLogoutClick = (event) => {
+    event.preventDefault()
     logoutUser()
     navigate('/', { replace: true })
   }
@@ -31,7 +31,7 @@ export const Navbar = () => {
   return (
     <>
       <ul
-        className={` bg-amber-400 h-[100vh] w-[100vw] right-full absolute top-0 mt-0 pl-0 transition-all z-30 md:right-0 md:bg-white md:static md:h-auto ${
+        className={`bg-amber-400 h-[100vh] w-[100vw] right-full absolute top-0 mt-0 pl-0 transition-all z-30 md:right-0 md:bg-white md:static md:h-auto ${
           menuClicked ? '!right-0' : ''
         }`}
       >
@@ -69,10 +69,9 @@ export const Navbar = () => {
             </Link>
           </li>
 
-          {/* TODO: comprobar el codigo con logged */}
           {logged
             ? (
-              <div className=' object-cover relative flex justify-center'>
+              <div className='object-cover relative flex justify-center'>
                 <img
                   className='w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer'
                   onClick={handlePhotoClick}
@@ -80,7 +79,6 @@ export const Navbar = () => {
                   alt=''
                 />
 
-                {/* inicio submenu foto perfil */}
                 <div
                   className={`transition-all bg-slate-950 text-slate-200 text-sm absolute top-16 md:right-0 py-4 px-4 rounded-lg text-center w-[200px] ${
                   photoClicked ? 'block' : 'hidden'
@@ -103,9 +101,10 @@ export const Navbar = () => {
                     <li className='hover:text-secondary'>
                       <a href='#'>Configuración</a>
                     </li>
-                    <li className='text-orange-700 uppercase font-bold text-xs '>
+                    <li className='text-orange-700 uppercase font-bold text-xs'>
                       <Link
-                        className=' hover:bg-orange-700 hover:text-slate-300 block w-full mt-2 py-2 rounded-md transition-all'
+                        className='hover:bg-orange-700 hover:text-slate-300 block w-full mt-2 py-2 rounded-md transition-all'
+                        // to='/'
                         onClick={handleLogoutClick}
                       >
                         Cerrar Sesión
@@ -113,26 +112,16 @@ export const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-                {/* fin submenu foto perfil */}
               </div>
               )
             : (
               <>
-                {/* boton de Login */}
                 <Link
                   className='bg-slate-900 text-slate-200 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 mt-10 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-xs md:py-2 md:px-8'
                   to='/login'
                 >
                   Login
                 </Link>
-
-                {/* boton de Crear Usuario */}
-                {/* <Link
-                  className='text-slate-900 border-slate-900 border-2 font-bold px-4 py-4 rounded-xl transition-all hover:text-secondary hover:shadow-xl md:ml-4 mb-6 md:mt-0 md:mb-0 w-2/3 md:w-fit text-center uppercase text-lg md:text-xs md:py-2 md:px-8'
-                  to='/create-user'
-                >
-                  Crear Usuario
-                </Link> */}
               </>
               )}
         </div>
