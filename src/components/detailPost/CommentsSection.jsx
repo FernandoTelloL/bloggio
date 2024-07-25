@@ -57,6 +57,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
               comments.map((comment, index) => (
                 <div key={index} className='comment'>
                   <p>{comment.commentContent}</p>
+                  <span>{comment.usersDTO.userNickname}</span>
                 </div>
               ))
             )
