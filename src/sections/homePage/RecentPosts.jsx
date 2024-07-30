@@ -113,15 +113,14 @@ export const RecentPosts = () => {
             <div className='md:flex md:justify-between lg:w-[50%] lg:flex lg:flex-row flex-wrap'>
               {posts.slice(1).map((post) => (
                 <div key={post.postId} className='md:w-[32%] lg:w-full mb-6'>
-                  <div className='lg:flex lg:justify-start lg:gap-2 border border-slate-300 rounded-md p-3'>
+                  <div className='lg:flex lg:justify-start lg:gap-4 border border-slate-300 rounded-md p-3 lg:h-full'>
                     <img
                       className='w-full object-cover h-[150px] aspect-video lg:aspect-video lg:w-[25%] lg:mb-0 rounded-md'
                       src={post.postImage}
                       alt='imagen'
                     />
-
-                    <div className=''>
-                      <div className='lg:flex lg:flex-col'>
+                    <div className='flex flex-col justify-between lg:w-[75%]'>
+                      <div className='flex flex-col'>
                         <p className='text-xs mb-4 lg:mb-0'>
                           {post.userNickname} - {formatDate(post.postCreated)}
                         </p>
@@ -133,46 +132,45 @@ export const RecentPosts = () => {
                         <p className='text-sm mb-3 lg:text-xs'>
                           {post.postDescription}
                         </p>
-                        {/* pills */}
-                        <div className='mb-3 md:hidden lg:block lg:mb-0 lg:bg-green-500 lg:mt-auto'>
-                          <ul className='flex justify-between lg:justify-start'>
-                            <li className='mr-2 text-[10px] border rounded-full px-3 py-[2px] border-gray-700'>
-                              <a href='#' />{post.categoryName}
-                            </li>
-                          </ul>
-                        </div>
                       </div>
-                      {/* iconos redes sociales */}
-                      <div>
-                        <ul className='flex gap-2 lg:hidden'>
-                          <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
-                            <a
-                              className='block text-2xl lg:text-xl text-[#1DA1F2]'
-                              href='#'
-                            >
-                              <RiTwitterFill />
-                            </a>
-                          </li>
-                          <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
-                            <a
-                              className='block text-2xl lg:text-xl text-[#4267B2]'
-                              href='#'
-                            >
-                              <RiFacebookCircleFill />
-                            </a>
-                          </li>
-                          <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
-                            <a
-                              className='block text-2xl lg:text-xl text-[#833AB4]'
-                              href='#'
-                            >
-                              <RiInstagramFill />
-                            </a>
+                      {/* pills */}
+                      <div className='mt-auto mb-3 md:hidden lg:block lg:mb-0'>
+                        <ul className='flex justify-between lg:justify-start'>
+                          <li className='mr-2 text-[10px] border rounded-full px-3 py-[2px] border-gray-700'>
+                            <a href='#' />{post.categoryName}
                           </li>
                         </ul>
                       </div>
                     </div>
-
+                    {/* iconos redes sociales */}
+                    <div>
+                      <ul className='flex gap-2 lg:hidden'>
+                        <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
+                          <a
+                            className='block text-2xl lg:text-xl text-[#1DA1F2]'
+                            href='#'
+                          >
+                            <RiTwitterFill />
+                          </a>
+                        </li>
+                        <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
+                          <a
+                            className='block text-2xl lg:text-xl text-[#4267B2]'
+                            href='#'
+                          >
+                            <RiFacebookCircleFill />
+                          </a>
+                        </li>
+                        <li className='border border-gray-500 rounded-full p-2 lg:h-fit lg:p-1 hover:scale-110 transition-all'>
+                          <a
+                            className='block text-2xl lg:text-xl text-[#833AB4]'
+                            href='#'
+                          >
+                            <RiInstagramFill />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               ))}
