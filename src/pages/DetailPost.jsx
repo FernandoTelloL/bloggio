@@ -67,7 +67,7 @@ export const DetailPost = () => {
         </section>
         <hr className='bg-slate-500' />
         <section className='mt-5 mb-6'>
-          <RelatedPostsDetailPostPage />
+          <RelatedPostsDetailPostPage post={post} />
         </section>
       </div>
       <hr className='mb-6 bg-slate-500' />

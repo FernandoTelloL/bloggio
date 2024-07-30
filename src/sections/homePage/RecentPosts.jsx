@@ -6,11 +6,12 @@ import {
 } from 'react-icons/ri'
 import { MutatingDots } from 'react-loader-spinner'
 import { Link } from 'react-router-dom'
+import { formatDate } from './../../utils/dateHelper'
 
 export const RecentPosts = () => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
-  console.log(posts)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +32,6 @@ export const RecentPosts = () => {
   }, [])
 
   return (
-
     loading
       ? (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
@@ -47,12 +47,10 @@ export const RecentPosts = () => {
         </div>
         )
       : (
-
         <section className=''>
           <h2 className='text-2xl font-bold mb-4 text-slate-900'>
             POST MÁS POPULARES
           </h2>
-
           <section className='lg:flex lg:gap-3'>
             {/* card 1 */}
             {posts[0] && (
@@ -65,7 +63,8 @@ export const RecentPosts = () => {
                       alt='imagen'
                     />
                     <div className=''>
-                      <p className='text-xs mb-4'>{posts[0].userNickname} - {posts[0].date}</p>
+                      <p className='text-xs mb-4'>{posts[0].userNickname} - {formatDate(posts[0].postCreated)}
+                      </p>
                       <h3 className='font-Oswald text-md font-bold text-slate-900'>
                         <Link to={`/detail-post/${posts[0].postId}`}>
                           {posts[0].postTitle}
@@ -114,7 +113,7 @@ export const RecentPosts = () => {
             <div className='md:flex md:justify-between lg:w-[50%] lg:flex lg:flex-row flex-wrap'>
               {posts.slice(1).map((post) => (
                 <div key={post.postId} className='md:w-[32%] lg:w-full mb-6'>
-                  <div className='lg:flex lg:justify-between lg:gap-2 border border-slate-300 rounded-md p-3'>
+                  <div className='lg:flex lg:justify-start lg:gap-2 border border-slate-300 rounded-md p-3'>
                     <img
                       className='w-full object-cover h-[150px] aspect-video lg:aspect-video lg:w-[25%] lg:mb-0 rounded-md'
                       src={post.postImage}
@@ -124,7 +123,7 @@ export const RecentPosts = () => {
                     <div className=''>
                       <div className='lg:flex lg:flex-col'>
                         <p className='text-xs mb-4 lg:mb-0'>
-                          {post.userNickname} - {post.date}
+                          {post.userNickname} - {formatDate(post.postCreated)}
                         </p>
                         <h3 className='font-Oswald text-md font-bold text-slate-900'>
                           <Link to={`/detail-post/${post.postId}`}>
@@ -135,10 +134,10 @@ export const RecentPosts = () => {
                           {post.postDescription}
                         </p>
                         {/* pills */}
-                        <div className='mb-3 md:hidden lg:block lg:mb-0'>
+                        <div className='mb-3 md:hidden lg:block lg:mb-0 lg:bg-green-500 lg:mt-auto'>
                           <ul className='flex justify-between lg:justify-start'>
                             <li className='mr-2 text-[10px] border rounded-full px-3 py-[2px] border-gray-700'>
-                              <a href='#' />{posts[0].categoryName}
+                              <a href='#' />{post.categoryName}
                             </li>
                           </ul>
                         </div>
@@ -181,6 +180,6 @@ export const RecentPosts = () => {
 
           </section>
         </section>
-
-        ))
+        )
+  )
 }

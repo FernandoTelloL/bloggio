@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import userAvatar from '../assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
 
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -75,10 +74,58 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
   )
 }
 
+const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
+  if (!isOpen) return null
+
+  return (
+    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50'>
+      <div className='bg-white p-4 rounded-lg shadow-lg w-96'>
+        <h2 className='text-xl font-semibold mb-4'>Edit Profile</h2>
+        <input
+          type='text'
+          placeholder='Nickname'
+          value={userData.nickname}
+          onChange={(e) => onChange('nickname', e.target.value)}
+          className='w-full p-2 border border-gray-300 rounded mb-2'
+        />
+        <input
+          type='text'
+          placeholder='Short Bio'
+          value={userData.shortbio}
+          onChange={(e) => onChange('shortbio', e.target.value)}
+          className='w-full p-2 border border-gray-300 rounded mb-2'
+        />
+        <input
+          type='file'
+          onChange={(e) => onChange('avatar', e.target.files[0])}
+          className='w-full p-2 border border-gray-300 rounded mb-2'
+        />
+        <div className='flex justify-end'>
+          <button onClick={onClose} className='mr-2 p-2 border rounded'>Cancel</button>
+          <button onClick={onSave} className='p-2 border rounded bg-blue-500 text-white'>Save</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const MyProfile = () => {
   const [posts, setPosts] = useState([])
-  const { id, userName } = useUserStore()
+  // endpoint para obtener los datos del usuario
+  const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
+
+  const { userShortBio, userName, id, userAvatar } = useUserStore()
+  console.log(userName, userShortBio, id, userAvatar)
+
   const [reloadPosts, setReloadPosts] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [userData, setUserData] = useState({
+    nickname: '',
+    shortbio: '',
+    avatar: null
+  })
+
+  console.log(id)
 
   const API_URL = `https://bloggio-api.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
 
@@ -99,6 +146,35 @@ export const MyProfile = () => {
 
   const handleDeletePost = () => {
     setReloadPosts(!reloadPosts)
+  }
+
+  const handleEditProfileClick = () => {
+    // Aquí puedes añadir la lógica para obtener los datos actuales del usuario y establecerlos en el estado
+    // Por ejemplo:
+    setUserData({
+      nickname: 'currentNickname',
+      shortbio: 'currentShortBio',
+      avatar: null
+    })
+    setModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setModalOpen(false)
+  }
+
+  const handleChangeUserData = (key, value) => {
+    setUserData({
+      ...userData,
+      [key]: value
+    })
+  }
+
+  const handleSaveUserData = () => {
+    // Aquí puedes añadir la lógica para guardar los datos actualizados del usuario
+    // Por ejemplo, enviar una solicitud a tu API
+    console.log('Datos guardados:', userData)
+    setModalOpen(false)
   }
 
   return (
@@ -124,13 +200,21 @@ export const MyProfile = () => {
           className='w-24 h-24 rounded-full'
         />
         <h2 className='text-xl font-semibold mt-4'>{userName}</h2>
-        <a
-          href='#'
+        <button
+          onClick={handleEditProfileClick}
           className='mt-2 text-blue-500 hover:underline'
         >
           Edit Profile
-        </a>
+        </button>
       </div>
+
+      <EditProfileModal
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+        userData={userData}
+        onChange={handleChangeUserData}
+        onSave={handleSaveUserData}
+      />
     </div>
   )
 }
