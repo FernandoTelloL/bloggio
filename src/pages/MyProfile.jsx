@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
+import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
 
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -134,7 +135,6 @@ export const MyProfile = () => {
       try {
         const response = await fetch(API_URL)
         const data = await response.json()
-        console.log(data)
         setPosts(data.data)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -194,11 +194,19 @@ export const MyProfile = () => {
       </div>
 
       <div className='bg-white rounded-lg shadow-md p-4 flex flex-col items-center'>
-        <img
-          src={userAvatar}
-          alt='Profile'
-          className='w-24 h-24 rounded-full'
-        />
+        {
+          userAvatar
+            ? <img
+                src={userAvatar}
+                alt='Profile'
+                className='w-24 h-24 rounded-full'
+              />
+            : <img
+                src={imgUserAvatar}
+                alt='Profile'
+                className='w-24 h-24 rounded-full'
+              />
+        }
         <h2 className='text-xl font-semibold mt-4'>{userName}</h2>
         <button
           onClick={handleEditProfileClick}
