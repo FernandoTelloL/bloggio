@@ -9,6 +9,7 @@ import { fetchCreatePost } from '../api/api'
 import { ComboCategories, TextEditor } from '../components'
 import { useUserStore } from '../store/userStore.js'
 import { ShowErrorAlert } from '../utils/ShowErrorAlert'
+import { Tooltip } from '../utils/Tooltip.jsx'
 import { usePostStore } from './../store/postStore'
 import './CreatePost.css'
 
@@ -85,18 +86,24 @@ export const CreatePost = () => {
             <form onSubmit={handleSubmit(onSubmit)} className='w-full md:w-[70%] mx-auto'>
               {/* sección de botones de acción */}
               <div className='flex justify-end gap-8 text-xl bg-white rounded-md sticky top-0 py-4 right-0 z-10 md:text-base md:py-2'>
-                <button className='p-4 rounded-full border-red-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
-                  <FaTrashCan className='text-red-500' />
-                </button>
-                <button
-                  className='p-4 rounded-full border-sky-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'
-                  type='submit'
-                >
-                  <IoSave className='text-sky-500' />
-                </button>
-                <button className='p-4 rounded-full border-green-600 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
-                  <FaUpload className='text-green-600' />
-                </button>
+                <Tooltip text='Eliminar'>
+                  <button className='p-4 rounded-full border-red-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
+                    <FaTrashCan className='text-red-500' />
+                  </button>
+                </Tooltip>
+                <Tooltip text='Guardar borrador'>
+                  <button
+                    className='p-4 rounded-full border-sky-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'
+                    type='submit'
+                  >
+                    <IoSave className='text-sky-500' />
+                  </button>
+                </Tooltip>
+                <Tooltip text='Publicar post'>
+                  <button className='p-4 rounded-full border-green-600 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
+                    <FaUpload className='text-green-600' />
+                  </button>
+                </Tooltip>
               </div>
               {/* cuerpo del formulario */}
               <div className='px-4'>
