@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { FaCommentDots } from 'react-icons/fa'
 import userAvatar from '../../assets/images/user-male-avatar.png'
 
 export const CommentsSection = ({ author, category, date, postId }) => {
@@ -7,6 +6,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
   const [newComment, setNewComment] = useState('')
   console.log(postId)
   console.log(comments)
+  console.log(date)
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -41,23 +41,28 @@ export const CommentsSection = ({ author, category, date, postId }) => {
   }
 
   return (
-    <div className='comments-section'>
+    <div className='comments-section border border-gray-400 rounded-lg p-4 text-sm lg:text-xs'>
       <div className='flex gap-3 mb-4'>
-        <img src={userAvatar} alt={author.name} className='author-photo max-w-24 rounded-full' />
+        <img src={userAvatar} className='author-photo w-10 h-10 rounded-full' />
         <div>
           <p className='font-bold'>{author}</p>
-          <p>Publicado en {category}</p>
+          <p className='text-gray-500'>Publicado en <span className='font-bold'>{category}</span></p>
           <p>{new Date(date).toLocaleDateString()}</p>
         </div>
       </div>
       <div className='responses'>
-        <h3 className='font-bold'>RESPUESTAS</h3>
+        <h3 className='font-bold'>COMENTARIOS :</h3>
         {comments.length > 0
           ? (
               comments.map((comment, index) => (
-                <div key={index} className='comment'>
-                  <p>{comment.commentContent}</p>
-                  <span>{comment.usersDTO.userNickname}</span>
+                <div key={index} className='comment '>
+                  <div className='flex items-center gap-2 mb-3 p-2 '>
+                    <img src={comment.usersDTO.userPhoto} className='author-photo w-10 h-10 rounded-full p-1' />
+                    <div className='w-full'>
+                      <span className='font-bold'>{comment.usersDTO.userNickname}</span>
+                      <p className='bg-slate-300 w-full rounded-lg p-2 text-sm lg:text-xs'>{comment.commentContent}</p>
+                    </div>
+                  </div>
                 </div>
               ))
             )
@@ -65,14 +70,16 @@ export const CommentsSection = ({ author, category, date, postId }) => {
             <p>No hay comentarios aún.</p>
             )}
         <div className='new-comment'>
-          <label htmlFor='new-comment'>Deja un comentario:</label>
+
           <textarea
+            placeholder='Escribe un comentario...'
             id='new-comment'
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
+            className='w-full rounded-lg border border-gray-400 p-2 text-sm lg:text-xs mt-4'
           />
-          <button onClick={handleCommentSubmit}>
-            <FaCommentDots />
+          <button className='bg-secondary text-white rounded-lg p-2 text-sm lg:text-xs mt-4 px-4 font-bold' onClick={handleCommentSubmit}>
+            Publicar
           </button>
         </div>
       </div>

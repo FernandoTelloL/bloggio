@@ -43,23 +43,25 @@ export const DetailPost = () => {
   return (
     <>
       <div className='mt-16 transition-all duration-500 ease-in-out'>
-        <MainTitleDetailPostPage title={post.postTitle} description={post.postDescription} />
-
-        <img
-          className='mt-16 mb-6 rounded-xl md:h-[300px] lg:w-[500px] md:w-full md:object-cover md:object-top lg:object-center lg:mx-auto'
-          src={post.postImage || mainImage}
-          alt={post.postTitle}
-        />
 
         <section className='mb-5 flex flex-col md:flex-row gap-2 lg:gap-4'>
           <article className='md:w-[70%]'>
+
+            <MainTitleDetailPostPage title={post.postTitle} description={post.postDescription} />
+
+            <img
+              className=' mb-6 border border-gray-400 rounded-xl p-4 md:h-[300px] lg:w-[500px] md:w-full md:object-cover md:object-top lg:object-center lg:mx-auto'
+              src={post.postImage || mainImage}
+              alt={post.postTitle}
+            />
+
             {parse(post.postContent)} {/* Aquí usamos html-react-parser */}
             <MenuBottomDetailPost />
           </article>
-          <section className='md:w-[30%]'>
+          <section className='md:w-[30%] pt-[40rem]'>
             <CommentsSection
               author={post.user.userNickname}
-              category={post.category}
+              category={post.categoryDesc}
               date={post.postDate}
               postId={id}
             />
