@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import userAvatar from '../../assets/images/user-male-avatar.png'
+import { useUserStore } from '../../store/userStore.js';
 
+// eslint-disable-next-line react/prop-types
 export const CommentsSection = ({ author, category, date, postId }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
+  const { id } = useUserStore()
   console.log(postId)
   console.log(comments)
   console.log(date)
@@ -24,13 +27,25 @@ export const CommentsSection = ({ author, category, date, postId }) => {
   }, [postId])
 
   const handleCommentSubmit = async () => {
+    const dataFormatted = {
+      commentContent: newComment,
+      commentId: '',
+      commentIdReply: '',
+      commentLikes: 0,
+      commentState: 1,
+      commentTimestampCreate: null,
+      commentTimestampUpdate: null,
+      postId: postId,
+      userId: id
+    }
+
     try {
-      const response = await fetch(`https://bloggio-api.onrender.com/Comment?postId=${postId}`, {
+      const response = await fetch('https://bloggio-api.onrender.com/Comment/Create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ content: newComment })
+        body: JSON.stringify(dataFormatted)
       })
       const data = await response.json()
       setComments(data)
