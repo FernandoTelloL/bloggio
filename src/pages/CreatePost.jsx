@@ -28,7 +28,6 @@ export const CreatePost = () => {
   } = useForm()
 
   const { getCategory } = usePostStore()
-  // console.log(mainContent)
 
   const onSubmit = async (data) => {
     setLoading(true)
@@ -63,7 +62,6 @@ export const CreatePost = () => {
   }
 
   return (
-
     loading
       ? (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30'>
@@ -77,40 +75,32 @@ export const CreatePost = () => {
             ariaLabel='mutating-dots-loading'
           />
         </div>
-
         )
       : (
-
-        <div className='mb-32'>
+        <div className='mb-32 '>
           <h1 className='text-2xl text-center font-extrabold mb-10 pt-12 xl:pt-16 xl:mb-14'>
             CREAR POST
           </h1>
-
-          <div className=''>
-
-            <form onSubmit={handleSubmit(onSubmit)} className='max-w-xl mx-auto md:flex md:min-w-full md:mx-0 justify-between'>
-
+          <div className='flex flex-col md:flex-row justify-between'>
+            <form onSubmit={handleSubmit(onSubmit)} className='w-full md:w-[70%] mx-auto'>
               {/* sección de botones de acción */}
-              <section className='flex md:h-fit justify-end gap-8 text-xl bg-white rounded-md sticky top-0 mb-8 py-4 right-0 z-10 md:order-1 md:text-base'>
-                <button className='p-4 rounded-full border-red-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
+              <div className='flex justify-end gap-8 text-xl bg-white rounded-md sticky top-0 py-4 right-0 z-10 md:text-base md:py-2'>
+                <button className='p-4 rounded-full border-red-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
                   <FaTrashCan className='text-red-500' />
                 </button>
-
                 <button
-                  className='p-4 rounded-full border-sky-500 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'
+                  className='p-4 rounded-full border-sky-500 border-2 hover:text-slate-200 hover:scale-110 transition-all'
                   type='submit'
                 >
                   <IoSave className='text-sky-500' />
                 </button>
-
-                <button className='p-4 rounded-full border-green-600 border-2 md:hover:text-slate-200 md:hover:scale-110 transition-all'>
+                <button className='p-4 rounded-full border-green-600 border-2 hover:text-slate-200 hover:scale-110 transition-all'>
                   <FaUpload className='text-green-600' />
                 </button>
-              </section>
-
+              </div>
               {/* cuerpo del formulario */}
-              <div className='md:text-center md:w-[70%]'>
-                <div className='mb-6 md:mb-14'>
+              <div className='px-4'>
+                <div className='mb-6'>
                   {/* titulo principal */}
                   <label htmlFor='title' className='block mb-1'>
                     Título Principal:
@@ -127,9 +117,8 @@ export const CreatePost = () => {
                     </span>
                   )}
                 </div>
-
                 {/* descripcion corta */}
-                <div className='mb-6 md:mb-14'>
+                <div className='mb-6'>
                   <label htmlFor='description' className='block mb-1'>
                     Descripción Corta:
                   </label>
@@ -154,10 +143,8 @@ export const CreatePost = () => {
                     </span>
                   )}
                 </div>
-
                 {/* seleccionar imagen */}
-                <div className='mb-6 md:mb-14'>
-
+                <div className='mb-6'>
                   <label htmlFor='mainImage' className='block mb-1'>
                     Imagen Principal:
                   </label>
@@ -168,9 +155,8 @@ export const CreatePost = () => {
                     className='w-full border border-gray-300 rounded px-3 py-2 text-sm'
                   />
                 </div>
-
                 {/* text editor */}
-                <div className='mb-6 md:mb-14'>
+                <div className='mb-6'>
                   <label htmlFor='body' className='block mb-1'>
                     Cuerpo del Post:
                   </label>
@@ -179,14 +165,12 @@ export const CreatePost = () => {
                     setMainContent={setMainContent}
                   />
                 </div>
-
                 {/* combo de categorias */}
                 <div className='mb-10'>
                   <p>Seleccione categoría del post</p>
                   <ComboCategories />
                 </div>
               </div>
-
             </form>
           </div>
         </div>
