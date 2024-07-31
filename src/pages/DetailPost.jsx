@@ -63,6 +63,7 @@ export const DetailPost = () => {
               author={post.user.userNickname}
               category={post.categoryDesc}
               date={post.postDate}
+              imgUser={post.user.userPhoto}
               postId={id}
             />
           </section>

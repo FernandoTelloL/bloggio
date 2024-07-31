@@ -3,7 +3,7 @@ import userAvatar from '../../assets/images/user-male-avatar.png'
 import { useUserStore } from '../../store/userStore.js'
 
 // eslint-disable-next-line react/prop-types
-export const CommentsSection = ({ author, category, date, postId }) => {
+export const CommentsSection = ({ author, category, date, postId, imgUser }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
   const { id } = useUserStore()
@@ -54,7 +54,10 @@ export const CommentsSection = ({ author, category, date, postId }) => {
   return (
     <div className='comments-section border border-gray-400 rounded-lg p-4 text-sm lg:text-xs'>
       <div className='flex gap-3 mb-4'>
-        <img src={userAvatar} className='author-photo w-10 h-10 rounded-full' />
+        <img
+          src={imgUser || userAvatar}
+          className='author-photo w-10 h-10 rounded-full p-1'
+        />
         <div>
           <p className='font-bold'>{author}</p>
           <p className='text-gray-500'>Publicado en <span className='font-bold'>{category}</span></p>
