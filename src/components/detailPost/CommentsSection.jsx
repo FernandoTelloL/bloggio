@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
 import userAvatar from '../../assets/images/user-male-avatar.png'
-import { useUserStore } from '../../store/userStore.js';
+import { useUserStore } from '../../store/userStore.js'
 
 // eslint-disable-next-line react/prop-types
 export const CommentsSection = ({ author, category, date, postId }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
   const { id } = useUserStore()
-  console.log(postId)
-  console.log(comments)
-  console.log(date)
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await fetch(`https://bloggio-api.onrender.com/Comment?postId=${postId}`)
         const data = await response.json()
-        console.log(data)
         setComments(data)
       } catch (error) {
         console.error('Error fetching comments:', error)
@@ -35,7 +31,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
       commentState: 1,
       commentTimestampCreate: null,
       commentTimestampUpdate: null,
-      postId: postId,
+      postId,
       userId: id
     }
 
@@ -48,7 +44,7 @@ export const CommentsSection = ({ author, category, date, postId }) => {
         body: JSON.stringify(dataFormatted)
       })
       const data = await response.json()
-      setComments(data)
+      setComments((prevComments) => [...prevComments, data])
       setNewComment('')
     } catch (error) {
       console.error('Error posting comment:', error)
@@ -70,11 +66,14 @@ export const CommentsSection = ({ author, category, date, postId }) => {
         {comments.length > 0
           ? (
               comments.map((comment, index) => (
-                <div key={index} className='comment '>
-                  <div className='flex items-center gap-2 mb-3 p-2 '>
-                    <img src={comment.usersDTO.userPhoto} className='author-photo w-10 h-10 rounded-full p-1' />
+                <div key={index} className='comment'>
+                  <div className='flex items-center gap-2 mb-3 p-2'>
+                    <img
+                      src={comment.usersDTO?.userPhoto || userAvatar}
+                      className='author-photo w-10 h-10 rounded-full p-1'
+                    />
                     <div className='w-full'>
-                      <span className='font-bold'>{comment.usersDTO.userNickname}</span>
+                      <span className='font-bold'>{comment.usersDTO?.userNickname || 'Anónimo'}</span>
                       <p className='bg-slate-300 w-full rounded-lg p-2 text-sm lg:text-xs'>{comment.commentContent}</p>
                     </div>
                   </div>
@@ -85,7 +84,6 @@ export const CommentsSection = ({ author, category, date, postId }) => {
             <p>No hay comentarios aún.</p>
             )}
         <div className='new-comment'>
-
           <textarea
             placeholder='Escribe un comentario...'
             id='new-comment'
