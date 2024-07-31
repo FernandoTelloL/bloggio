@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
+import {ENDPOINTS} from "../api/apiEndpoints.js";
+import {ShowErrorAlert, ShowSuccessAlert} from "../utils/index.js";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -77,7 +79,7 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
 }
 
 // eslint-disable-next-line react/prop-types
-const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
+const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleSetImage }) => {
   if (!isOpen) return null
 
   return (
@@ -105,7 +107,7 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
         />
         <input
           type='file'
-          onChange={(e) => onChange('avatar', e.target.files[0])}
+          onChange={(e) => onChange(handleSetImage(e.target.files[0]))}
           className='w-full p-2 border border-gray-300 rounded mb-2'
         />
         <div className='flex justify-end'>
@@ -120,10 +122,11 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
 export const MyProfile = () => {
   const [posts, setPosts] = useState([])
   // endpoint para obtener los datos del usuario
-  const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
+  // const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
+  const urlUpdateProfile = 'http://localhost:8085/auth/update-profile'
 
   const { userShortBio, userName, id, userAvatar } = useUserStore()
-  console.log(userName, userShortBio, id, userAvatar)
+  const [imageFile, setImageFile] = useState(null) // Estado para la imagen
 
   const [reloadPosts, setReloadPosts] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
@@ -177,7 +180,7 @@ export const MyProfile = () => {
     })
   }
 
-  const handleSaveUserData = () => {
+  const handleSaveUserData = async () => {
     if (userData.nickname.trim() === '') {
       Swal.fire({
         icon: 'error',
@@ -187,10 +190,46 @@ export const MyProfile = () => {
       return
     }
 
+    let dataFormatted = {
+      userId: id,
+      userNickname: userData.nickname,
+      userShortBio: userData.shortbio
+    }
+    const formData = new FormData()
+    dataFormatted = JSON.stringify(dataFormatted)
+    formData.append('user', new Blob([dataFormatted], { type: 'application/json' }))
+    formData.append('file', new Blob([imageFile], { type: 'application/octet-stream' }))
+
+    try {
+      const response = await fetch(urlUpdateProfile, {
+        method: 'POST',
+        body: formData
+      })
+
+      if (!response.ok) {
+        throw new Error('Hubo un problema con la petición: ' + response.status)
+      }
+
+      const result = await (response).json()
+
+      ShowSuccessAlert(
+        'Datos actualizados correctamente'
+      )
+      console.log('Respuesta del servidor:', result)
+    } catch (error) {
+      console.error('Error al enviar la petición:', error)
+      ShowErrorAlert('Error al enviar la petición: ' + error.message)
+    }
+
     // Aquí puedes añadir la lógica para guardar los datos actualizados del usuario
     // Por ejemplo, enviar una solicitud a tu API
     console.log('Datos guardados:', userData)
     setModalOpen(false)
+  }
+
+  const handleSetImage = ({ image }) => {
+    console.log(image)
+    setImageFile(image)
   }
 
   return (
@@ -238,6 +277,7 @@ export const MyProfile = () => {
         userData={userData}
         onChange={handleChangeUserData}
         onSave={handleSaveUserData}
+        handleSetImage={handleSetImage}
       />
     </div>
   )
