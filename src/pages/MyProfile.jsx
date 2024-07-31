@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
-import userAvatar from "../assets/images/user-male-avatar.png";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -179,6 +178,15 @@ export const MyProfile = () => {
   }
 
   const handleSaveUserData = () => {
+    if (userData.nickname.trim() === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'El campo de Nickname no puede estar vacío!'
+      })
+      return
+    }
+
     // Aquí puedes añadir la lógica para guardar los datos actualizados del usuario
     // Por ejemplo, enviar una solicitud a tu API
     console.log('Datos guardados:', userData)
