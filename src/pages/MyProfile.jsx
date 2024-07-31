@@ -227,7 +227,7 @@ export const MyProfile = () => {
     setModalOpen(false)
   }
 
-  const handleSetImage = ({ image }) => {
+  const handleSetImage = (image) => {
     console.log(image)
     setImageFile(image)
   }
