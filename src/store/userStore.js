@@ -18,13 +18,14 @@ export const useUserStore = create(
           logged: !state.logged
         })),
 
-      setUser: (id, nombre, correo, token) =>
+      setUser: (id, nombre, correo, token, avatar) =>
         set((state) => ({
           id: (state.id = id),
           userName: (state.userName = nombre),
           email: (state.email = correo),
           token: (state.token = token),
-          logged: (state.logged = true)
+          logged: (state.logged = true),
+          userAvatar: (state.userAvatar = avatar)
         })),
 
       logoutUser: () =>

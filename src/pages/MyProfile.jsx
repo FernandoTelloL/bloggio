@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
+import userAvatar from "../assets/images/user-male-avatar.png";
 
+// eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false)
 
@@ -75,6 +77,7 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
   )
 }
 
+// eslint-disable-next-line react/prop-types
 const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
   if (!isOpen) return null
 
@@ -95,6 +98,11 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave }) => {
           value={userData.shortbio}
           onChange={(e) => onChange('shortbio', e.target.value)}
           className='w-full p-2 border border-gray-300 rounded mb-2'
+        />
+        <img
+          className='w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer'
+          src={userData.avatar}
+          alt=''
         />
         <input
           type='file'
@@ -152,9 +160,9 @@ export const MyProfile = () => {
     // Aquí puedes añadir la lógica para obtener los datos actuales del usuario y establecerlos en el estado
     // Por ejemplo:
     setUserData({
-      nickname: 'currentNickname',
-      shortbio: 'currentShortBio',
-      avatar: null
+      nickname: userName,
+      shortbio: userShortBio,
+      avatar: userAvatar
     })
     setModalOpen(true)
   }

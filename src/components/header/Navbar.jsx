@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   const handlePhotoClick = () => setPhotoClicked(() => !photoClicked)
 
-  const { logoutUser, userName, logged } = useUserStore()
+  const { logoutUser, userName, logged, userAvatar } = useUserStore()
 
   const handleLogoutClick = (event) => {
     event.preventDefault()

@@ -23,13 +23,13 @@ export const LoginPage = () => {
     setLoading(true) // Mostrar spinner
     try {
       const dataLogin = await fetchLogin(dataFormated)
-      console.log(dataLogin)
+      console.log('dataLogin', dataLogin)
 
       if (dataLogin === undefined) {
         throw new Error('Hubo un problema con la petición: ' + dataLogin.status)
       }
 
-      setUser(dataLogin.userId, dataLogin.userNickname, dataLogin.userEmail, dataLogin.token)
+      setUser(dataLogin.userId, dataLogin.userNickname, dataLogin.userEmail, dataLogin.token, dataLogin.userPhoto)
       navigate('/', { replace: true })
     } finally {
       setLoading(false) // Ocultar spinner
