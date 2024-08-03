@@ -4,6 +4,7 @@ import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
 import {ENDPOINTS} from "../api/apiEndpoints.js";
 import {ShowErrorAlert, ShowSuccessAlert} from "../utils/index.js";
+import {Link} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -52,7 +53,11 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
     <div className='bg-white rounded-lg shadow-md p-4 flex flex-col'>
       <img src={image} alt={title} className='w-full h-32 object-cover rounded-t-lg' />
       <div className='mt-2 flex-1'>
-        <h2 className='text-xl font-semibold'>{title}</h2>
+        <h2 className='text-xl font-semibold'>
+          <Link to={`/detail-post/${postId}`}>
+            {title}
+          </Link>
+        </h2>
         <p className='text-gray-600'>{description}</p>
       </div>
       <div className='mt-2 flex justify-between items-center'>
@@ -101,7 +106,7 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleS
           className='w-full p-2 border border-gray-300 rounded mb-2'
         />
         <img
-          className='w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer'
+          className='h-auto max-w-full m-auto'
           src={userData.avatar}
           alt=''
         />
@@ -123,7 +128,7 @@ export const MyProfile = () => {
   const [posts, setPosts] = useState([])
   // endpoint para obtener los datos del usuario
   // const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
-  const urlUpdateProfile = 'http://localhost:8085/auth/update-profile'
+  const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
 
   const { userShortBio, userName, id, userAvatar } = useUserStore()
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
@@ -230,6 +235,7 @@ export const MyProfile = () => {
   const handleSetImage = (image) => {
     console.log(image)
     setImageFile(image)
+    //setear la imagen en la etiquete img?
   }
 
   return (

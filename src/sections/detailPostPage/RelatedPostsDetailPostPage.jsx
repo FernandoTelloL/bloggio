@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 import img1 from '../../assets/images/img1.webp'
 import { CardType1 } from '../../components'
+import {useUserStore} from "../../store/userStore.js";
 
 export const RelatedPostsDetailPostPage = ({ post }) => {
   const [relatedPosts, setRelatedPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { userName, userAvatar } = useUserStore()
 
   console.log(post)
 
@@ -57,8 +59,11 @@ export const RelatedPostsDetailPostPage = ({ post }) => {
             img={relatedPost.postImage || img1} // Usa una imagen por defecto si no hay imagen en el post relacionado
             imgHeight='h-[140px]'
             title={relatedPost.postTitle}
+            userNickName={userName}
+            postCreated={new Date(relatedPost.postCreated).toLocaleDateString()}
             description={relatedPost.postDescription}
-            date={new Date(relatedPost.postCreated).toLocaleDateString()}
+            postId={relatedPost.postId}
+            category={relatedPost.category}
           />
         ))}
       </div>

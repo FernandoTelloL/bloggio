@@ -62,7 +62,7 @@ export const DetailPost = () => {
             <CommentsSection
               author={post.user.userNickname}
               category={post.categoryDesc}
-              date={post.postDate}
+              date={post.postCreated}
               imgUser={post.user.userPhoto}
               postId={id}
             />
