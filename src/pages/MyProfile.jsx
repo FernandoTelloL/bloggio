@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
-import {ENDPOINTS} from "../api/apiEndpoints.js";
-import {ShowErrorAlert, ShowSuccessAlert} from "../utils/index.js";
-import {Link} from "react-router-dom";
+import { ShowErrorAlert, ShowSuccessAlert } from '../utils/index.js'
+import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -84,7 +83,7 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
 }
 
 // eslint-disable-next-line react/prop-types
-const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleSetImage }) => {
+const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleSetImage, imageSelected, isAvatarVisible, isImageSelectedVisible }) => {
   if (!isOpen) return null
 
   return (
@@ -106,10 +105,15 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleS
           className='w-full p-2 border border-gray-300 rounded mb-2'
         />
         <img
-          className='h-auto max-w-full m-auto'
+          className='h-auto w-24 ml-2'
           src={userData.avatar}
           alt=''
         />
+        {/* <img
+          className='h-auto w-24 mr-2'
+          src={imageSelected}
+          alt=''
+        /> */}
         <input
           type='file'
           onChange={(e) => onChange(handleSetImage(e.target.files[0]))}
@@ -140,8 +144,9 @@ export const MyProfile = () => {
     shortbio: '',
     avatar: null
   })
-
-  console.log(id)
+  const [imageSelected, setImageSelected] = useState(null)
+  const [isAvatarVisible, setAvatarVisible] = useState(false)
+  const [isSelectedImageVisible, setSelectedImageVisible] = useState(false)
 
   const API_URL = `https://bloggio-api.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
 
@@ -220,22 +225,19 @@ export const MyProfile = () => {
       ShowSuccessAlert(
         'Datos actualizados correctamente'
       )
-      console.log('Respuesta del servidor:', result)
     } catch (error) {
       console.error('Error al enviar la petición:', error)
       ShowErrorAlert('Error al enviar la petición: ' + error.message)
     }
-
-    // Aquí puedes añadir la lógica para guardar los datos actualizados del usuario
-    // Por ejemplo, enviar una solicitud a tu API
-    console.log('Datos guardados:', userData)
     setModalOpen(false)
   }
 
   const handleSetImage = (image) => {
-    console.log(image)
     setImageFile(image)
-    //setear la imagen en la etiquete img?
+    console.log(image)
+    setImageSelected(URL.createObjectURL(image))
+    setAvatarVisible(true)
+    setSelectedImageVisible(false)
   }
 
   return (
@@ -284,6 +286,8 @@ export const MyProfile = () => {
         onChange={handleChangeUserData}
         onSave={handleSaveUserData}
         handleSetImage={handleSetImage}
+        isAvatarVisible={isAvatarVisible}
+        isImageSelectedVisible={isSelectedImageVisible}
       />
     </div>
   )
