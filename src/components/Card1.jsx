@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import img1 from '../assets/images/img1.webp'
 import {
   RiTwitterFill,

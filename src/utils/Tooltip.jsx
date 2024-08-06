@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 export const Tooltip = ({ text, children }) => {
   return (
     <div className='relative group'>

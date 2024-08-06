@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { AllPosts, HeroHome, RecentPosts } from '../sections'
 
 export const HomePage = () => {

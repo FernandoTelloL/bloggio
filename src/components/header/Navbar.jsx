@@ -1,12 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useUserStore } from '../../store/userStore'
 
 import burgerMenu from '../../assets/icons/icon-hamburger.svg'
 import closeMenu from '../../assets/icons/icon-menu-close.svg'
-
-import userAvatar from '../../assets/images/user-male-avatar.png'
 
 export const Navbar = () => {
   const navigate = useNavigate()

@@ -9,7 +9,7 @@ import {
 import { useState, useEffect } from 'react'
 
 export const RecentPosts = () => {
-  const [posts, setPosts] = useState([])
+  const [, setPosts] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {

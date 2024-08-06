@@ -1,5 +1,6 @@
 import { RiArrowLeftLine, RiArrowRightLine } from 'react-icons/ri'
 
+// eslint-disable-next-line react/prop-types
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePrevious = (event) => {
     event.preventDefault() // Prevenir el comportamiento por defecto del enlace

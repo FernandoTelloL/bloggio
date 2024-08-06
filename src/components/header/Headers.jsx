@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import { Logo } from './Logo'
 import { Navbar } from './Navbar'
 
