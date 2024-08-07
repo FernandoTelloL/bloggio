@@ -1,5 +1,5 @@
 const API_BASE_URL = 'https://bloggio-api-xv4g.onrender.com'
-// tengo que cambiar la url de la api
+// este es un cambio que hice desde linux
 
 export const ENDPOINTS = {
 
