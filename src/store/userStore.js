@@ -43,7 +43,8 @@ export const useUserStore = create(
       partialize: (state) => ({
         userName: state.userName,
         id: state.id,
-        logged: state.logged
+        logged: state.logged,
+        userAvatar: state.userAvatar
       })
     }
   )

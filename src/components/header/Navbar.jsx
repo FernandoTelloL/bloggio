@@ -6,7 +6,7 @@ import { useUserStore } from '../../store/userStore'
 import burgerMenu from '../../assets/icons/icon-hamburger.svg'
 import closeMenu from '../../assets/icons/icon-menu-close.svg'
 
-import userAvatar from '../../assets/images/user-male-avatar.png'
+import userAvatarDefault from '../../assets/images/user-male-avatar.png'
 
 export const Navbar = () => {
   const navigate = useNavigate()
@@ -75,7 +75,7 @@ export const Navbar = () => {
                 <img
                   className='w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer'
                   onClick={handlePhotoClick}
-                  src={userAvatar}
+                  src={userAvatar ? userAvatar : userAvatarDefault}
                   alt=''
                 />
 
