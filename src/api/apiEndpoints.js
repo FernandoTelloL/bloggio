@@ -1,4 +1,5 @@
 const API_BASE_URL = 'https://bloggio-api.onrender.com'
+// tengo que cambiar la url de la api
 
 export const ENDPOINTS = {
 
