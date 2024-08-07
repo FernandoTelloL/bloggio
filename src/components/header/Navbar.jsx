@@ -75,7 +75,7 @@ export const Navbar = () => {
                 <img
                   className='w-14 h-14 object-cover rounded-full object-top border-2 border-slate-950 cursor-pointer'
                   onClick={handlePhotoClick}
-                  src={userAvatar ? userAvatar : userAvatarDefault}
+                  src={userAvatar || userAvatarDefault}
                   alt=''
                 />
 

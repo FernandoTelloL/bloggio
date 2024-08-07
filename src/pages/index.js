@@ -1,5 +1,4 @@
-/* eslint-disable eol-last */
-export { MyProfile } from './MyProfile'
+export { MyProfile } from './myProfile/MyProfile'
 
 export { OtrosCategoriesPage } from './categories/OtrosCategoriesPage'
 

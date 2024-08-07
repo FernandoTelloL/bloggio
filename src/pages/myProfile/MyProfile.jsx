@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
-import { useUserStore } from '../store/userStore'
-import { ShowErrorAlert, ShowSuccessAlert } from '../utils/index.js'
+import imgUserAvatar from '../../../src/assets/images/user-male-avatar.png'
+import { useUserStore } from '../../store/userStore.js'
+import { ShowErrorAlert, ShowSuccessAlert } from '../../utils/index.js'
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
