@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import imgUserAvatar from '../../src/assets/images/user-male-avatar.png'
 import { useUserStore } from '../store/userStore'
 import { ShowErrorAlert, ShowSuccessAlert } from '../utils/index.js'
-import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line react/prop-types
 const Card = ({ image, title, description, date, postId, onDelete }) => {
@@ -26,7 +26,7 @@ const Card = ({ image, title, description, date, postId, onDelete }) => {
 
     if (result.isConfirmed) {
       try {
-        await fetch(`https://bloggio-api.onrender.com/Post/${postId}`, {
+        await fetch(`https://bloggio-api-xv4g.onrender.com/Post/${postId}`, {
           method: 'DELETE'
         })
 
@@ -131,8 +131,8 @@ const EditProfileModal = ({ isOpen, onClose, userData, onChange, onSave, handleS
 export const MyProfile = () => {
   const [posts, setPosts] = useState([])
   // endpoint para obtener los datos del usuario
-  // const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
-  const urlUpdateProfile = 'https://bloggio-api.onrender.com/auth/update-profile'
+  // const urlUpdateProfile = 'https://bloggio-api-xv4g.onrender.com/auth/update-profile'
+  const urlUpdateProfile = 'https://bloggio-api-xv4g.onrender.com/auth/update-profile'
 
   const { userShortBio, userName, id, userAvatar } = useUserStore()
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
@@ -148,7 +148,7 @@ export const MyProfile = () => {
   const [isAvatarVisible, setAvatarVisible] = useState(false)
   const [isSelectedImageVisible, setSelectedImageVisible] = useState(false)
 
-  const API_URL = `https://bloggio-api.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
+  const API_URL = `https://bloggio-api-xv4g.onrender.com/Post/get-by-user/${id}?limit=10&offset=1`
 
   useEffect(() => {
     const fetchData = async () => {

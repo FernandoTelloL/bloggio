@@ -1,1 +1,1 @@
-https://bloggio-api.onrender.com/swagger-ui/#
+https://bloggio-api-xv4g.onrender.com/swagger-ui/#

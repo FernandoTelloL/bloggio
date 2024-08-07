@@ -11,7 +11,7 @@ export const CommentsSection = ({ author, category, date, postId, imgUser }) => 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const response = await fetch(`https://bloggio-api.onrender.com/Comment?postId=${postId}`)
+        const response = await fetch(`https:/bloggio-api-xv4g.onrender.com/Comment?postId=${postId}`)
         const data = await response.json()
         setComments(data)
       } catch (error) {
@@ -36,7 +36,7 @@ export const CommentsSection = ({ author, category, date, postId, imgUser }) => 
     }
 
     try {
-      const response = await fetch('https://bloggio-api.onrender.com/Comment/Create', {
+      const response = await fetch('https://bloggio-api-xv4g.onrender.com/Comment/Create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

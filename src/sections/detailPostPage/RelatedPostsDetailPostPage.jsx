@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import img1 from '../../assets/images/img1.webp'
 import { CardType1 } from '../../components'
-import {useUserStore} from "../../store/userStore.js";
+import { useUserStore } from '../../store/userStore.js'
 
 export const RelatedPostsDetailPostPage = ({ post }) => {
   const [relatedPosts, setRelatedPosts] = useState([])
@@ -14,7 +14,7 @@ export const RelatedPostsDetailPostPage = ({ post }) => {
   useEffect(() => {
     const fetchRelatedPosts = async () => {
       try {
-        const response = await fetch(`https://bloggio-api.onrender.com/Post/recommended-post?category-name=${post.categoryDesc}&user-id=${post.user.userId}`)
+        const response = await fetch(`https://bloggio-api-xv4g.onrender.com/Post/recommended-post?category-name=${post.categoryDesc}&user-id=${post.user.userId}`)
 
         console.log(response)
 
