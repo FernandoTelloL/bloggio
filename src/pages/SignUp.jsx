@@ -6,7 +6,7 @@ import { ShowErrorAlert } from '../utils/ShowErrorAlert'
 import { ShowSuccessAlert } from '../utils/ShowSuccessAlert'
 
 export const SignUp = () => {
-  const basepath = 'https://bloggio-api-xv4g.onrender.com'
+  const basepath = 'https://bloggio-api-5hut.onrender.com'
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false) // Estado para el spinner
 

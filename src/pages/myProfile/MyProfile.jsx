@@ -15,7 +15,7 @@ export const MyProfile = () => {
   const [reloadPosts, setReloadPosts] = useState(false)
   const [modalOpen, setModalOpen] = useState(false) // Nuevo estado para controlar el modal
 
-  const API_URL = `https://bloggio-api-xv4g.onrender.com/Post/get-by-user/${id}?limit=30&offset=1`
+  const API_URL = `https://bloggio-api-5hut.onrender.com/Post/get-by-user/${id}?limit=30&offset=1`
 
   useEffect(() => {
     const fetchData = async () => {

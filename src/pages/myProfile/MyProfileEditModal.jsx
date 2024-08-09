@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
-import { ShowErrorAlert, ShowSuccessAlert } from '../../utils'
 import Swal from 'sweetalert2'
+import { ShowErrorAlert, ShowSuccessAlert } from '../../utils'
 
 // export const MyProfileEditModal = ({ isOpen, onClose, userData, onChange, onSave, handleSetImage, imageSelected, isAvatarVisible, isImageSelectedVisible }) => {
 export const MyProfileEditModal = ({ userData, id }) => {
@@ -12,7 +12,7 @@ export const MyProfileEditModal = ({ userData, id }) => {
   const [imageFile, setImageFile] = useState(null) // Estado para la imagen
 
   // endpoint para obtener los datos del usuario
-  const urlUpdateProfile = 'https://bloggio-api-xv4g.onrender.com/auth/update-profile'
+  const urlUpdateProfile = 'https://bloggio-api-5hut.onrender.com/auth/update-profile'
 
   const handleCloseModal = () => {
     setModalOpen(false)

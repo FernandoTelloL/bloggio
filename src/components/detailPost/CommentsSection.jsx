@@ -36,7 +36,7 @@ export const CommentsSection = ({ author, category, date, postId, imgUser }) => 
     }
 
     try {
-      const response = await fetch('https://bloggio-api-xv4g.onrender.com/Comment/Create', {
+      const response = await fetch('https://bloggio-api-5hut.onrender.com/Comment/Create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

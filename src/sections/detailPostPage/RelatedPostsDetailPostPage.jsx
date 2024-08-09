@@ -14,7 +14,7 @@ export const RelatedPostsDetailPostPage = ({ post }) => {
   useEffect(() => {
     const fetchRelatedPosts = async () => {
       try {
-        const response = await fetch(`https://bloggio-api-xv4g.onrender.com/Post/recommended-post?category-name=${post.categoryDesc}&user-id=${post.user.userId}`)
+        const response = await fetch(`https://bloggio-api-5hut.onrender.com/Post/recommended-post?category-name=${post.categoryDesc}&user-id=${post.user.userId}`)
 
         console.log(response)
 

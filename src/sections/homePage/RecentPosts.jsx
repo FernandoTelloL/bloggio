@@ -15,7 +15,7 @@ export const RecentPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://bloggio-api-xv4g.onrender.com/Post/GetTop4Post')
+        const response = await fetch('https://bloggio-api-5hut.onrender.com/Post/GetTop4Post')
         if (!response.ok) {
           throw new Error('Network response was not ok')
         }
